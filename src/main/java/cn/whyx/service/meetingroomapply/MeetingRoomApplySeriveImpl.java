@@ -5,6 +5,7 @@ import cn.whyx.pojo.MeetingRoomApply;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class MeetingRoomApplySeriveImpl implements MeetingRoomApplySerive{
@@ -15,5 +16,15 @@ public class MeetingRoomApplySeriveImpl implements MeetingRoomApplySerive{
     @Override
     public boolean addMeetingRoomApply(MeetingRoomApply meetingRoomApply) {
         return (mapper.addMeetingRoomApply(meetingRoomApply)>0)?true:false;
+    }
+
+    @Override
+    public List<MeetingRoomApply> findMeetingRoomApply() {
+        return mapper.findMeetingRoomApply();
+    }
+
+    @Override
+    public boolean updateStatus(Integer id, Integer status) {
+        return (mapper.updateStatus(id, status)>0)?true:false;
     }
 }
