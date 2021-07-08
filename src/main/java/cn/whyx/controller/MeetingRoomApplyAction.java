@@ -21,5 +21,6 @@ public class MeetingRoomApplyAction {
         meetingRoomApply.setStatus("0");
         boolean bool = serive.addMeetingRoomApply(meetingRoomApply);
         return bool;
+
     }
 }
