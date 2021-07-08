@@ -15,8 +15,10 @@ import javax.annotation.Resource;
 public class UserAction {
 
     @Autowired
-    UserService userService;
-    @CrossOrigin
+    private UserService userService;
+
+
+
     @PostMapping(value = "/login")
     @ResponseBody
     public Result login(@RequestParam String name,@RequestParam String password) {
