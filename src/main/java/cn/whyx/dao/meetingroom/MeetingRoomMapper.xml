@@ -9,8 +9,5 @@
         select * from whyxdb.meetingroom
     </select>
 
-    <!--修改-->
-    <update id="">
-
-    </update>
+    
 </mapper>
