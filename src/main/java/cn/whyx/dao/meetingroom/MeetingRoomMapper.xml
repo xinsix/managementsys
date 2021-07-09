@@ -6,7 +6,11 @@
 
     <!--查询所有会议室-->
     <select id="findMeetingRoom" resultType="MeetingRoom">
-        select * from `MeetingRoom`
+        select * from whyxdb.meetingroom
     </select>
 
+    <!--修改-->
+    <update id="">
+
+    </update>
 </mapper>
