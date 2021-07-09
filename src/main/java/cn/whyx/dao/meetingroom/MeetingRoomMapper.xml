@@ -9,5 +9,5 @@
         select * from whyxdb.meetingroom
     </select>
 
-    
+
 </mapper>
