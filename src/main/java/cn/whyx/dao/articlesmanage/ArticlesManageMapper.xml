@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.whyx.dao.articlesmanage.ArticlesManageMapper">
+    <!--查看所有用品-->
+    <select id="findAssetsManage" resultType="AssetsManage">
+        select * from articlesmanage
+        <if test="productname!=null">
+            where productname like CONCAT('%',#{productname},'%')
+        </if>
+        order by id desc
+    </select>
+
+
+    <!--添加用品-->
+    <insert id="addAssetsManage" parameterType="AssetsManage">
+        insert articlesmanage
+        values (null,#{productname},#{applicant},#{quantity}
+            ,#{applicationtime},#{backtime},#{purpose},#{record_pid})
+    </insert>
+
+    <!--修改用品-->
+    <update id="updAssetsManage" parameterType="AssetsManage">
+        update articlesmanage
+        set productname=#{productname},applicant=#{applicant},quantity=#{quantity},
+            applicationtime=#{applicationtime},backtime=#{backtime},purpose=#{purpose}
+            ,record_pid=#{record_pid}
+        where id=#{id}
+    </update>
+
+    <!--删除用品-->
+    <delete id="delAssetsManage">
+        delete from articlesmanage where id=#{id}
+    </delete>
+</mapper>
