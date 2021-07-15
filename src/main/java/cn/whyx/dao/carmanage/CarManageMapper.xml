@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.whyx.dao.carmanage.CarManageMapper">
+    <!--查看所有车辆-->
+    <select id="findCarManage" resultType="CarManage">
+        select * from carmanage
+        <if test="licenseplate!=null">
+            where licenseplate like CONCAT('%',#{licenseplate},'%')
+        </if>
+        order by id desc
+    </select>
+
+    <!--添加车辆-->
+    <insert id="addCarManage" parameterType="CarManage">
+        insert carmanage
+        values (null,#{licenseplate},#{applicant},#{applytime},#{backtime}
+            ,#{purpose},#{mileage},#{voucher})
+    </insert>
+
+    <!--修改车辆-->
+    <update id="updCarManage" parameterType="CarManage">
+        update carmanage
+        set licenseplate=#{licenseplate},applicant=#{applicant},applytime=#{applytime}
+            ,backtime=#{backtime},purpose=#{purpose},mileage=#{mileage}
+            ,voucher=#{voucher}
+        where id=#{id}
+    </update>
+
+    <!--删除车辆-->
+    <delete id="delCarManage">
+        delete from carmanage where id=#{id}
+    </delete>
+</mapper>

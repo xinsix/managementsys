@@ -13,7 +13,6 @@
         order by id desc
     </select>
 
-
     <!--添加资产-->
     <insert id="addAssetsManage" parameterType="AssetsManage">
         insert assetsmanage

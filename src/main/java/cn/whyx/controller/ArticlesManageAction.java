@@ -12,29 +12,29 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
-@RequestMapping("/ArticlesManage")
+@RequestMapping("/articlesmanage")
 public class ArticlesManageAction {
     @Resource
     private ArticlesManageService service;
 
     @RequestMapping("find")
-    public String findArticlesManage(Model model, @RequestParam(required = false)String assetname){//查看所有资产
-        List<ArticlesManage> list = service.findArticlesManage(assetname);
+    public String findArticlesManage(Model model, @RequestParam(required = false)String productname){//查看所有资产
+        List<ArticlesManage> list = service.findArticlesManage(productname);
         model.addAttribute("list",list);
         return "";
     }
 
     @ResponseBody
     @RequestMapping("/add")
-    public Object addArticlesManage(ArticlesManage assetsManage){//添加用品
-        boolean bool = service.addArticlesManage(assetsManage);
+    public Object addArticlesManage(ArticlesManage articlesManage){//添加用品
+        boolean bool = service.addArticlesManage(articlesManage);
         return bool;
     }
 
     @ResponseBody
     @RequestMapping("/upd")
-    public Object updArticlesManage(ArticlesManage assetsManage){//更新用品
-        boolean bool = service.updArticlesManage(assetsManage);
+    public Object updArticlesManage(ArticlesManage articlesManage){//更新用品
+        boolean bool = service.updArticlesManage(articlesManage);
         return bool;
     }
 
