@@ -6,6 +6,8 @@ package cn.whyx.pojo;
 public class Penson {
     private Integer id;                 //员工ID
     private String name;                //员工姓名
+    private String username;                //员工账号
+    private String password;                //员工密码
     private String sex;                 //员工性别
     private String address;             //员工地址
     private String duty;                //员工职务

@@ -1,10 +1,9 @@
 package cn.whyx.controller;
 
-import cn.whyx.pojo.User;
+import cn.whyx.pojo.Penson;
 import cn.whyx.response.Result;
-import cn.whyx.service.user.UserService;
+import cn.whyx.service.penson.PensonService;
 import cn.whyx.util.Condition;
-import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +15,12 @@ import javax.servlet.http.HttpSession;
 public class UserAction {
 
     @Autowired
-    private UserService userService;
+    private PensonService userService;
 
     @PostMapping(value = "/login")
     @ResponseBody
     public Result login(@RequestParam String name, @RequestParam String password, HttpSession session) {
-        User user=userService.login(name,password);
+        Penson user=userService.login(name,password);
         System.out.println("成功:"+user);
         if (null ==  user){
             return new Result(400);
@@ -34,7 +33,7 @@ public class UserAction {
     @PostMapping(value = "/main")
     @ResponseBody
     public Object main(HttpSession session) {
-        User user= (User) session.getAttribute(Condition.USER_SESSION);
+        Penson user= (Penson) session.getAttribute(Condition.USER_SESSION);
         System.out.println(user);
         if (null ==  user){
             return new Result(400);
