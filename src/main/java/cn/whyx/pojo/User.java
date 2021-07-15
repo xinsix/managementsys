@@ -10,8 +10,16 @@ public class User {
     private String username;//用户名
     private String password;//用户密码
     private Date createTime;//创建时间
-    private Date expireTime;//过期时间
     private Integer parson;//员工ID
+    private Integer role;//员工ID
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
 
     public Integer getId() {
         return id;
@@ -43,14 +51,6 @@ public class User {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public Date getExpireTime() {
-        return expireTime;
-    }
-
-    public void setExpireTime(Date expireTime) {
-        this.expireTime = expireTime;
     }
 
     public Integer getParson() {

@@ -3,9 +3,13 @@ package cn.whyx.controller;
 import cn.whyx.pojo.User;
 import cn.whyx.response.Result;
 import cn.whyx.service.user.UserService;
+import cn.whyx.util.Condition;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -16,13 +20,27 @@ public class UserAction {
 
     @PostMapping(value = "/login")
     @ResponseBody
-    public Result login(@RequestParam String name,@RequestParam String password) {
+    public Result login(@RequestParam String name, @RequestParam String password, HttpSession session) {
         User user=userService.login(name,password);
-        System.out.println("成功");
+        System.out.println("成功:"+user);
         if (null ==  user){
             return new Result(400);
         } else {
+            session.setAttribute(Condition.USER_SESSION,user);
             return new Result(200);
+        }
+    }
+
+    @PostMapping(value = "/main")
+    @ResponseBody
+    public Object main(HttpSession session) {
+        User user= (User) session.getAttribute(Condition.USER_SESSION);
+        System.out.println(user);
+        if (null ==  user){
+            return new Result(400);
+            /*return null;*/
+        } else {
+            return user;
         }
     }
 
