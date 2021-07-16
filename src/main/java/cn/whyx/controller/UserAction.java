@@ -8,38 +8,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 
 @Controller
+@RequestMapping("/user")
 public class UserAction {
 
-    @Autowired
+    @Resource
     private PensonService userService;
 
-    @PostMapping(value = "/login")
-    @ResponseBody
-    public Result login(@RequestParam String name, @RequestParam String password, HttpSession session) {
-        Penson user=userService.login(name,password);
-        System.out.println("成功:"+user);
-        if (null ==  user){
-            return new Result(400);
-        } else {
-            session.setAttribute(Condition.USER_SESSION,user);
-            return new Result(200);
-        }
+    @RequestMapping("/login.html")
+    public String login(){
+        return "login";
     }
 
-    @PostMapping(value = "/main")
-    @ResponseBody
+    @PostMapping(value = "/toLogin")
+    public String toLogin(@RequestParam String username, @RequestParam String password, HttpSession session) {
+        Penson user=userService.login(username,password);
+        System.out.println("成功:"+user);
+        /*if (null ==  user){
+            return "redirect:/user/login";
+        } else {
+            session.setAttribute(Condition.USER_SESSION,user);
+            return "redirect:/user/main";
+        }*/
+        session.setAttribute(Condition.USER_SESSION,user);
+        return "redirect:/user/main";
+    }
+
+    @GetMapping(value = "/main")
     public Object main(HttpSession session) {
         Penson user= (Penson) session.getAttribute(Condition.USER_SESSION);
         System.out.println(user);
         if (null ==  user){
-            return new Result(400);
+            return "redirect:/user/login.html";
             /*return null;*/
         } else {
-            return user;
+            return "/home/index";
         }
     }
 

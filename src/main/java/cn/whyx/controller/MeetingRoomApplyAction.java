@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 //@Controller
-@RequestMapping("/MeetingRoomApply")
+@RequestMapping("/meetingroomApply")
 public class MeetingRoomApplyAction {
     @Resource
     private MeetingRoomApplySerive serive;

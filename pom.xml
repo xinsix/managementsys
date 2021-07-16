@@ -36,19 +36,19 @@
         </dependency>
 
 
-        <!--&lt;!&ndash;整合JSP页面&ndash;&gt;
+        <!--整合JSP页面-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        &lt;!&ndash;Jstl标签库&ndash;&gt;
+        <!--Jstl标签库-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
 
-        &lt;!&ndash;Tomcat支持&ndash;&gt;
+        <!--Tomcat支持-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -56,7 +56,7 @@
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
-        </dependency>-->
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

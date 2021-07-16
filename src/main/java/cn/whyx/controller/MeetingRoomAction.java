@@ -14,7 +14,7 @@ import java.util.List;
  * 会议室
  */
 @Controller
-@RequestMapping("/MeetingRoom")
+@RequestMapping("/meetingroom")
 public class MeetingRoomAction {
     @Resource
     private MeetingRoomService service;
