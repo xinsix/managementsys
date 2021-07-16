@@ -25,7 +25,7 @@ public class ManagementsysApplication {
          return new WebMvcConfigurer() {
              @Override
              public void addResourceHandlers(ResourceHandlerRegistry registry) {
-                 registry.addResourceHandler("/statics/**").addResourceLocations("file:D:/Desktop/Vue项目/sys/ManagementSys/src/main/resources/statics/");
+                 registry.addResourceHandler("/statics/**").addResourceLocations("file:E:/Desktop/项目/ManagementSys/src/main/resources/statics/");
              }
          };
      }
