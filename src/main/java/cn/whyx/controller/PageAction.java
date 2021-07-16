@@ -73,6 +73,11 @@ public class PageAction {
     public String repairlist(){
         return "repairlist";
     }
+    /*device_list*/
+    @RequestMapping("/device_list")
+    public String device_list(){
+        return "device_list";
+    }
     /*pro_list*/
     @RequestMapping("/pro_list")
     public String pro_list(){
