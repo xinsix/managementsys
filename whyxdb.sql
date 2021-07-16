@@ -279,16 +279,17 @@ CREATE TABLE `penson` (
   `description` varchar(30) DEFAULT NULL,
   `org` bigint(20) DEFAULT NULL,
   `role` bigint(20) DEFAULT NULL,
+  `wages` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `penson` */
 
-insert  into `penson`(`id`,`name`,`username`,`password`,`sex`,`address`,`phone`,`description`,`org`,`role`) values 
-(1,'保密','admin','admin','0','中国','11111111111',NULL,NULL,1),
-(2,'张三','zhangsan','123456','1','广东','22222222222',NULL,1,1),
-(3,'李四','lisi','123456','0','广西','33333333333',NULL,2,7),
-(4,'王五','wangwu','123456','1','湖南','55555555555',NULL,3,7);
+insert  into `penson`(`id`,`name`,`username`,`password`,`sex`,`address`,`phone`,`description`,`org`,`role`,`wages`) values 
+(1,'保密','admin','admin','0','中国','11111111111',NULL,NULL,1,4000),
+(2,'张三','zhangsan','123456','1','广东','22222222222',NULL,1,1,4000),
+(3,'李四','lisi','123456','0','广西','33333333333',NULL,2,7,4000),
+(4,'王五','wangwu','123456','1','湖南','55555555555',NULL,3,7,4000);
 
 /*Table structure for table `procedure` */
 
