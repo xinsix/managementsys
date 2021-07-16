@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        转正申请
+       角色管理
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,8 +20,8 @@
 <div class="x-nav">
             <span class="layui-breadcrumb">
               <a><cite>首页</cite></a>
-              <a><cite>人事档案</cite></a>
-              <a><cite>转正申请</cite></a>
+              <a><cite>权限管理</cite></a>
+              <a><cite>角色管理</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
@@ -49,11 +49,10 @@
         <button class="layui-btn layui-btn-danger" onclick="delAll()">
             <i class="layui-icon">&#xe640;</i>批量删除
         </button>
-        <button class="layui-btn" onclick="repair_add('添加','lfgh_add.html','1000','600')">
+        <button class="layui-btn" onclick="device_add('角色添加','device_add','1000','600')">
             <i class="layui-icon">&#xe608;</i>添加
         </button>
-        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">2</span> 条</span>
-    </xblock>
+        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">2</span> 条</span></xblock>
     <table class="layui-table">
         <thead>
         <tr>
@@ -64,16 +63,8 @@
                 ID
             </th>
             <th>
-                员工姓名
+                角色名称
             </th>
-            <th>
-                转正工资
-            </th>
-            <th>
-                状态
-            </th>
-
-
             <th>
                 操作
             </th>
@@ -86,11 +77,11 @@
             </td>
 
             <td class="td-manage">
-                <!-- <a title="编辑" href="javascript:;" onclick="repair_edit('编辑','repairadd.html','2','1000','600')"
-                    class="ml-5" style="text-decoration:none">
-                     <i class="layui-icon">&#xe642;</i>
-                 </a>-->
-                <a title="删除" href="javascript:;" onclick="repair_del(this,'2')"
+                <a title="编辑" href="javascript:;" onclick="device_edit('编辑','device_add.html','3','1000','600')"
+                   class="ml-5" style="text-decoration:none">
+                    <i class="layui-icon">&#xe642;</i>
+                </a>
+                <a title="删除" href="javascript:;" onclick="device_del(this,'3')"
                    style="text-decoration:none">
                     <i class="layui-icon">&#xe640;</i>
                 </a>
@@ -155,17 +146,17 @@
         layer.msg('可以跳到前台具体问题页面',{icon:1,time:1000});
     }
     /*添加*/
-    function repair_add(title,url,w,h){
+    function device_add(title,url,w,h){
         x_admin_show(title,url,w,h);
     }
     //编辑
-    function repair_edit (title,url,id,w,h) {
-        url =url+"?id="+id;
+    function device_edit (title,url,id,w,h) {
+        url = url+"?id="+id;
         x_admin_show(title,url,w,h);
     }
 
     /*删除*/
-    function repair_del(obj,id){
+    function device_del(obj,id){
         layer.confirm('确认要删除吗？',{icon:3,title:'提示信息'},function(index){
             $.ajax({
                 type:"post",

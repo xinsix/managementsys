@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        人员履历
+        人员管理
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,13 +20,13 @@
 <div class="x-nav">
             <span class="layui-breadcrumb">
               <a><cite>首页</cite></a>
-              <a><cite>人事档案</cite></a>
-              <a><cite>人员履历</cite></a>
+              <a><cite>组织管理</cite></a>
+              <a><cite>人员管理</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
-   <!-- <form class="layui-form x-center" action="" style="width:800px">
+    <form class="layui-form x-center" action="" style="width:800px">
         <div class="layui-form-pane" style="margin-top: 15px;">
             <div class="layui-form-item">
                 <label class="layui-form-label">日期范围</label>
@@ -44,14 +44,14 @@
                 </div>
             </div>
         </div>
-    </form>-->
+    </form>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()">
             <i class="layui-icon">&#xe640;</i>批量删除
         </button>
-        <button class="layui-btn" onclick="repair_add('添加','personnelresume_add.html','1000','600')">
+       <!-- <button class="layui-btn" onclick="repair_add('添加','repairadd','1000','600')">
             <i class="layui-icon">&#xe608;</i>添加
-        </button>
+        </button>-->
         <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">2</span> 条</span>
     </xblock>
     <table class="layui-table">
@@ -84,6 +84,9 @@
             <th>
                 员工所属部门
             </th>
+            <th>
+                员工薪资
+            </th>
 
             <th>
                 操作
@@ -97,10 +100,10 @@
             </td>
 
             <td class="td-manage">
-                <!--<a title="编辑" href="javascript:;" onclick="repair_edit('编辑','repairadd.html','2','1000','600')"
+                <a title="编辑" href="javascript:;" onclick="repair_edit('编辑','repairadd.html','2','1000','600')"
                    class="ml-5" style="text-decoration:none">
                     <i class="layui-icon">&#xe642;</i>
-                </a>-->
+                </a>
                 <a title="删除" href="javascript:;" onclick="repair_del(this,'2')"
                    style="text-decoration:none">
                     <i class="layui-icon">&#xe640;</i>

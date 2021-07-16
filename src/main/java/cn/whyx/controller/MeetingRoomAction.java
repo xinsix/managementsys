@@ -4,6 +4,7 @@ package cn.whyx.controller;
 import cn.whyx.pojo.MeetingRoom;
 import cn.whyx.service.meetingroom.MeetingRoomService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,11 +20,13 @@ public class MeetingRoomAction {
     @Resource
     private MeetingRoomService service;
 
-    @ResponseBody
+
     @RequestMapping("/find")
-    public Object findMeetingRoom(){//查询会议室
+    public Object findMeetingRoom(Model model){//查询会议室
         List<MeetingRoom> list = service.findMeetingRoom();
-        return list;
+        model.addAttribute("list",list);
+        System.out.println(list.size());
+        return "personnel_list/personnel_list";
     }
 
 }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        请假管理
+        人员履历
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,8 +20,8 @@
 <div class="x-nav">
             <span class="layui-breadcrumb">
               <a><cite>首页</cite></a>
-              <a><cite>工作流程</cite></a>
-              <a><cite>请假</cite></a>
+              <a><cite>人事档案</cite></a>
+              <a><cite>人员履历</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
@@ -49,10 +49,11 @@
         <button class="layui-btn layui-btn-danger" onclick="delAll()">
             <i class="layui-icon">&#xe640;</i>批量删除
         </button>
-        <button class="layui-btn" onclick="park_add('请假','leave_add.html','1000','600')">
+        <button class="layui-btn" onclick="repair_add('添加','personnelresume_add','1000','600')">
             <i class="layui-icon">&#xe608;</i>添加
         </button>
-        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">4</span> 条</span></xblock>
+        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">2</span> 条</span>
+    </xblock>
     <table class="layui-table">
         <thead>
         <tr>
@@ -63,29 +64,27 @@
                 ID
             </th>
             <th>
-               名称
+                员工姓名
             </th>
             <th>
-                理由
+                员工性别
             </th>
             <th>
-                开始时间
+                员工性别
             </th>
             <th>
-                结束时间
+                员工职务
             </th>
             <th>
-                时长
+                员工电话
             </th>
             <th>
-                审核状态
+                员工描述
             </th>
             <th>
-                申请人
+                员工所属部门
             </th>
-            <th>
-                审核人
-            </th>
+
             <th>
                 操作
             </th>
@@ -96,14 +95,13 @@
             <td>
                 <input type="checkbox" value="1" name="">
             </td>
-            <!--<td class="td-status"> <span class="layui-btn layui-btn-normal " onclick="start(this,'5',0)"> 使用中 </span>
-            </td>-->
+
             <td class="td-manage">
-                <a title="编辑" href="javascript:;" onclick="park_edit('编辑','leave_add.html','5','','510')"
+                <!--<a title="编辑" href="javascript:;" onclick="repair_edit('编辑','repairadd.html','2','1000','600')"
                    class="ml-5" style="text-decoration:none">
                     <i class="layui-icon">&#xe642;</i>
-                </a>
-                <a title="删除" href="javascript:;" onclick="park_del(this,'5')"
+                </a>-->
+                <a title="删除" href="javascript:;" onclick="repair_del(this,'2')"
                    style="text-decoration:none">
                     <i class="layui-icon">&#xe640;</i>
                 </a>
@@ -124,6 +122,7 @@
         laypage = layui.laypage;//分页
         layer = layui.layer;//弹出层
         okLoading.close($);
+        //以上模块根据需要引入
 
 
         var start = {
@@ -167,17 +166,17 @@
         layer.msg('可以跳到前台具体问题页面',{icon:1,time:1000});
     }
     /*添加*/
-    function park_add(title,url,w,h){
+    function repair_add(title,url,w,h){
         x_admin_show(title,url,w,h);
     }
     //编辑
-    function park_edit (title,url,id,w,h) {
-        url = url+"?id="+id;
+    function repair_edit (title,url,id,w,h) {
+        url =url+"?id="+id;
         x_admin_show(title,url,w,h);
     }
 
     /*删除*/
-    function park_del(obj,id){
+    function repair_del(obj,id){
         layer.confirm('确认要删除吗？',{icon:3,title:'提示信息'},function(index){
             $.ajax({
                 type:"post",
@@ -201,37 +200,6 @@
             //发异步删除数据
             $(obj).parents("tr").remove();
             layer.msg('已删除!',{icon:1,time:1000});
-        });
-    }
-
-    function start(obj,id,e){
-        layer.confirm(e==1?'确定要使用吗？':'确定要闲置吗？',{icon: 3, title:'提示'},function(index){
-            $.ajax({
-                type:"post",
-                url:"xxx",
-                data:{id:id,status:e},
-                dataType:"json",
-                success:function(data)
-                {
-                    if(data.status==1){
-                        //发异步把用户状态进行更改
-                        $(obj).attr("class","layui-btn layui-btn-danger ");
-                        $(obj).text("隐藏");
-                        $(obj).remove();
-                        layer.msg(data.info,{icon: 6,time:1000});
-                        setTimeout(function(){
-                            window.location.reload();
-                        },1000);return false;
-                    }else{
-                        //发异步把用户状态进行更改
-                        $(obj).attr("class","layui-btn layui-btn-normal ");
-                        $(obj).text("显示");
-                        $(obj).remove();
-                        layer.msg(data.info,{icon: 5,time:1000});return false;
-                    }
-                }
-            });
-
         });
     }
 </script>

@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>
-       密码修改
+        会议室管理
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -14,20 +15,19 @@
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="../../statics/css/main.css" media="all">
     <link rel="stylesheet" href="../../statics/css/bootstrap.css">
-    <script type="text/javascript" src="../../statics/lib/loading/okLoading.js"></script>
 </head>
 <body>
 <div class="x-nav">
             <span class="layui-breadcrumb">
               <a><cite>首页</cite></a>
-              <a><cite>系统管理</cite></a>
-              <a><cite>密码修改</cite></a>
+              <a><cite>行政</cite></a>
+              <a><cite>会议室管理</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
     <form class="layui-form x-center" action="" style="width:800px">
-       <!-- <div class="layui-form-pane" style="margin-top: 15px;">
+        <div class="layui-form-pane" style="margin-top: 15px;">
             <div class="layui-form-item">
                 <label class="layui-form-label">日期范围</label>
                 <div class="layui-input-inline">
@@ -43,16 +43,17 @@
                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
                 </div>
             </div>
-        </div>-->
+        </div>
     </form>
     <xblock>
-        <!--<button class="layui-btn layui-btn-danger" onclick="delAll()">
+        <button class="layui-btn layui-btn-danger" onclick="delAll()">
             <i class="layui-icon">&#xe640;</i>批量删除
         </button>
-        <button class="layui-btn" onclick="pro_add('活动添加','pro_modify.html','1000','600')">
+        <button class="layui-btn" onclick="personnel_add('添加成员','personnel_add','1000','600')">
             <i class="layui-icon">&#xe608;</i>添加
-        </button>-->
-        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">3</span> 条</span></xblock>
+        </button>
+        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">3</span> 条</span>
+    </xblock>
     <table class="layui-table">
         <thead>
         <tr>
@@ -63,33 +64,53 @@
                 ID
             </th>
             <th>
-                用户名
+                会议室名称
+            </th>
+            <th>
+                会议室位置
+            </th>
+            <th>
+                会议室描述
             </th>
             <th>
                 操作
             </th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td>
-                <input type="checkbox" value="1" name="">
-            </td>
-            <td class="td-manage">
-                <a title="编辑" href="javascript:;" onclick="pro_edit('编辑','pro_modify.html','3','1000','600')"
-                   class="ml-5" style="text-decoration:none">
-                    <i class="layui-icon">&#xe642;</i>
-                </a>
-                <a title="删除" href="javascript:;" onclick="pro_del(this,'3')"
-                   style="text-decoration:none">
-                    <i class="layui-icon">&#xe640;</i>
-                </a>
-            </td>
-        </tr>
+        <tbody id="x-img">
+            <c:forEach var="list" items="${list}">
+                <tr>
+                    <td>
+                        <input type="checkbox" value="${list.id}" name="">
+                    </td>
+                    <td>
+                            ${list.id}
+                    </td>
+                    <td>
+                            ${list.sn}
+                    </td>
+                    <td>
+                            ${list.position}
+                    </td>
+                    <td>
+                            ${list.description}
+                    </td>
+                    <td class="td-manage">
+                        <a title="编辑" href="javascript:;" onclick="personnel_edit('编辑','personnel_edit',${list.id},'1000','600')"
+                           class="ml-5" style="text-decoration:none">
+                            <i class="layui-icon">&#xe642;</i>
+                        </a>
+                        <a title="删除" href="javascript:;" onclick="personnel_del(this,${list.id})"
+                           style="text-decoration:none">
+                            <i class="layui-icon">&#xe640;</i>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 
-    <div id="page"></div>
+    <div id="page"><ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="/xiyuan/Owners/personnel_list?page=2">2</a></li><li><a href="/xiyuan/Owners/personnel_list?page=3">3</a></li> <li><a href="/xiyuan/Owners/personnel_list?page=2">&raquo;</a></li></ul></div>
 </div>
 <script src="../../statics/lib/layui/layui.js" charset="utf-8"></script>
 <script src="../../statics/js/x-layui.js" charset="utf-8"></script>
@@ -100,10 +121,14 @@
         lement = layui.element();//面包导航
         laypage = layui.laypage;//分页
         layer = layui.layer;//弹出层
-        okLoading.close($);
+
         //以上模块根据需要引入
-
-
+        layer.ready(function(){ //为了layer.ext.js加载完毕再执行
+            layer.photos({
+                photos: '#x-img'
+                //,shift: 5 //0-6的选择，指定弹出图片动画类型，默认随机
+            });
+        });
         var start = {
             min: laydate.now()
             ,max: '2099-06-16 23:59:59'
@@ -145,17 +170,17 @@
         layer.msg('可以跳到前台具体问题页面',{icon:1,time:1000});
     }
     /*添加*/
-    function pro_add(title,url,w,h){
+    function personnel_add(title,url,w,h){
         x_admin_show(title,url,w,h);
     }
     //编辑
-    function pro_edit (title,url,id,w,h) {
+    function personnel_edit (title,url,id,w,h) {
         url = url+"?id="+id;
         x_admin_show(title,url,w,h);
     }
 
     /*删除*/
-    function pro_del(obj,id){
+    function personnel_del(obj,id){
         layer.confirm('确认要删除吗？',{icon:3,title:'提示信息'},function(index){
             $.ajax({
                 type:"post",

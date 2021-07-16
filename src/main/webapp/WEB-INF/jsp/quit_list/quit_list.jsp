@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        公告管理
+        离职申请
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,15 +13,15 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="../../statics/css/main.css" media="all">
-    <script type="text/javascript" src="../../statics/lib/loading/okLoading.js"></script>
     <link rel="stylesheet" href="../../statics/css/bootstrap.css">
+    <script type="text/javascript" src="../../statics/lib/loading/okLoading.js"></script>
 </head>
 <body>
 <div class="x-nav">
             <span class="layui-breadcrumb">
               <a><cite>首页</cite></a>
-              <a><cite>公共信息</cite></a>
-              <a><cite>公告管理</cite></a>
+              <a><cite>人事档案</cite></a>
+              <a><cite>离职申请</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
@@ -49,34 +49,29 @@
         <button class="layui-btn layui-btn-danger" onclick="delAll()">
             <i class="layui-icon">&#xe640;</i>批量删除
         </button>
-        <button class="layui-btn" onclick="home_add('添加','homeadd.html','1000','600')">
-            <i class="layui-icon">&#xe608;</i>添加
-        </button>
-        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+         <button class="layui-btn" onclick="repair_add('添加','quit_add','1000','600')">
+         <button class="layui-btn" onclick="repair_add('添加','quit_add','1000','600')">
+             <i class="layui-icon">&#xe608;</i>添加
+         </button>
+        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">2</span> 条</span>
     </xblock>
     <table class="layui-table">
         <thead>
         <tr>
             <th>
-                <input type="checkbox" name="" value="" id="onclicks">
+                <input type="checkbox" name="" value="">
             </th>
             <th>
                 ID
             </th>
             <th>
-               公告内容
+                员工姓名
             </th>
             <th>
-                发布时间
+                离职原因
             </th>
             <th>
-                修改时间
-            </th>
-            <th>
-                发布人
-            </th>
-            <th>
-                修改人
+                离职时间
             </th>
 
             <th>
@@ -84,18 +79,18 @@
             </th>
         </tr>
         </thead>
-        <tbody id="ches">
+        <tbody>
         <tr>
             <td>
-                <input type="checkbox" value="3" name="" id="che">
+                <input type="checkbox" value="1" name="">
             </td>
 
             <td class="td-manage">
-                <a title="编辑" href="javascript:;" onclick="home_edit('编辑','homeadd.html','3','1000','600')"
+               <!-- <a title="编辑" href="javascript:;" onclick="repair_edit('编辑','repairadd.html','2','1000','600')"
                    class="ml-5" style="text-decoration:none">
                     <i class="layui-icon">&#xe642;</i>
-                </a>
-                <a title="删除" href="javascript:;" onclick="question_del(this,'1')"
+                </a>-->
+                <a title="删除" href="javascript:;" onclick="repair_del(this,'2')"
                    style="text-decoration:none">
                     <i class="layui-icon">&#xe640;</i>
                 </a>
@@ -160,69 +155,42 @@
         layer.msg('可以跳到前台具体问题页面',{icon:1,time:1000});
     }
     /*添加*/
-    function home_add(title,url,w,h){
+    function repair_add(title,url,w,h){
         x_admin_show(title,url,w,h);
     }
     //编辑
-    function home_edit (title,url,id,w,h) {
-        url = url+"?id="+id;
+    function repair_edit (title,url,id,w,h) {
+        url =url+"?id="+id;
         x_admin_show(title,url,w,h);
     }
 
     /*删除*/
-    function question_del(obj,id){
-        layer.confirm('确认要删除吗？',function(index){
+    function repair_del(obj,id){
+        layer.confirm('确认要删除吗？',{icon:3,title:'提示信息'},function(index){
+            $.ajax({
+                type:"post",
+                url:"xxx",
+                data:{id:id},
+                dataType:"json",
+                success:function(data){
+                    //console.log(data);
+                    if(data.status==1){
+                        //发异步删除数据
+                        $(obj).parents("tr").remove();
+                        layer.msg(data.info,{icon:6,time:1000});
+                        setTimeout(function(){
+                            window.location.reload();
+                        },1000);return false;
+                    } else{
+                        layer.msg(data.info,{icon:5,time:1000});return false;
+                    }
+                }
+            });
             //发异步删除数据
             $(obj).parents("tr").remove();
             layer.msg('已删除!',{icon:1,time:1000});
         });
     }
-
-
-
-</script>
-
-<script>
-    var add=document.getElementById('ches');
-    var inputs=add.getElementsByTagName('input');
-
-    /*$("allSelect").onclick = function () {
-        for(var i=0; i<inputs.length; i++){
-            inputs[i].checked = true;
-        }
-    };*/
-    var che=document.getElementById("onclicks");
-    che.addEventListener('click',function () {
-        for(var i=0; i<inputs.length;i++){
-            inputs[i].checked=this.checked;
-            //console.log(inputs[i].value);
-        }
-        //return vel;
-
-    });
-
-    // 注册事件
-    /* che.onclick = function(){
-         // this.checked  可以得到当前复选框的选中状态，如果是 true 就是选中，如果是 false 就是未选中
-         for(var i=0; i< inputs.length; i++){
-             inputs[i].checked = this.checked;
-         }
-     }*/
-    // 2、下面的复选框要全部选中，上面的全选按钮才能够全部选中，给下面的所有复选框绑定事件，每次点击，都要循环查看下面下面所有的复选框是否有没选中的，如果有没选中的复选框，那么上面的全选按钮就不选中。
-    /*for(var i = 0; i<inputs.length; i++){
-        inputs[i].onclick = function(){
-             // 设置一个变量来控制按钮是否全部选中
-             var flag = true;
-             // 每次点击下面的复选框都要检查下面的四个小按钮是否被全部选中。
-             /!*for(var i =0; i<inputs.length; i++){
-                  if(!inputs[i].checked){
-                      flag = false;
-                  }
-             }*!/
-             che.checked = flag;
-        }
-    }*/
-
 </script>
 
 </body>
