@@ -1,7 +1,13 @@
 package cn.whyx.controller;
 
+import cn.whyx.pojo.Penson;
+import cn.whyx.util.Condition;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/page")
@@ -9,8 +15,15 @@ public class PageAction {
 
     /*主页*/
     @RequestMapping("/welcome")
+/*<<<<<<< HEAD
     public String welcome(){
         return "welcome/welcome";
+=======*/
+    public String welcome(HttpSession session,Model model){
+        String name = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getName();
+        session.setAttribute("name",name);
+        return "redirect:/welcome/selInfomanage";
+//>>>>>>> pr_1
     }
 
     /*便签*/
@@ -38,18 +51,26 @@ public class PageAction {
     /*信息管理*/
     @RequestMapping("/homelist")
     public String homelist(){
-        return "homelist/homelist";
+//<<<<<<< HEAD
+        return "redirect:/infomanage/selInfomanage";
+    }
+    /*进入修改页面*/
+    @RequestMapping("/home_modify")
+    public String home_modify(Model model, @RequestParam Integer id){
+        //return "/home_modify";
+        return "redirect:/infomanage/selAnnouncement/"+id;
     }
     /*添加信息*/
-    @RequestMapping("/homeadd")
-    public String homeadd(){
-        return "homelist/homeadd";
+    @RequestMapping("/home_add")
+    public String home_add(){
+        return "/homelist/homeadd";
     }
 
     /*会议室管理*/
     @RequestMapping("/personnel_list")
     public String personnel_list(){
         return "redirect:/meetingroomApply/find";
+        //return "redirect:/meetingroom/find";
     }
     /*添加会议室*/
     @RequestMapping("/personnel_add")
@@ -138,12 +159,17 @@ public class PageAction {
     /*人员管理*/
     @RequestMapping("/repairlist")
     public String repairlist(){
-        return "repairlist/repairlist";
+        return "redirect:/Penson/selInfoManage";
     }
     /*添加人员管理*/
     @RequestMapping("/repairadd")
     public String repairadd(){
         return "repairlist/repairadd";
+    }
+    /*修改人员管理*/
+    @RequestMapping("/repairupd")
+    public String repairupd(@RequestParam Integer id){
+        return "redirect:/Penson/selrevision/"+id;
     }
 
     /*角色管理*/

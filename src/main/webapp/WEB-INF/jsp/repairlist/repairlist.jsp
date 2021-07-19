@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,15 +31,8 @@
     <form class="layui-form x-center" action="" style="width:800px">
         <div class="layui-form-pane" style="margin-top: 15px;">
             <div class="layui-form-item">
-                <label class="layui-form-label">日期范围</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
-                </div>
-                <div class="layui-input-inline">
-                    <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
-                </div>
-                <div class="layui-input-inline">
-                    <input type="text" name="username"  placeholder="标题" autocomplete="off" class="layui-input">
+                    <input type="text" name="name"  placeholder="员工姓名" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline" style="width:80px">
                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -45,15 +40,21 @@
             </div>
         </div>
     </form>
-    <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()">
+    <%--<xblock>
+       &lt;%&ndash; <button class="layui-btn layui-btn-danger" onclick="delAll()">
             <i class="layui-icon">&#xe640;</i>批量删除
+<<<<<<< HEAD:src/main/webapp/WEB-INF/jsp/repairlist/repairlist.jsp
         </button>
        <!-- <button class="layui-btn" onclick="repair_add('添加','repairadd','1000','600')">
+=======
+        </button>&ndash;%&gt;
+       <!-- <button class="layui-btn" onclick="repair_add('添加','repairadd.html','1000','600')">
+>>>>>>> pr_1:src/main/webapp/WEB-INF/jsp/repairlist.jsp
             <i class="layui-icon">&#xe608;</i>添加
         </button>-->
-        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">2</span> 条</span>
-    </xblock>
+    </xblock>--%>
+        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">${count}</span> 条</span>
+
     <table class="layui-table">
         <thead>
         <tr>
@@ -64,28 +65,28 @@
                 ID
             </th>
             <th>
-                员工姓名
+                姓名
             </th>
             <th>
-                员工性别
+                性别
             </th>
             <th>
-                员工性别
+                地址
             </th>
             <th>
-                员工职务
+                电话
             </th>
             <th>
-                员工电话
+                描述
             </th>
             <th>
-                员工描述
+                所属部门
+            </th>
+             <th>
+                职务
             </th>
             <th>
-                员工所属部门
-            </th>
-            <th>
-                员工薪资
+                薪资
             </th>
 
             <th>
@@ -93,24 +94,53 @@
             </th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td>
-                <input type="checkbox" value="1" name="">
-            </td>
 
-            <td class="td-manage">
-                <a title="编辑" href="javascript:;" onclick="repair_edit('编辑','repairadd.html','2','1000','600')"
-                   class="ml-5" style="text-decoration:none">
-                    <i class="layui-icon">&#xe642;</i>
-                </a>
-                <a title="删除" href="javascript:;" onclick="repair_del(this,'2')"
-                   style="text-decoration:none">
-                    <i class="layui-icon">&#xe640;</i>
-                </a>
-            </td>
-        </tr>
-        </tbody>
+        <c:forEach items="${list}" var="Penson" varStatus="status">
+            <tr>
+                <td>
+                    <input type="checkbox" value="1" name="">
+                </td>
+
+                <td>${status.index+1}</td>
+                <td>${Penson.name}</td>
+                <td>
+                    <c:if test="${Penson.sex == 0}">
+                        女
+                    </c:if>
+                <c:if test="${Penson.sex == 1}">
+                    男
+                </c:if>
+
+                </td>
+                <td>${Penson.address}</td>
+                <td>${Penson.phone}</td>
+                <td>
+                    <c:if test="${Penson.description == null or Penson.description.trim() == ''}">
+                        这家伙很懒，没有留下任何描述！
+                    </c:if>
+                    <c:if test="${Penson.description != null}">
+                        ${Penson.description}
+                    </c:if>
+
+                </td>
+                <td>${Penson.role_name}</td>
+                <td>
+                    <c:if test="${Penson.department_name != null}">
+                        ${Penson.department_name}
+                    </c:if>
+                    <c:if test="${Penson.department_name == null}">
+                        我不配拥有职务
+                    </c:if>
+                </td>
+                <td>${Penson.wages}</td>
+                <td class="td-manage">
+                    <a title="编辑" href="javascript:;" onclick="repair_edit('编辑','/page/repairupd','${Penson.id}','1000','600')"
+                       class="ml-5" style="text-decoration:none">
+                        <i class="layui-icon">&#xe642;</i>
+                    </a>
+                </td>
+            </tr>
+        </c:forEach>
     </table>
 
     <div id="page"></div>

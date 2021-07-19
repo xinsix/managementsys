@@ -13,5 +13,49 @@
         select * from penson  where username = #{username} and password=#{password}
     </select>
 
+    <select id="selInfoManage" resultType="Penson">
+       select p.*,
+      (select `name` from role r where p.role = r.id) role_name,
+      (select department_name from `department` d where d.id =
+          (select `postid` from organmanage o where p.org = o.id)
+      ) department_name
+      from penson p
+        <if test="name!=null">
+            where name like CONCAT('%',#{name},'%')
+        </if>
+    </select>
 
+    <select id="selcount" resultType="Integer">
+        SELECT COUNT(1) from penson
+    </select>
+
+    <select id="selRole" resultType="Role">
+        SELECT * From  role
+    </select>
+
+    <select id="seldepartment" resultType="Department">
+      SELECT * From  department
+    </select>
+    
+    <select id="selrevision" resultType="Penson">
+         select * FROM penson
+        where id = #{id}
+    </select>
+
+    <update id="updPenson">
+        update penson
+        set `name`=#{name},
+        <if test="sex!=null">
+            sex=#{sex},
+        </if>
+        address=#{address},phone=#{phone},description=#{description},
+        <if test="org!=null and org!=0">
+            org=#{org},
+        </if>
+        <if test="role!=null and role!=0">
+            role=#{role},
+        </if>
+        wages=#{wages}
+        where id=#{id}
+    </update>
 </mapper>

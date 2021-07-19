@@ -36,12 +36,12 @@
             <ul class="layui-nav" lay-filter="">
                 <li class="layui-nav-item" id="time" style="margin-right: 50px;font-size: 16px;color: #2fb9d4;position: absolute;left: -250px;top: 0"></li>
                 <li class="layui-nav-item"><img src="../../../statics/images/Toux.jpg" class="layui-circle" style="border: 2px solid #A9B7B7;" width="35px" height="35px" alt=""></li>
-                <li class="layui-nav-item"> <a href="javascript:;">admin</a>
+                <li class="layui-nav-item"> <a href="javascript:;">${sessionScope.user_Session.name}</a>
                     <dl class="layui-nav-child">
                         <!-- 二级菜单 -->
                         <dd><a href="javascript:;"  onclick="one_set('个人信息','one_set.html','1000','600')">个人信息</a>
                         </dd>
-                        <dd><a href="../login.html">切换帐号</a></dd>
+                        <dd><a href="/user/login.html">切换帐号</a></dd>
                         <dd><a href="javascript:;" onclick="logout()">退出</a></dd>
                     </dl>
                 </li>
@@ -59,7 +59,7 @@
                 <img src="../../../statics/images/Toux.jpg" class="userAvatar" style="display: block;width: 100%;height: 100%;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;border: 4px solid #44576b;box-sizing: border-box;">
             </a>
             <p style=" display: block;width: 100%;height: 25px;color: #ffffff;text-align: center;font-size: 12px;white-space: nowrap;line-height: 25px;overflow: hidden;">
-                你好！<span class="userName">admin</span>, 欢迎回来
+                你好！<span class="userName">${sessionScope.user_Session.name}</span>, 欢迎回来
             </p>
         </div>
         <div class="layui-side-scroll">
@@ -67,7 +67,7 @@
             <ul class="layui-nav layui-nav-tree site-demo-nav" lay-filter="side">
 
 
-                <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;" _href="/page/welcome"> <i class="layui-icon left-nav-li" lay-tips="首页">&#xe68e;</i><cite>主页</cite> </a>
+                <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;" _href="/page/welcome"> <i class="layui-icon left-nav-li" lay-tips="主页">&#xe68e;</i><cite>主页</cite> </a>
                 </li>
                 <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="iconfont icon-dashaxiaoqudizhi01" style="top: 3px;"></i><cite>办公</cite> </a>
                     <dl class="layui-nav-child">
@@ -292,17 +292,17 @@
     function logout() {
 
         $.ajax({
-            type:"post",
-            url:"xxxxx",
-            data:{e:1},
+            type:"get",
+            url:"/user/logout",/*
+            data:{e:1},*/
             dataType:"json",
             success:function (data) {
-                if(data.status==1){
-                    layer.msg(data.info,{icon:1,time:1000});
-                    setTimeout("window.location.href='xxxx'",2000);return false;
+                if(data){
+                    layer.msg("退出成功",{icon:1,time:1000});
+                    setTimeout("window.location.href='/user/login.html'",2000);return false;
                     return false;
                 }else{
-                    layer.msg(data.info,{icon:5,time:2000});return false;
+                    layer.msg("退出失败",{icon:5,time:2000});return false;
                 }
             }
 

@@ -47,6 +47,7 @@ public class MeetingRoomApplyAction {
         }
         model.addAttribute("list",list);
         System.out.println(list.size());
+        System.out.println(list.get(4).getBegindate());
         return "personnel_list/personnel_list";
         //return list;
     }

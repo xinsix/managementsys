@@ -13,6 +13,30 @@ public class InfoManage {
     private Integer release_uid;//发布人
     private Integer modify_uid;//修改人
 
+    private String release_name;//
+    private String modify_name;
+
+    public InfoManage(){}
+    public InfoManage(String content) {
+        this.content = content;
+    }
+
+    public String getModify_name() {
+        return modify_name;
+    }
+
+    public void setModify_name(String modify_name) {
+        this.modify_name = modify_name;
+    }
+
+    public String getRelease_name() {
+        return release_name;
+    }
+
+    public void setRelease_name(String release_name) {
+        this.release_name = release_name;
+    }
+
     public Integer getId() {
         return id;
     }

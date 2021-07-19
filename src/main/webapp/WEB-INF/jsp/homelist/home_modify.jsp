@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        添加公告
+        修改公告
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -21,23 +21,23 @@
 </head>
 <body>
 <div class="x-body">
-    <form class="layui-form layui-form-pane" action="" id="add">
+    <form class="layui-form layui-form-pane" action="" id="upd">
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
             <div class="layui-tab-content" >
                 <div class="layui-tab-item layui-show">
-                    <%--<input type="hidden" name="id" value=""/>--%>
+                    <input type="hidden" name="id" value="${infoManage.id}"/>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>公告内容
+                        <label class="layui-form-label" style="width: 115px;">
+                            <span class='x-red'>*</span>修改公告的内容
                         </label>
                         <div class="layui-inputb-lock">
-                            <textarea name="content" style="height: 300px" autocomplete="off" placeholder="公告内容"
-                                      class="layui-input" required="" value=""></textarea>
+                            <textarea name="content" style="height: 300px" autocomplete="off" placeholder="请输入公告内容"
+                                      class="layui-input" required="" value="">${infoManage.content}</textarea>
                         </div>
                     </div>
 
                     <div class="layui-form-item">
-                        <button class="layui-btn" type="button" lay-filter="add" lay-submit="">
+                        <button class="layui-btn" type="button" lay-filter="upd" lay-submit="">
                             保存
                         </button>
                     </div>
@@ -77,7 +77,7 @@
         };
 
         //监听提交
-        form.on('submit(add)', function(data){
+        form.on('submit(upd)', function(data){
             var content=$("textarea[name='content']").val();
             if(content===""||content==null){
                 layer.msg('公告内容不允许为空',{icon:5,time:2000});return false;
@@ -85,16 +85,14 @@
             var data=data.field;
             $.ajax({
                 type:"post",
-                url:"/infomanage/addinfomanage",
+                url:"/infomanage/updinfomanage",
                 data:data,
                 dataType:"json",
                 success:function(data)
                 {
-                   /* alert(data);*/
-                    //alert(1);
                     if(data)
                     {
-                        layer.msg("添加成功", {icon: 6,time:2000},function () {
+                        layer.msg("修改成功", {icon: 6,time:2000},function () {
                             window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
@@ -103,7 +101,7 @@
 
                     }
                     else{
-                        layer.msg("添加失败",{icon:5,time:2000});return false;
+                        layer.msg("修改失败",{icon:5,time:2000});return false;
                     }
                 }
 
@@ -146,17 +144,6 @@
 
 
     })
-</script>
-<!--栏目缩略图上传-->
-<script>
-
-    /*$("#community_id").blur(function(){
-        communidy()
-    });*/
-
-
-    //window.onload = communidy;
-
 </script>
 
 </body>

@@ -100,9 +100,17 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
+                    <!--<include>**/*.css</include>-->
                 </includes>
                 <filtering>false</filtering>
             </resource>
+            <!--<resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>statics/**</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>-->
         </resources>
 
         <plugins>

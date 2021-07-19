@@ -13,6 +13,42 @@ public class Penson {
     private String phone;               //员工电话
     private String description;         //员工描述
     private String org;                 //员工所属部门
+    private Integer role;               //角色
+    private String role_name;           //角色名字
+    private String department_name;     //部门名称
+    private Integer wages;              //工资
+
+    public Integer getWages() {
+        return wages;
+    }
+
+    public void setWages(Integer wages) {
+        this.wages = wages;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
+    public String getRole_name() {
+        return role_name;
+    }
+
+    public void setRole_name(String role_name) {
+        this.role_name = role_name;
+    }
+
+    public String getDepartment_name() {
+        return department_name;
+    }
+
+    public void setDepartment_name(String department_name) {
+        this.department_name = department_name;
+    }
 
     public Integer getId() {
         return id;
