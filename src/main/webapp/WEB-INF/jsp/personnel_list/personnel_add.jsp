@@ -32,8 +32,8 @@
                             <span class='x-red'>*</span>会议室名称
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="member_name" autocomplete="off" placeholder="输入会议室名称"
-                                   class="layui-input" lay-verify="required" lay-reqtext="会议室名称是必填项，岂能为空？" value="">
+                            <%--<input type="text" name="member_name" autocomplete="off" placeholder="输入会议室名称"
+                                   class="layui-input" lay-verify="required" lay-reqtext="会议室名称是必填项，岂能为空？" value="">--%>
                         </div>
                     </div>
 
