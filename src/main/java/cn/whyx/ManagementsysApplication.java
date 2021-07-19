@@ -7,6 +7,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import java.io.File;
+
+
 @SpringBootApplication
 public class ManagementsysApplication {
 
@@ -21,12 +24,20 @@ public class ManagementsysApplication {
         return resolver;
     }
     @Bean
-      public WebMvcConfigurer webMvcConfigurer(){
-         return new WebMvcConfigurer() {
-             @Override
-             public void addResourceHandlers(ResourceHandlerRegistry registry) {
-                 registry.addResourceHandler("/statics/**").addResourceLocations("file:E:/Desktop/项目/ManagementSys/src/main/resources/statics/");
-             }
-         };
+    public WebMvcConfigurer webMvcConfigurer(){
+        String dir = System.getProperty("user.dir");
+        //System.out.println("项目当前路径："+dir);
+        //构建路径
+        File file=new File(dir+File.separatorChar+"src/main/resources/statics/");
+        if(!file.exists()){
+            file.mkdir();
+        }
+        String resourceLocation=file.getAbsolutePath()+File.separatorChar;
+        return new WebMvcConfigurer() {
+            @Override
+            public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                registry.addResourceHandler("/statics/**").addResourceLocations("file:"+resourceLocation);
+            }
+        };
      }
 }

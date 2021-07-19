@@ -24,6 +24,13 @@ public class UserAction {
         return "login";
     }
 
+    @ResponseBody
+    @RequestMapping("/logout")
+    public Object logout(HttpSession session){
+        session.removeAttribute(Condition.USER_SESSION);
+        return true;
+    }
+
     @PostMapping(value = "/toLogin")
     public String toLogin(@RequestParam String username, @RequestParam String password, HttpSession session) {
         Penson user=userService.login(username,password);

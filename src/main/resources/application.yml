@@ -11,6 +11,9 @@ spring:
   view:
    prefix: /WEB-INF/jsp/
    suffix: .jsp
+  static-path-pattern: /statics/**
+ resources:
+   static-locations: file:E:/Desktop/项目/ManagementSys/src/main/resources/statics/
 mybatis:
  #Mapper映射文件的位置
  mapper-locations: classpath:dao/**/*.xml

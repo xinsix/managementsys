@@ -1,14 +1,22 @@
 package cn.whyx.controller;
 
+import cn.whyx.pojo.Penson;
+import cn.whyx.util.Condition;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/page")
 public class PageAction {
     @RequestMapping("/welcome")
-    public String welcome(){
-        return "welcome";
+    public String welcome(HttpSession session,Model model){
+        String name = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getName();
+        session.setAttribute("name",name);
+        return "redirect:/welcome/selInfomanage";
     }
 
 
@@ -25,8 +33,18 @@ public class PageAction {
     /*homelist*/
     @RequestMapping("/homelist")
     public String homelist(){
-        return "homelist";
+        return "redirect:/infomanage/selInfomanage";
     }
+    /*home_add*/
+    @RequestMapping("/home_add")
+    public String home_add(){return "homeadd";}
+    @RequestMapping("/home_modify")
+    public String home_modify(Model model, @RequestParam Integer id){
+        //return "/home_modify";
+        return "redirect:/infomanage/selAnnouncement/"+id;
+
+    }
+
 
     /*personnel_list*/
     @RequestMapping("/personnel_list")
@@ -71,8 +89,14 @@ public class PageAction {
     /*repairlist*/
     @RequestMapping("/repairlist")
     public String repairlist(){
-        return "repairlist";
+        return "redirect:/Penson/selInfoManage";
     }
+    /*repairlist*/
+    @RequestMapping("/repairupd")
+    public String repairupd(@RequestParam Integer id){
+        return "redirect:/Penson/selrevision/"+id;
+    }
+
     /*device_list*/
     @RequestMapping("/device_list")
     public String device_list(){

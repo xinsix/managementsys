@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %><!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <html>
     <head>
         <meta charset="utf-8">
@@ -94,6 +96,10 @@
                     <div class="panel-heading">最新公告</div>
                     <div class="panel-body">
                         <ul class="list-group clear-list m-t">
+                            <c:forEach items="${list}" var="infoManage" varStatus="status">
+                                <li class="list-group-item fist-item"> <span class="float-right"> <fmt:formatDate value="${infoManage.releasetime}" pattern="yyyy-MM-dd" /> </span> <span class="label label-success">${status.index+1}</span> ${infoManage.content} </li>
+                            </c:forEach>
+
                            <!-- <li class="list-group-item fist-item"> <span class="float-right"> 09:00 </span> <span class="label label-success">1</span> 小区活动1 </li>
                             <li class="list-group-item"> <span class="float-right"> 10:16 </span> <span class="label label-info">2</span> 小区活动2 </li>
                             <li class="list-group-item"> <span class="float-right"> 08:22 </span> <span class="label label-primary">3</span> 小区活动3 </li>

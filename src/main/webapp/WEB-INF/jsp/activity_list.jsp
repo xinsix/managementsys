@@ -29,13 +29,6 @@
     <form class="layui-form x-center" action="" style="width:800px">
         <div class="layui-form-pane" style="margin-top: 15px;">
             <div class="layui-form-item">
-                <label class="layui-form-label">日期范围</label>
-                <div class="layui-input-inline">
-                    <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
-                </div>
-                <div class="layui-input-inline">
-                    <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
-                </div>
                 <div class="layui-input-inline">
                     <input type="text" name="username"  placeholder="标题" autocomplete="off" class="layui-input">
                 </div>
@@ -82,6 +75,8 @@
             <td>
                 <input type="checkbox" value="1" name="">
             </td>
+
+
 
             <td class="td-manage">
                 <a title="编辑" href="javascript:;" onclick="activity_edit('编辑','activity_add.html','1','1000','600')"
