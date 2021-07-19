@@ -10,7 +10,6 @@ public class Penson {
     private String password;                //员工密码
     private String sex;                 //员工性别
     private String address;             //员工地址
-    private String duty;                //员工职务
     private String phone;               //员工电话
     private String description;         //员工描述
     private String org;                 //员工所属部门
@@ -31,6 +30,22 @@ public class Penson {
         this.name = name;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getSex() {
         return sex;
     }
@@ -45,14 +60,6 @@ public class Penson {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getDuty() {
-        return duty;
-    }
-
-    public void setDuty(String duty) {
-        this.duty = duty;
     }
 
     public String getPhone() {

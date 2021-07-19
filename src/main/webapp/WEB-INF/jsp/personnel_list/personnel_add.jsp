@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,33 +26,53 @@
 <div class="x-body">
     <form class="layui-form layui-form-pane" action="" id="add">
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-            <input type="hidden" name="id" value="">
+            <%--<input type="hidden" name="id" value="">--%>
             <div class="layui-tab-content" >
                     <div class="layui-form-item">
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>会议室名称
                         </label>
                         <div class="layui-input-block">
+                            <select name="meetroomid" id="sn" lay-filter="aihao">
+                                <option value="0">---请选择小区---</option>
+                                <%--<option value="0">---请选择小区---</option>
+                                <option value="1" >东湖小区</option>
+                                <option value="2" >金华万府</option>--%>
+                            </select>
                             <%--<input type="text" name="member_name" autocomplete="off" placeholder="输入会议室名称"
                                    class="layui-input" lay-verify="required" lay-reqtext="会议室名称是必填项，岂能为空？" value="">--%>
+                            <%--<select name="member_name">
+                                <c:forEach var="list" items="${list}">
+                                    <option value="${list.id}">${list.sn}</option>
+                                </c:forEach>
+                            </select>--%>
                         </div>
                     </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">
-                        <span class='x-red'>*</span>会议室位置
+                        <span class='x-red'>*</span>开始时间
                     </label>
                     <div class="layui-input-block">
-                        <input type="text" name="member_name" autocomplete="off" placeholder="输入会议室位置"
-                               class="layui-input" lay-verify="required" lay-reqtext="会议室位置是必填项，岂能为空？" value="">
+                        <input type="datetime-local" name="begindate" autocomplete="off" placeholder="输入会议室位置"
+                               class="layui-input" lay-verify="required" lay-reqtext="" value="">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">
-                        <span class='x-red'>*</span>会议室描述
+                        <span class='x-red'>*</span>结束时间
                     </label>
                     <div class="layui-input-block">
-                        <input type="text" name="member_name" autocomplete="off" placeholder="输入会议室描述"
+                        <input type="datetime-local" name="enddate" autocomplete="off" placeholder="输入会议结束时间"
+                               class="layui-input" lay-verify="required" lay-reqtext="" value="">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        <span class='x-red'>*</span>申请原因
+                    </label>
+                    <div class="layui-input-block">
+                        <input type="text" name="applyreason" autocomplete="off" placeholder="输入申请原因"
                                class="layui-input" lay-verify="required" lay-reqtext="" value="">
                     </div>
                 </div>
@@ -90,7 +111,7 @@
 </div>
 <script src="../../statics/lib/layui/layui.js" charset="utf-8"></script>
 <script src="../../statics/js/x-layui.js" charset="utf-8"></script>
-
+<script src="../../statics/js/jquery.min.js" charset="utf-8"></script>
 <script>
     layui.use(['laydate','element','layer','form'], function(){
         $ = layui.jquery;//jquery
@@ -109,10 +130,10 @@
                 //end.start = datas //将结束日的初始值设定为开始日
             }
         };
-        document.getElementById('LAY_demorange_s').onclick = function(){
+        /*document.getElementById('LAY_demorange_s').onclick = function(){
             start.elem = this;
             laydate(start);
-        };
+        };*/
         //图片上传接口
         /*layui.upload({
           url: './upload.json' //上传接口
@@ -125,19 +146,20 @@
 
         //监听提交
         form.on('submit(add)', function(data){
+            console.log(data);
             var member_name=$("input[name='member_name']").val();
             var data=data.field;
             if(member_name==""){
-                layer.msg('成员名称不能为空',{icon:5,time:2000});return false;
+                layer.msg('重点不能为空',{icon:5,time:2000});return false;
             }
 
             $.ajax({
                 type:"post",
-                url:"xxx",
+                url:"/meetingroomApply/add",
                 data:data,
                 dataType:"json",
                 success:function(data){
-                    if(data.status==1){
+                    /*if(data.status==1){
                         layer.msg(data.info, {icon: 6,time:2000},function () {
                             window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);
@@ -147,7 +169,7 @@
                     }
                     else{
                         layer.msg(data.info,{icon:5,time:2000});return false;
-                    }
+                    }*/
                 }
 
             });
@@ -162,24 +184,24 @@
         });
         //communidy();
         function communidy() {
-            var communidy = $("#community_id").val();
+            //var communidy = $("#community_id").val();
             $.ajax({
-                url:"xxx",
+                url:"/meetingroom/find",
                 type:"post",
                 dataType:"json",
-                data:{communidy:communidy},
+                //data:{communidy:communidy},
                 success:function (data) {
-                    //console.log(data);
+                    console.log(data);
                     var dlen =data.length;
                     var str='';
                     for (var i=0;i<dlen;i++){
                         var dt=data[i];
                         str +='<option value="' + dt.id + '">';
-                        str +=dt.home_name;
+                        str +=dt.sn;
                         str +='</option>';
                     }
 
-                    $("#home_id").html(str);
+                    $("#sn").html(str);
                     form.render('select', 'aihao');
                     //form.render('#building_id');
 

@@ -19,8 +19,8 @@ public class MeetingRoomApplySeriveImpl implements MeetingRoomApplySerive{
     }
 
     @Override
-    public List<MeetingRoomApply> findMeetingRoomApply() {
-        return mapper.findMeetingRoomApply();
+    public List<MeetingRoomApply> findMeetingRoomApply(Integer pid) {
+        return mapper.findMeetingRoomApply(pid);
     }
 
     @Override

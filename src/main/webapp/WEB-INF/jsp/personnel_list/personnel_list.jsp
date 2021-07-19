@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,10 +68,16 @@
                 会议室名称
             </th>
             <th>
-                会议室位置
+                会议开始时间
             </th>
             <th>
-                会议室描述
+                会议结束时间
+            </th>
+            <th>
+                申请原因
+            </th>
+            <th>
+                申请状态
             </th>
             <th>
                 操作
@@ -90,10 +97,24 @@
                             ${list.sn}
                     </td>
                     <td>
-                            ${list.position}
+                            <fmt:formatDate value="${list.begindate}" pattern="yyyy-MM-dd HH:mm:ss"/>
                     </td>
                     <td>
-                            ${list.description}
+                            <fmt:formatDate value="${list.enddate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                    </td>
+                    <td>
+                            ${list.applyreason}
+                    </td>
+                    <td>
+                        <c:if test="${list.status == 0}">
+                            申请中
+                        </c:if>
+                        <c:if test="${list.status == 1}">
+                            申请成功
+                        </c:if>
+                        <c:if test="${list.status == 2}">
+                            申请失败
+                        </c:if>
                     </td>
                     <td class="td-manage">
                         <a title="编辑" href="javascript:;" onclick="personnel_edit('编辑','personnel_edit',${list.id},'1000','600')"

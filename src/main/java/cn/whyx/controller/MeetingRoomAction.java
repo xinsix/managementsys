@@ -21,12 +21,14 @@ public class MeetingRoomAction {
     private MeetingRoomService service;
 
 
+    @ResponseBody
     @RequestMapping("/find")
     public Object findMeetingRoom(Model model){//查询会议室
         List<MeetingRoom> list = service.findMeetingRoom();
         model.addAttribute("list",list);
         System.out.println(list.size());
-        return "personnel_list/personnel_list";
+        return list;
+        //return "personnel_list/personnel_add";
     }
 
 }

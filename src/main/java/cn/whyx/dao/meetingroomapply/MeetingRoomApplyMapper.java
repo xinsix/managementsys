@@ -23,7 +23,7 @@ public interface MeetingRoomApplyMapper {
      * 管理员查询所有会议室的申请
      * @return
      */
-    List<MeetingRoomApply> findMeetingRoomApply();
+    List<MeetingRoomApply> findMeetingRoomApply(@Param("pid")Integer pid);
 
     /**
      * 管理员修改申请的状态

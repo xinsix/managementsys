@@ -7,12 +7,18 @@
     <!--申请会议室-->
     <insert id="addMeetingRoomApply">
         insert into `MeetingRoomApply`
-        values (null,#{meetroomid},#{begindate},#{enddate},#{applyreason},#{status})
+        values (null,#{meetroomid},#{begindate},#{enddate},#{applyreason},#{pid},#{status})
     </insert>
 
     <!--管理员查询所有会议室的申请-->
     <select id="findMeetingRoomApply" resultType="MeetingRoomApply">
-        select * from `MeetingRoomApply` order by `id` desc
+        select a.*,
+            (select sn from meetingroom m where a.id = m.id) sn
+        from `MeetingRoomApply` a
+        <if test="pid != 1">
+            where pid = #{pid}
+        </if>
+        order by `id` desc
     </select>
 
     <!--管理员修改申请的状态-->

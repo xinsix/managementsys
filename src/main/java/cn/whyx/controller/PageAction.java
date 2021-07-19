@@ -49,12 +49,13 @@ public class PageAction {
     /*会议室管理*/
     @RequestMapping("/personnel_list")
     public String personnel_list(){
-        return "redirect:/meetingroom/find";
+        return "redirect:/meetingroomApply/find";
     }
     /*添加会议室*/
     @RequestMapping("/personnel_add")
     public String personnel_add(){
-        return "personnel_list/personnel_add";
+        return "/personnel_list/personnel_add";
+        //return "redirect:/meetingroom/find";
     }
 
     /*车辆管理*/
