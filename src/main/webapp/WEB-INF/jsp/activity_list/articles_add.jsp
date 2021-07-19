@@ -60,7 +60,7 @@
                             <span class='x-red'>*</span>用品名称
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="pet_name" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="pet_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                             <span class='x-red'>*</span>用品申请人
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="pet_color" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="pet_color" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                             <span class='x-red'>*</span>用品数量
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="pet_color" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="pet_color" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>

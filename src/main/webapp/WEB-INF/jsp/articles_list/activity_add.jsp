@@ -58,7 +58,7 @@
                             <span class='x-red'>*</span>职位
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="title" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>

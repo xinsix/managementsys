@@ -37,7 +37,7 @@
                         </label>
                         <div class="layui-input-block">
 
-                            <input type="text" name="name" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="${penson.name}">
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                         <span class='x-red'>*</span>员工电话
                     </label>
                     <div class="layui-input-block">
-                        <input type="text" name="phone" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                        <input type="text" name="phone" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                class="layui-input" value="${penson.phone}">
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                         <span class='x-red'>*</span>员工薪资
                     </label>
                     <div class="layui-input-block">
-                        <input type="text" name="wages" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                        <input type="text" name="wages" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                class="layui-input" value="${penson.wages}">
                     </div>
 

@@ -60,7 +60,7 @@
                             <span class='x-red'>*</span>资产名称
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="pet_name" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="pet_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                             <span class='x-red'>*</span>资产数量
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="pet_color" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="pet_color" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>资产位置
                         </label>
-                        <input type="text" name="pet_color" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                        <input type="text" name="pet_color" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                class="layui-input" value="">
                        <!-- <div class="layui-input-inline">
                             <input class="layui-input" name="adoption_time" placeholder="入住时间" id="LAY_demorange_s" value="">

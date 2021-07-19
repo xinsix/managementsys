@@ -5,11 +5,13 @@
 <mapper namespace="cn.whyx.dao.carmanage.CarManageMapper">
     <!--查看所有车辆-->
     <select id="findCarManage" resultType="CarManage">
-        select * from carmanage
+        select c.*,
+        (select name from penson p where p.id = c.applicant) pname
+        from carmanage c
         <if test="licenseplate!=null">
             where licenseplate like CONCAT('%',#{licenseplate},'%')
         </if>
-        order by id desc
+        order by c.id desc
     </select>
 
     <!--添加车辆-->

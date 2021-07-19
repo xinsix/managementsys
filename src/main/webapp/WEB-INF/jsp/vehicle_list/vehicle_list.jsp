@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +51,7 @@
         <button class="layui-btn layui-btn-danger" onclick="delAll()">
             <i class="layui-icon">&#xe640;</i>批量删除
         </button>
-        <button class="layui-btn" onclick="veh_add('车辆添加','vehicle_add.html','1000','600')">
+        <button class="layui-btn" onclick="veh_add('车辆添加','/page/vehicle_list_add','1000','600')">
             <i class="layui-icon">&#xe608;</i>添加
         </button>
         <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">1</span> 条</span>
@@ -69,7 +71,9 @@
             <th>
                 车辆申请人
             </th>
-
+            <th>
+                申请时间
+            </th>
             <th>
                 归还时间
             </th>
@@ -88,21 +92,49 @@
         </tr>
         </thead>
         <tbody id="x-img">
-        <tr>
-            <td>
-                <input type="checkbox" value="1" name="">
-            </td>
-            <td class="td-manage">
-                <a title="编辑" href="javascript:;" onclick="veh_edit('编辑','vehicle_add.html','1','1000','600')"
-                   class="ml-5" style="text-decoration:none">
-                    <i class="layui-icon">&#xe642;</i>
-                </a>
-                <a title="删除" href="javascript:;" onclick="veh_del(this,'1')"
-                   style="text-decoration:none">
-                    <i class="layui-icon">&#xe640;</i>
-                </a>
-            </td>
-        </tr>
+            <c:forEach var="list" items="${list}" varStatus="str">
+                <tr>
+                    <td>
+                        <input type="checkbox" value="1" name="">
+                    </td>
+                    <td>
+                            ${str.index + 1}
+                    </td>
+                    <td>
+                            ${list.licenseplate}
+                    </td>
+                    <td>
+                            ${list.pname}
+                    </td>
+                    <td>
+                            ${list.applytime}
+                        <%--<fmt:formatDate value="${list.applytime}" pattern="yyyy-MM-dd HH:mm:ss"/>--%>
+                    </td>
+                    <td>
+                            ${list.backtime}
+                            <%--<fmt:formatDate value="${list.backtime}" pattern="yyyy-MM-dd HH:mm:ss"/>--%>
+                    </td>
+                    <td>
+                            ${list.purpose}
+                    </td>
+                    <td>
+                            ${list.mileage}
+                    </td>
+                    <td>
+                            ${list.voucher}
+                    </td>
+                    <td class="td-manage">
+                        <a title="编辑" href="javascript:;" onclick="veh_edit('编辑','vehicle_add.html','1','1000','600')"
+                           class="ml-5" style="text-decoration:none">
+                            <i class="layui-icon">&#xe642;</i>
+                        </a>
+                        <a title="删除" href="javascript:;" onclick="veh_del(this,'1')"
+                           style="text-decoration:none">
+                            <i class="layui-icon">&#xe640;</i>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 

@@ -46,7 +46,7 @@
                             <span class='x-red'>*</span>原密码
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="Original_password" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="Original_password" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                             <span class='x-red'>*</span>新密码
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="project_name" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="project_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>

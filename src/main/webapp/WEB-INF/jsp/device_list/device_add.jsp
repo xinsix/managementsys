@@ -46,7 +46,7 @@
                             <span class='x-red'>*</span>角色名称
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="device_name" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="device_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                             <span class='x-red'>*</span>品牌
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="brand" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="brand" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                             <span class='x-red'>*</span>购买单价(￥)
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="money" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="money" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                             <span class='x-red'>*</span>购买数量
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="number" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="number" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                             <span class='x-red'>*</span>预计使用年限(年)
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="sy_year" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="sy_year" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>

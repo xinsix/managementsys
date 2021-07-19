@@ -82,12 +82,12 @@ public class PageAction {
     /*车辆管理*/
     @RequestMapping("/vehicle_list")
     public String vehicle_list(){
-        return "vehicle_list/vehicle_list";
+        return "redirect:/carmanage/find";
     }
     /*添加车辆*/
-    @RequestMapping("/vehicle_listadd")
+    @RequestMapping("/vehicle_list_add")
     public String vehicle_listadd(){
-        return "vehicle_list/vehicle_listadd";
+        return "vehicle_list/vehicle_add";
     }
 
     /*资产管理*/
