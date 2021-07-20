@@ -35,4 +35,8 @@
     <delete id="delArticlesManage">
         delete from articlesmanage where id=#{id}
     </delete>
+
+    <select id="selcount" resultType="Integer">
+        SELECT COUNT(1) from `articlesmanage`
+    </select>
 </mapper>

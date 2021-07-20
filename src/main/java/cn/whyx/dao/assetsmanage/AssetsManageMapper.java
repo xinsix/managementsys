@@ -44,4 +44,10 @@ public interface AssetsManageMapper {
      * @return
      */
     AssetsManage selAssetsManageById(@Param("id") Integer id);
+
+    /**
+     * 查询总数
+     */
+    public Integer selcount()throws Exception;
+
 }

@@ -23,10 +23,9 @@ public class MeetingRoomAction {
 
     @ResponseBody
     @RequestMapping("/find")
-    public Object findMeetingRoom(Model model){//查询会议室
+    public Object findMeetingRoom(Model model) throws Exception {//查询会议室
         List<MeetingRoom> list = service.findMeetingRoom();
         model.addAttribute("list",list);
-        System.out.println(list.size());
         return list;
         //return "personnel_list/personnel_add";
     }

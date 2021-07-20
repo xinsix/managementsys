@@ -15,4 +15,24 @@ public class WelcomeServiceImpl implements WelcomeService{
     public List<InfoManage> selInfoManage() throws Exception {
         return welcomeMapper.selInfoManage();
     }
+
+    @Override
+    public Integer seldepartment() throws Exception {
+        return welcomeMapper.seldepartment();
+    }
+
+    @Override
+    public Integer selstion() throws Exception {
+        return welcomeMapper.selstion();
+    }
+
+    @Override
+    public Integer selposition() throws Exception {
+        return welcomeMapper.selposition();
+    }
+
+    @Override
+    public Integer selrepairl() throws Exception {
+        return welcomeMapper.selrepairl();
+    }
 }

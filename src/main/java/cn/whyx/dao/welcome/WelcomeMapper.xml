@@ -4,6 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.whyx.dao.welcome.WelcomeMapper">
     <select id="selInfoManage" resultType="InfoManage">
-        SELECT * From infomanage
+        SELECT * From infomanage ORDER BY releasetime DESC
     </select>
+
+    <select id="seldepartment" resultType="Integer">
+        SELECT COUNT(1) from `department`
+    </select>
+
+    <select id="selstion" resultType="Integer">
+        SELECT COUNT(1) from `station`
+    </select>
+
+    <select id="selposition" resultType="Integer">
+        SELECT COUNT(1) from `position`
+    </select>
+
+    <select id="selrepairl" resultType="Integer">
+        SELECT COUNT(1) from `penson`
+    </select>
+
+
+
+
 </mapper>

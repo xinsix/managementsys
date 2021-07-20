@@ -53,7 +53,7 @@
         <button class="layui-btn" onclick="question_add('添加','/page/pet_add','1000','600')">
             <i class="layui-icon">&#xe608;</i>添加
         </button>
-        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">1</span> 条</span></xblock>
+        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">${count}</span> 条</span></xblock>
     <table class="layui-table">
         <thead>
         <tr>

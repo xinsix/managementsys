@@ -35,7 +35,7 @@
                     </div>
                     <div class="value tab-menu" bind="1">
                         <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="部门数"><i class="iconfont " data-icon=""></i>
-                            <h1>45</h1>
+                            <h1>${department}</h1>
                         </a>
 
                         <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="部门数"> <i class="iconfont " data-icon=""></i><span>部门数</span></a>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="value tab-menu" bind="1">
                         <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="岗位数"> <i class="iconfont " data-icon=""></i>
-                            <h1>600</h1>
+                            <h1>${stion}</h1>
                         </a>
 
                         <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="岗位数"> <i class="iconfont " data-icon=""></i><span>岗位数</span></a>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="value tab-menu" bind="1">
                         <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="总职位"> <i class="iconfont " data-icon=""></i>
-                            <h1>8310</h1>
+                            <h1>${position}</h1>
                         </a>
                         <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="总职位"> <i class="iconfont " data-icon=""></i><span>总职位</span></a>
                     </div>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="value tab-menu" bind="1">
                         <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="总员工"> <i class="iconfont " data-icon=""></i>
-                            <h1>1314</h1>
+                            <h1>${repairl}</h1>
                         </a>
                         <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="总员工"> <i class="iconfont " data-icon=""></i><span>总员工</span></a>
                     </div>

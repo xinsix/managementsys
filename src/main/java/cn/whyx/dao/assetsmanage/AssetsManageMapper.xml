@@ -37,4 +37,8 @@
     <select id="selAssetsManageById" resultType="AssetsManage">
         select * from assetsmanage where id = #{id}
     </select>
+
+    <select id="selcount" resultType="Integer">
+        SELECT COUNT(1) from `assetsmanage`
+    </select>
 </mapper>

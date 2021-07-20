@@ -41,9 +41,9 @@
         </div>
     </form>
     <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()">
+        <%--<button class="layui-btn layui-btn-danger" onclick="delAll()">
             <i class="layui-icon">&#xe640;</i>批量删除
-        </button>
+        </button>--%>
         <button class="layui-btn" onclick="activity_add('添加','/page/personnelresume_add','1000','600')">
             <i class="layui-icon">&#xe608;</i>添加
         </button>

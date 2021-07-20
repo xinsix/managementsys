@@ -11,6 +11,7 @@
         <if test="content!=null">
             where content like CONCAT('%',#{content},'%')
         </if>
+        ORDER BY releasetime DESC
     </select>
 
     <select id="selAnnouncement" resultType="InfoManage">

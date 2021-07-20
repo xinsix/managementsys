@@ -1,5 +1,7 @@
 package cn.whyx.pojo;
 
+import java.io.StringReader;
+
 /**
  * 申请实体类
  */
@@ -8,6 +10,17 @@ public class ApplyInfo {
     private Integer pid;//员工id
     private int state;//状态
     private int subject;//事由（离职0or转正1）
+
+    private String name;//申请人名字
+
+    public String getName() {
+
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;

@@ -37,4 +37,9 @@ public class AssetsManageServiceImpl implements AssetsManageService {
     public AssetsManage selAssetsManageById(Integer id) {
         return mapper.selAssetsManageById(id);
     }
+
+    @Override
+    public Integer selcount() throws Exception {
+        return mapper.selcount();
+    }
 }

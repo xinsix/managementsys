@@ -59,7 +59,7 @@
         <button class="layui-btn" onclick="personnel_add('添加会议室','/page/personnel_add','1000','600')">
             <i class="layui-icon">&#xe608;</i>添加
         </button>
-        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">3</span> 条</span>
+        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">${count}</span> 条</span>
     </xblock>
     <table class="layui-table">
         <thead>

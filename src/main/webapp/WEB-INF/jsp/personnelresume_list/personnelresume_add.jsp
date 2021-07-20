@@ -36,7 +36,7 @@
                             <span class='x-red'>*</span>员工姓名
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="staff_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
+                            <input type="text" name="name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>

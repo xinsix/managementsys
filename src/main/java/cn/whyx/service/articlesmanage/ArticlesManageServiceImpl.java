@@ -31,4 +31,9 @@ public class ArticlesManageServiceImpl implements ArticlesManageService {
     public boolean delArticlesManage(Integer id) {
         return (mapper.delArticlesManage(id)>0)?true:false;
     }
+
+    @Override
+    public Integer selcount() throws Exception {
+        return mapper.selcount();
+    }
 }
