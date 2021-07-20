@@ -7,10 +7,7 @@ import cn.whyx.service.meetingroomapply.MeetingRoomApplySerive;
 import cn.whyx.util.Condition;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -27,8 +24,10 @@ public class MeetingRoomApplyAction {
     private MeetingRoomApplySerive serive;
 
     @RequestMapping("/add")
-    //@ResponseBody
-    public Object addMeetingRoomApply(MeetingRoomApply meetingRoomApply){//申请会议室
+    @ResponseBody
+    public Object addMeetingRoomApply(MeetingRoomApply meetingRoomApply,HttpSession session){//申请会议室
+        Integer id = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getId();
+        meetingRoomApply.setPid(id);
         meetingRoomApply.setStatus("0");
         boolean bool = serive.addMeetingRoomApply(meetingRoomApply);
         return bool;
@@ -51,10 +50,18 @@ public class MeetingRoomApplyAction {
         //return list;
     }
 
-    @PostMapping("/update")
-    //@ResponseBody
-    public Object updateStatus(Integer id,Integer status){//管理员修改申请的状态
-        boolean bool = serive.updateStatus(id, status);
+    @PostMapping("/upd")
+    @ResponseBody
+    public Object updateStatus(MeetingRoomApply meetingRoomApply){//管理员修改申请的状态
+        boolean bool = serive.updateStatus(meetingRoomApply);
+        return bool;
+    }
+
+    @RequestMapping("/del")
+    @ResponseBody
+    public Object delMeetingRoomApply(@RequestParam Integer id){//申请会议室
+        System.out.println(id);
+        boolean bool = serive.delMeetingRoomApply(id);
         return bool;
     }
 

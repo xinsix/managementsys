@@ -15,7 +15,7 @@ public interface CarManageMapper {
      * 查看所有车辆
      * @return
      */
-    List<CarManage> findCarManage(@Param("licenseplate") String licenseplate);
+    List<CarManage> findCarManage(@Param("licenseplate") String licenseplate,@Param("applicant") Integer applicant);
 
     /**
      * 添加车辆

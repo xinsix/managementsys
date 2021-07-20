@@ -24,7 +24,12 @@ public class MeetingRoomApplySeriveImpl implements MeetingRoomApplySerive{
     }
 
     @Override
-    public boolean updateStatus(Integer id, Integer status) {
-        return (mapper.updateStatus(id, status)>0)?true:false;
+    public boolean updateStatus(MeetingRoomApply meetingRoomApply) {
+        return (mapper.updateStatus(meetingRoomApply)>0)?true:false;
+    }
+
+    @Override
+    public boolean delMeetingRoomApply(Integer id) {
+        return (mapper.delMeetingRoomApply(id)>0)?true:false;
     }
 }

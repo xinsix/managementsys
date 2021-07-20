@@ -31,15 +31,15 @@
     <form class="layui-form x-center" action="" style="width:800px">
         <div class="layui-form-pane" style="margin-top: 15px;">
             <div class="layui-form-item">
-                <label class="layui-form-label">日期范围</label>
+                <%--<label class="layui-form-label">日期范围</label>
                 <div class="layui-input-inline">
                     <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
                 </div>
                 <div class="layui-input-inline">
                     <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
-                </div>
+                </div>--%>
                 <div class="layui-input-inline">
-                    <input type="text" name="username"  placeholder="标题" autocomplete="off" class="layui-input">
+                    <input type="text" name="licenseplate"  placeholder="车牌号" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline" style="width:80px">
                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -124,10 +124,13 @@
                             ${list.voucher}
                     </td>
                     <td class="td-manage">
-                        <a title="点击归还" href="javascript:;" onclick="veh_edit('车辆归还','/page/vehicle_modify',${list.id},'1000','600')"
-                           class="ml-5" style="text-decoration:none">
-                            <i class="layui-icon">&#xe642;</i>
-                        </a>
+                        <c:if test="${list.backtime.toString() == null}">
+                            <a title="点击归还" href="javascript:;" onclick="veh_edit('车辆归还','/page/vehicle_modify',${list.id},'1000','600')"
+                               class="ml-5" style="text-decoration:none">
+                                <i class="layui-icon">&#xe642;</i>
+                            </a>
+                        </c:if>
+
                         <a title="删除" href="javascript:;" onclick="veh_del(${list.id})"
                            style="text-decoration:none">
                             <i class="layui-icon">&#xe640;</i>
@@ -138,7 +141,7 @@
         </tbody>
     </table>
 
-    <div id="page"></div>
+    <%--<div id="page"></div>--%>
 </div>
 <script src="../../statics/lib/layui/layui.js" charset="utf-8"></script>
 <script src="../../statics/js/x-layui.js" charset="utf-8"></script>

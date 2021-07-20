@@ -79,6 +79,11 @@ public class PageAction {
         return "/personnel_list/personnel_add";
         //return "redirect:/meetingroom/find";
     }
+    @RequestMapping("/personnel_modify")
+    public String personnel_modify(@RequestParam Integer id,Model model){
+        model.addAttribute("id",id);
+        return "/personnel_list/personnel_modify";
+    }
 
     /*车辆管理*/
     @RequestMapping("/vehicle_list")

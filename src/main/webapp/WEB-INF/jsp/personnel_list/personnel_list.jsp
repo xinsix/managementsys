@@ -30,15 +30,21 @@
     <form class="layui-form x-center" action="" style="width:800px">
         <div class="layui-form-pane" style="margin-top: 15px;">
             <div class="layui-form-item">
-                <label class="layui-form-label">日期范围</label>
+                <%--<label class="layui-form-label">日期范围</label>
                 <div class="layui-input-inline">
                     <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
                 </div>
                 <div class="layui-input-inline">
                     <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
-                </div>
+                </div>--%>
                 <div class="layui-input-inline">
-                    <input type="text" name="username"  placeholder="标题" autocomplete="off" class="layui-input">
+                    <select class="layui-select" name="meetroomid" id="sn" lay-filter="aihao">
+                        <option value="0">---请选择小区---</option>
+                        <%--<option value="0">---请选择小区---</option>
+                        <option value="1" >东湖小区</option>
+                        <option value="2" >金华万府</option>--%>
+                    </select>
+                    <%--<input type="text" name="meetroomid"  placeholder="会议室" autocomplete="off" class="layui-input">--%>
                 </div>
                 <div class="layui-input-inline" style="width:80px">
                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -74,6 +80,9 @@
                 会议结束时间
             </th>
             <th>
+                申请人
+            </th>
+            <th>
                 申请原因
             </th>
             <th>
@@ -97,10 +106,15 @@
                             ${list.sn}
                     </td>
                     <td>
-                            <fmt:formatDate value="${list.begindate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                            ${list.begindate}
+                            <%--<fmt:formatDate value="${list.begindate}" pattern="yyyy-MM-dd HH:mm:ss"/>--%>
                     </td>
                     <td>
-                            <fmt:formatDate value="${list.enddate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                            ${list.enddate}
+                            <%--<fmt:formatDate value="${list.enddate}" pattern="yyyy-MM-dd HH:mm:ss"/>--%>
+                    </td>
+                    <td>
+                            ${list.pname}
                     </td>
                     <td>
                             ${list.applyreason}
@@ -117,11 +131,31 @@
                         </c:if>
                     </td>
                     <td class="td-manage">
-                        <a title="编辑" href="javascript:;" onclick="personnel_edit('编辑','personnel_edit',${list.id},'1000','600')"
+                        <c:if test="${sessionScope.user_Session.role != 1}">
+                            <c:if test="${list.status == 2}">
+                                <a title="重新申请" href="javascript:;" onclick="personnel_modify('重新申请','/page/personnel_modify',${list.id},'1000','600')"
+                                   class="ml-5" style="text-decoration:none">
+                                    <i class="layui-icon">&#xe642;</i>
+                                </a>
+                            </c:if>
+                        </c:if>
+                        <c:if test="${sessionScope.user_Session.role == 1}">
+                            <c:if test="${list.status == 0}">
+                                <a title="成功" href="javascript:;" onclick="personnel_edit('编辑','/meetingroomApply/upd',${list.id},1,'1000','600')"
+                                   class="ml-5" style="text-decoration:none">
+                                    <i class="layui-icon">&#xe6c6;</i>
+                                </a>
+                                <a title="失败" href="javascript:;" onclick="personnel_edit('编辑','/meetingroomApply/upd',${list.id},2,'1000','600')"
+                                   class="ml-5" style="text-decoration:none">
+                                    <i class="layui-icon">&#xe6c5;</i>
+                                </a>
+                            </c:if>
+                        </c:if>
+                        <%--<a title="编辑" href="javascript:;" onclick="personnel_edit('编辑','personnel_edit',${list.id},'1000','600')"
                            class="ml-5" style="text-decoration:none">
                             <i class="layui-icon">&#xe642;</i>
-                        </a>
-                        <a title="删除" href="javascript:;" onclick="personnel_del(this,${list.id})"
+                        </a>--%>
+                        <a title="删除" href="javascript:;" onclick="personnel_del(${list.id})"
                            style="text-decoration:none">
                             <i class="layui-icon">&#xe640;</i>
                         </a>
@@ -131,10 +165,11 @@
         </tbody>
     </table>
 
-    <div id="page"><ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="/xiyuan/Owners/personnel_list?page=2">2</a></li><li><a href="/xiyuan/Owners/personnel_list?page=3">3</a></li> <li><a href="/xiyuan/Owners/personnel_list?page=2">&raquo;</a></li></ul></div>
+    <%--<div id="page"><ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="/xiyuan/Owners/personnel_list?page=2">2</a></li><li><a href="/xiyuan/Owners/personnel_list?page=3">3</a></li> <li><a href="/xiyuan/Owners/personnel_list?page=2">&raquo;</a></li></ul></div>--%>
 </div>
 <script src="../../statics/lib/layui/layui.js" charset="utf-8"></script>
 <script src="../../statics/js/x-layui.js" charset="utf-8"></script>
+<script src="../../statics/js/jquery.min.js" charset="utf-8"></script>
 <script>
     layui.use(['laydate','element','laypage','layer'], function(){
         $ = layui.jquery;//jquery
@@ -169,15 +204,45 @@
             }
         };
 
-        document.getElementById('LAY_demorange_s').onclick = function(){
+        /*document.getElementById('LAY_demorange_s').onclick = function(){
             start.elem = this;
             laydate(start);
         }
         document.getElementById('LAY_demorange_e').onclick = function(){
             end.elem = this
             laydate(end);
-        }
+        }*/
     });
+
+    /*$(function () {
+        communidy();
+    });*/
+    communidy();
+    function communidy() {
+        //var communidy = $("#community_id").val();
+        $.ajax({
+            url:"/meetingroom/find",
+            type:"post",
+            dataType:"json",
+            //data:{communidy:communidy},
+            success:function (data) {
+                console.log(data);
+                var dlen =data.length;
+                var str='';
+                for (var i=0;i<dlen;i++){
+                    var dt=data[i];
+                    str +='<option value="' + dt.id + '">';
+                    str +=dt.sn;
+                    str +='</option>';
+                }
+
+                $("#sn").html(str);
+                form.render('select', 'aihao');
+                //form.render('#building_id');
+
+            }
+        })
+    }
 
     //批量删除提交
     function delAll () {
@@ -194,37 +259,55 @@
     function personnel_add(title,url,w,h){
         x_admin_show(title,url,w,h);
     }
-    //编辑
-    function personnel_edit (title,url,id,w,h) {
+    /*重新申请*/
+    function personnel_modify(title,url,id,w,h){
         url = url+"?id="+id;
         x_admin_show(title,url,w,h);
     }
+    //编辑
+    function personnel_edit (title,url,id,status,w,h) {
+        url = url+"?id="+id+"&status="+status;
+        $.ajax({
+            type:"post",
+            url:url,
+            //data:{id:id},
+            dataType:"json",
+            success:function(data){
+                //console.log(data);
+                if(data){
+                    //发异步删除数据
+                    layer.msg("操作成功",{icon:6,time:1000},function(){
+                        window.location.reload();
+                    });return false;
+                } else{
+                    layer.msg("操作失败!",{icon:5,time:1000},function(){
+                        window.location.reload();
+                    });return false;
+                }
+            }
+        });
+    }
 
     /*删除*/
-    function personnel_del(obj,id){
+    function personnel_del(id){
         layer.confirm('确认要删除吗？',{icon:3,title:'提示信息'},function(index){
             $.ajax({
                 type:"post",
-                url:"xxx",
+                url:"/meetingroomApply/del",
                 data:{id:id},
                 dataType:"json",
                 success:function(data){
                     //console.log(data);
-                    if(data.status==1){
+                    if(data){
                         //发异步删除数据
-                        $(obj).parents("tr").remove();
-                        layer.msg(data.info,{icon:6,time:1000});
-                        setTimeout(function(){
+                        layer.msg("已删除!",{icon:6,time:1000},function(){
                             window.location.reload();
-                        },1000);return false;
+                        });return false;
                     } else{
-                        layer.msg(data.info,{icon:5,time:1000});return false;
+                        layer.msg("删除失败!",{icon:5,time:1000});return false;
                     }
                 }
             });
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!',{icon:1,time:1000});
         });
     }
 </script>

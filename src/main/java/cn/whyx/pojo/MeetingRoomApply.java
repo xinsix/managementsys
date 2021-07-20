@@ -12,18 +12,26 @@ import java.util.Date;
 public class MeetingRoomApply {
     private Integer id;                     //会议室申请ID
     private Integer meetroomid;             //会议室ID
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date begindate;              //开始时间
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date enddate;                //结束时间
+    //@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private String begindate;              //开始时间
+    //@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private String enddate;                //结束时间
     private String applyreason;            //申请原因
     private Integer pid;            //申请人
     private String status;                 //申请状态
 
     private String sn;                 //会议室名称（外键）
     private String pname;            //申请人名称（外键）
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
 
     public Integer getPid() {
         return pid;
@@ -57,19 +65,19 @@ public class MeetingRoomApply {
         this.meetroomid = meetroomid;
     }
 
-    public Date getBegindate() {
+    public String getBegindate() {
         return begindate;
     }
 
-    public void setBegindate(Date begindate) {
+    public void setBegindate(String begindate) {
         this.begindate = begindate;
     }
 
-    public Date getEnddate() {
+    public String getEnddate() {
         return enddate;
     }
 
-    public void setEnddate(Date enddate) {
+    public void setEnddate(String enddate) {
         this.enddate = enddate;
     }
 

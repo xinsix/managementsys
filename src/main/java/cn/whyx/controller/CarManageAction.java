@@ -20,8 +20,9 @@ public class CarManageAction {
     private CarManageService service;
 
     @RequestMapping("/find")
-    public String findCarManage(Model model, @RequestParam(required = false)String licenseplate){//查看所有资产
-        List<CarManage> list = service.findCarManage(licenseplate);
+    public String findCarManage(HttpSession session,Model model, @RequestParam(required = false)String licenseplate){//查看所有资产
+        Integer applicant = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getId();
+        List<CarManage> list = service.findCarManage(licenseplate,applicant);
         model.addAttribute("list",list);
         return "/vehicle_list/vehicle_list";
     }

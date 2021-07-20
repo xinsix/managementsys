@@ -13,8 +13,8 @@ public class CarManageServiceImpl implements CarManageService {
     private CarManageMapper mapper;
 
     @Override
-    public List<CarManage> findCarManage(String licenseplate) {
-        return mapper.findCarManage(licenseplate);
+    public List<CarManage> findCarManage(String licenseplate,Integer applicant) {
+        return mapper.findCarManage(licenseplate, applicant);
     }
 
     @Override

@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        会议室添加
+        会议室修改
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -31,6 +31,8 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>会议室名称
+                            <input type="hidden" name="id" value="${id}">
+                            <input type="hidden" name="status" value="0">
                         </label>
                         <div class="layui-input-block">
                             <select name="meetroomid" id="sn" lay-filter="aihao">
@@ -154,12 +156,12 @@
             }*/
             $.ajax({
                 type:"post",
-                url:"/meetingroomApply/add",
+                url:"/meetingroomApply/upd",
                 data:data,
                 dataType:"json",
                 success:function(data){
                     if(data){
-                        layer.msg("添加成功！", {icon: 6,time:2000},function () {
+                        layer.msg("重新申请成功！", {icon: 6,time:2000},function () {
                             window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
@@ -167,7 +169,7 @@
                         return false;
                     }
                     else{
-                        layer.msg("添加成功！",{icon:5,time:2000});return false;
+                        layer.msg("重新申请失败！",{icon:5,time:2000});return false;
                     }
                 }
 

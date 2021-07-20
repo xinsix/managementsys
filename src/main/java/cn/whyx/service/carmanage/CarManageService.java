@@ -14,7 +14,7 @@ public interface CarManageService {
      * 查看所有资产
      * @return
      */
-    List<CarManage> findCarManage(@Param("licenseplate") String licenseplate);
+    List<CarManage> findCarManage(@Param("licenseplate") String licenseplate,Integer applicant);
 
     /**
      * 添加资产
