@@ -8,7 +8,6 @@
         (SELECT `name` FROM penson p WHERE p.id=i.release_pid) release_name,
         (SELECT `name` FROM penson p WHERE p.id=i.modify_pid) modify_name
         FROM infomanage i
-        ORDER BY `releasetime` DESC
         <if test="content!=null">
             where content like CONCAT('%',#{content},'%')
         </if>
