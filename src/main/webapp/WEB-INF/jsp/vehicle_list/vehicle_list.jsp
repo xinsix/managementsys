@@ -107,12 +107,12 @@
                             ${list.pname}
                     </td>
                     <td>
-                            ${list.applytime}
-                        <%--<fmt:formatDate value="${list.applytime}" pattern="yyyy-MM-dd HH:mm:ss"/>--%>
+                            <%--${list.applytime}--%>
+                        <fmt:formatDate value="${list.applytime}" pattern="yyyy-MM-dd HH:mm:ss"/>
                     </td>
                     <td>
-                            ${list.backtime}
-                            <%--<fmt:formatDate value="${list.backtime}" pattern="yyyy-MM-dd HH:mm:ss"/>--%>
+                            <%--${list.backtime}--%>
+                            <fmt:formatDate value="${list.backtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
                     </td>
                     <td>
                             ${list.purpose}
@@ -124,7 +124,7 @@
                             ${list.voucher}
                     </td>
                     <td class="td-manage">
-                        <a title="编辑" href="javascript:;" onclick="veh_edit('编辑','vehicle_add.html','1','1000','600')"
+                        <a title="点击归还" href="javascript:;" onclick="veh_edit('车辆归还','/page/vehicle_modify',${list.id},'1000','600')"
                            class="ml-5" style="text-decoration:none">
                             <i class="layui-icon">&#xe642;</i>
                         </a>
@@ -207,7 +207,7 @@
     }
     //编辑
     function veh_edit (title,url,id,w,h) {
-        url = url+"?id="+id;
+        url = url+"/"+id;
         x_admin_show(title,url,w,h);
     }
 

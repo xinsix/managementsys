@@ -36,4 +36,10 @@ public interface CarManageService {
      * @return
      */
     boolean delCarManage(@Param("id") Integer id);
+
+    /**
+     * 根据id查看车辆
+     * @return
+     */
+    CarManage selCarManageById(@Param("id") Integer id);
 }

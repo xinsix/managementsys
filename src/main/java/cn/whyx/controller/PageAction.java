@@ -4,6 +4,7 @@ import cn.whyx.pojo.Penson;
 import cn.whyx.util.Condition;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -88,6 +89,11 @@ public class PageAction {
     @RequestMapping("/vehicle_list_add")
     public String vehicle_listadd(){
         return "vehicle_list/vehicle_add";
+    }
+    /*归还车辆*/
+    @RequestMapping("/vehicle_modify/{id}")
+    public String vehicle_modify(@PathVariable Integer id){
+        return "redirect:/carmanage/selCarManageById/"+id;
     }
 
     /*资产管理*/

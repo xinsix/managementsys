@@ -6,13 +6,11 @@ import cn.whyx.service.carmanage.CarManageService;
 import cn.whyx.util.Condition;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -30,7 +28,7 @@ public class CarManageAction {
 
     @ResponseBody
     @PostMapping("/add")
-    public Object addCarManage(CarManage carManage, HttpSession session){//添加用品
+    public Object addCarManage(CarManage carManage, HttpSession session){//添加汽车
         /*if (service.addCarManage(carManage)){
             map.put("status","1");
             map.put("info","添加成功！");
@@ -39,20 +37,29 @@ public class CarManageAction {
         }*/
         String id = String.valueOf(((Penson)(session.getAttribute(Condition.USER_SESSION))).getId());
         carManage.setApplicant(id);
+        carManage.setApplytime(new Date());
         return service.addCarManage(carManage);
     }
 
     @ResponseBody
     @RequestMapping("/upd")
-    public Object updCarManage(CarManage carManage){//更新用品
+    public Object updCarManage(CarManage carManage){//更新汽车
+        carManage.setBacktime(new Date());
         boolean bool = service.updCarManage(carManage);
         return bool;
     }
 
     @ResponseBody
     @RequestMapping("/del")
-    public Object delCarManage(@RequestParam Integer id){//删除用品
+    public Object delCarManage(@RequestParam Integer id){//删除汽车
         boolean bool = service.delCarManage(id);
         return bool;
+    }
+
+    @RequestMapping("/selCarManageById/{id}")
+    public String selCarManageById(Model model, @PathVariable Integer id){//根据id查看车辆
+        CarManage carManage = service.selCarManageById(id);
+        model.addAttribute("carManage",carManage);
+        return "/vehicle_list/vehicle_modify";
     }
 }

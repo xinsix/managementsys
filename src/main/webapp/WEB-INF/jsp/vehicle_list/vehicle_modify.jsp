@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        车辆添加
+        车辆归还
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -30,26 +30,14 @@
 
             <div class="layui-tab-content" >
                 <div class="layui-tab-item layui-show">
-                    <input type="hidden" name="id" value="">
+                    <input type="hidden" name="id" value="${carManage.id}">
                     <div class="layui-form-item">
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>车牌号
                         </label>
                         <div class="layui-input-block">
-                            <select name="licenseplate" id="personnel_id">
-
-                                <option>粤A-00000</option>
-                                <option>粤A-11111</option>
-                                <option>粤A-22222</option>
-                                <option>粤A-33333</option>
-                                <option>粤A-44444</option>
-                                <option>粤A-55555</option>
-                                <option>粤A-66666</option>
-                                <option>粤A-77777</option>
-                                <option>粤A-88888</option>
-                                <option>粤A-99999</option>
-
-                            </select>
+                            <input type="text" readonly="readonly" name="licenseplate" autocomplete="off"
+                                   class="layui-input" value="${carManage.licenseplate}">
                         </div>
                     </div>
                     <%--<div class="layui-form-item">
@@ -72,7 +60,7 @@
                                 &lt;%&ndash;<fmt:formatDate value="2020-02-02 11:11" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>&ndash;%&gt;
                         </div>
                     </div>--%>
-                    <div class="layui-form-item">
+                    <%--<div class="layui-form-item">
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>用途
                         </label>
@@ -80,8 +68,8 @@
                             <input type="text" name="purpose" autocomplete="off" placeholder="控制在15个汉字，30个字符以内"
                                    class="layui-input" value="">
                         </div>
-                    </div>
-                    <%--<div class="layui-form-item">
+                    </div>--%>
+                    <div class="layui-form-item">
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>行驶公里数
                         </label>
@@ -98,7 +86,7 @@
                             <input type="text" name="voucher" autocomplete="off" placeholder="控制在15个汉字，30个字符以内"
                                    class="layui-input" value="">
                         </div>
-                    </div>--%>
+                    </div>
                     <div class="layui-form-item">
                         <button class="layui-btn" type="button" lay-filter="add" lay-submit="">
                             保存
@@ -146,8 +134,8 @@
             //var applytime=$("input[name='applytime']").val();
             //var backtime=$("input[name='backtime']").val();
             var purpose=$("input[name='purpose']").val();
-            //var mileage=$("input[name='mileage']").val();
-            //var voucher=$("input[name='voucher']").val();
+            var mileage=$("input[name='mileage']").val();
+            var voucher=$("input[name='voucher']").val();
 
             if(licenseplate==""){
                 layer.msg('车牌号不能为空',{icon:5,time:2000});return false;
@@ -161,31 +149,31 @@
             if(backtime<=applytime){
                 layer.msg("归还时间不能在申请时间之前！",{icon:5,time:2000});return false;
             }*/
-            if(purpose==""){
+            /*if(purpose==""){
                 layer.msg("用途不能为空！",{icon:5,time:2000});return false;
-            }
-            /*if(mileage==""){
+            }*/
+            if(mileage==""){
                 layer.msg("行驶公里数不能为空！",{icon:5,time:2000});return false;
             }
             if(voucher==""){
                 layer.msg("凭证不能为空！",{icon:5,time:2000});return false;
-            }*/
+            }
             var data=data.field;
             $.ajax({
                 type:"post",
-                url:"/carmanage/add",
+                url:"/carmanage/upd",
                 data:data,
                 dataType:"json",
                 success:function(data){
                     if(data){
-                        layer.msg("添加成功！", {icon: 6,time:2000},function () {
+                        layer.msg("归还成功！", {icon: 6,time:2000},function () {
                             window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
                         });
                         return false;
                     }else{
-                        layer.msg("添加失败！",{icon:5,time:2000});return false;
+                        layer.msg("归还失败！",{icon:5,time:2000});return false;
                     }
                 }
 

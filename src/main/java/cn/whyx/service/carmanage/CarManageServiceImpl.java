@@ -31,4 +31,9 @@ public class CarManageServiceImpl implements CarManageService {
     public boolean delCarManage(Integer id) {
         return (mapper.delCarManage(id)>0)?true:false;
     }
+
+    @Override
+    public CarManage selCarManageById(Integer id) {
+        return mapper.selCarManageById(id);
+    }
 }
