@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        便签管理
+        便签修改
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -29,7 +29,7 @@
             <span class="layui-breadcrumb">
               <a><cite>首页</cite></a>
               <a><cite>办公</cite></a>
-              <a><cite>添加便签</cite></a>
+              <a><cite>修改便签</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
@@ -45,7 +45,7 @@
             <div class="layui-tab-content" >
                 <div class="layui-tab-item layui-show">
                     <!--<form class="layui-form layui-form-pane" action="" id="add">-->
-                    <input type="hidden" name="id" value="">
+                    <input type="hidden" name="id" value="${note.id}">
 
                     <div class="layui-form-item">
                         <label class="layui-form-label">
@@ -53,7 +53,7 @@
                         </label>
                         <div class="layui-input-block">
                             <input type="text" name="notecontent" autocomplete="off" placeholder="便签内容"
-                                   class="layui-input" required="" lay-verify="required" value="">
+                                   class="layui-input" required="" lay-verify="required" value="${note.notecontent}">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -62,7 +62,7 @@
                         </label>
                         <div class="layui-input-block">
                             <input type="date" name="executiontime" autocomplete="off" placeholder="执行时间"
-                                   class="layui-input" required="" lay-verify="required" value="">
+                                   class="layui-input" required="" lay-verify="required" value="${note.executiontime}">
                         </div>
                     </div>
 
@@ -114,7 +114,7 @@
             var data=data.field;
             $.ajax({
                 type:"post",
-                url:"/note/add",
+                url:"/note/upd",
                 data:data,
                 dataType:"json",
                 success:function(data)
@@ -122,7 +122,7 @@
                     //alert(1);
                     if(data)
                     {
-                        layer.msg("添加成功！", {icon: 6,time:2000},function () {
+                        layer.msg("修改成功！", {icon: 6,time:2000},function () {
                             window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
@@ -131,7 +131,7 @@
 
                     }
                     else{
-                        layer.msg("添加失败！",{icon:5,time:2000});return false;
+                        layer.msg("修改失败！",{icon:5,time:2000});return false;
                     }
                 }
 

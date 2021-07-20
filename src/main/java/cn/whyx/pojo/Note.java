@@ -1,5 +1,7 @@
 package cn.whyx.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -8,6 +10,7 @@ import java.util.Date;
 public class Note {
     private Integer id;//便签id
     private String notecontent;//内容
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date executiontime;//执行时间
     private Date creationtime;//创建时间
     private Date revisiontime;//修改时间

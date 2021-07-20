@@ -31,12 +31,17 @@ public class PageAction {
     /*便签*/
     @RequestMapping("/communitylist")
     public String communitylist(){
-        return "communitylist/communitylist";
+        return "redirect:/note/find";
     }
     /*添加便签*/
     @RequestMapping("/communityadd")
     public String communityadd(){
         return "communitylist/communityadd";
+    }
+    /*添加便签*/
+    @RequestMapping("/communitymodify")
+    public String communitymodify(@RequestParam Integer id){
+        return "redirect:/note/selById/"+id;
     }
 
     /*任务*/

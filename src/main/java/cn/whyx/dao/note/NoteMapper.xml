@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.whyx.dao.note.NoteMapper">
+    <select id="getAllList" resultType="Note">
+        <!--查询所有信息-->
+        SELECT * FROM `note`
+        <if test="notecontent!=null">
+            where notecontent like concat('%',#{notecontent},'%')
+        </if>
+        order by id desc
+    </select>
+    <!--修改书信息-->
+    <update id="update">
+      UPDATE note
+      SET notecontent=#{notecontent},executiontime=#{executiontime},
+      revisiontime=#{revisiontime}
+      WHERE id=#{id}
+    </update>
+    <select id="selById" resultType="Note">
+    select * from note where id = #{id}
+    </select>
+    <!--删除-->
+    <delete id="del">
+          DELETE FROM `note`WHERE id=#{id}
+    </delete>
+    <!--添加信息-->
+    <insert id="add">
+        insert into note(notecontent,executiontime,creationtime,employeeid)
+        VALUES(#{notecontent},#{executiontime},#{creationtime},#{employeeid})
+    </insert>
+</mapper>

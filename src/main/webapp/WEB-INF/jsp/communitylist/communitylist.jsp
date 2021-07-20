@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,15 +31,15 @@
     <form class="layui-form x-center" action="" style="width:80%">
         <div class="layui-form-pane" style="margin-top: 15px;">
             <div class="layui-form-item">
-                <label class="layui-form-label">日期范围</label>
+                <%--<label class="layui-form-label">日期范围</label>
                 <div class="layui-input-inline">
                     <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
                 </div>
                 <div class="layui-input-inline">
                     <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
-                </div>
+                </div>--%>
                 <div class="layui-input-inline">
-                    <input type="text" name="username"  placeholder="请输入登录名" autocomplete="off" class="layui-input">
+                    <input type="text" name="notecontent"  placeholder="请输入内容" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline" style="width:80px">
                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -47,7 +49,7 @@
     </form>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>
-        <button class="layui-btn" onclick="admin_add('添加','communityadd','1000','600')"><i class="layui-icon">&#xe608;</i>添加</button>
+        <button class="layui-btn" onclick="admin_add('添加','/page/communityadd','1000','600')"><i class="layui-icon">&#xe608;</i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">2</span> 条</span>
     </xblock>
     <table class="layui-table">
@@ -59,7 +61,6 @@
             <th>
                 ID
             </th>
-
             <th>
                 内容
             </th>
@@ -73,42 +74,52 @@
                 修改时间
             </th>
             <th>
-                员工
-            </th>
-
-            <th>
-                状态
-            </th>
-            <th>
                 操作
             </th>
         </tr>
         </thead>
         <tbody id="x-img">
-        <tr>
-            <td>
-                <input type="checkbox" value="1" name="">
-            </td>
 
-            </td>
-            <td class="td-manage">
-                <a style="text-decoration:none" onclick="admin_stop(this,'10001')" href="javascript:;" title="停用">
-                    <i class="layui-icon">&#xe601;</i>
-                </a>
-                <a title="编辑" href="javascript:;" onclick="community_edit('编辑','communityadd.html','2','1000','600')"
-                   class="ml-5" style="text-decoration:none">
-                    <i class="layui-icon">&#xe642;</i>
-                </a>
-                <a title="删除" href="javascript:;" onclick="admin_del(this,'1')"
-                   style="text-decoration:none">
-                    <i class="layui-icon">&#xe640;</i>
-                </a>
-            </td>
-        </tr>
+        <c:forEach var="list" items="${list}" varStatus="str">
+            <tr>
+                <td>
+                    <input type="checkbox" value="1" name="">
+                </td>
+                <td>${str.index + 1}</td>
+                <td>${list.notecontent}</td>
+                <td>
+                    <fmt:formatDate value="${list.executiontime}" pattern="yyyy-MM-dd"/>
+                </td>
+                <td>
+                    <fmt:formatDate value="${list.creationtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                </td>
+                <td>
+                    <fmt:formatDate value="${list.revisiontime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                </td>
+                <%--<td>${list.employeeid}</td>--%>
+                <td class="td-manage">
+                    <a title="编辑" href="javascript:;" onclick="community_edit('编辑','/page/communitymodify',${list.id},'1000','600')"
+                       class="ml-5" style="text-decoration:none">
+                        <i class="layui-icon">&#xe642;</i>
+                    </a>
+                    <a title="删除" href="javascript:;" onclick="admin_del(${list.id})"
+                       style="text-decoration:none">
+                        <i class="layui-icon">&#xe640;</i>
+                    </a>
+                </td>
+            </tr>
+            <%--<tr>
+
+
+                <td> <a href="/selById?id=${list.id}">修改</a>
+                    <a href="#" onclick="del(${list.id})">删除</a>
+                </td>
+            </tr>--%>
+        </c:forEach>
         </tbody>
     </table>
 
-    <div id="page"><ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="/xiyuan/Community/lst?page=2">2</a></li> <li><a href="/xiyuan/Community/lst?page=2">&raquo;</a></li></ul></div>
+    <%--<div id="page"><ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="/xiyuan/Community/lst?page=2">2</a></li> <li><a href="/xiyuan/Community/lst?page=2">&raquo;</a></li></ul></div>--%>
 </div>
 <script src="../../statics/lib/layui/layui.js" charset="utf-8"></script>
 <script src="../../statics/js/x-layui.js" charset="utf-8"></script>
@@ -205,30 +216,26 @@
         x_admin_show(title,url,w,h);
     }
     /*删除*/
-    function admin_del(obj,id){
+    function admin_del(id){
         layer.confirm('确认要删除吗？',{icon:3,title:'提示信息'},function(index){
             $.ajax({
-                type:"post",
-                url:"/xiyuan/banner/banner_del.html",
+                type:"get",
+                url:"/note/del",
                 data:{id:id},
                 dataType:"json",
                 success:function(data){
                     //console.log(data);
-                    if(data.status==1){
+                    if(data){
                         //发异步删除数据
-                        $(obj).parents("tr").remove();
-                        layer.msg(data.info,{icon:6,time:1000});
+                        layer.msg('已删除!',{icon:6,time:1000});
                         setTimeout(function(){
                             window.location.reload();
                         },1000);return false;
                     } else{
-                        layer.msg(data.info,{icon:5,time:1000});return false;
+                        layer.msg('删除失败!',{icon:5,time:1000});return false;
                     }
                 }
             });
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!',{icon:1,time:1000});
         });
     }
 </script>
