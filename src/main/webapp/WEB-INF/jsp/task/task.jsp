@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,15 +31,15 @@
     <form class="layui-form x-center" action="" style="width:80%">
         <div class="layui-form-pane" style="margin-top: 15px;">
             <div class="layui-form-item">
-                <label class="layui-form-label">日期范围</label>
+                <%--<label class="layui-form-label">日期范围</label>
                 <div class="layui-input-inline">
                     <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
                 </div>
                 <div class="layui-input-inline">
                     <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
-                </div>
+                </div>--%>
                 <div class="layui-input-inline">
-                    <input type="text" name="username"  placeholder="请输入登录名" autocomplete="off" class="layui-input">
+                    <input type="text" name="matter"  placeholder="请输入任务事项" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline" style="width:80px">
                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -67,13 +69,13 @@
                 开始时间
             </th>
             <th>
+                结束时间
+            </th>
+            <th>
                 创建时间
             </th>
             <th>
                 修改时间
-            </th>
-            <th>
-                员工
             </th>
             <th>
                 执行人
@@ -82,36 +84,89 @@
             <th>
                 状态
             </th>
+            <c:if test="${sessionScope.user_Session.role != 1}">
             <th>
                 操作
             </th>
+            </c:if>
+            <c:if test="${sessionScope.user_Session.role == 1}">
+                <th>
+                    被执行人
+                </th>
+            </c:if>
         </tr>
         </thead>
         <tbody id="x-img">
-        <tr>
-            <td>
-                <input type="checkbox" value="1" name="">
-            </td>
+        <c:forEach var="list" items="${list}" varStatus="str">
+            <%--<tr>
+                <td>
+                    <input type="checkbox" value="1" name="">
+                </td>
 
-            </td>
-            <td class="td-manage">
-                <a style="text-decoration:none" onclick="admin_stop(this,'10001')" href="javascript:;" title="停用">
-                    <i class="layui-icon">&#xe601;</i>
-                </a>
-                <a title="编辑" href="javascript:;" onclick="community_edit('编辑','taskadd.html','2','1000','600')"
-                   class="ml-5" style="text-decoration:none">
-                    <i class="layui-icon">&#xe642;</i>
-                </a>
-                <a title="删除" href="javascript:;" onclick="admin_del(this,'1')"
-                   style="text-decoration:none">
-                    <i class="layui-icon">&#xe640;</i>
-                </a>
-            </td>
-        </tr>
+                </td>
+                <td class="td-manage">
+                    <a style="text-decoration:none" onclick="admin_stop(this,'10001')" href="javascript:;" title="停用">
+                        <i class="layui-icon">&#xe601;</i>
+                    </a>
+                    <a title="编辑" href="javascript:;" onclick="community_edit('编辑','taskadd.html','2','1000','600')"
+                       class="ml-5" style="text-decoration:none">
+                        <i class="layui-icon">&#xe642;</i>
+                    </a>
+                    <a title="删除" href="javascript:;" onclick="admin_del(this,'1')"
+                       style="text-decoration:none">
+                        <i class="layui-icon">&#xe640;</i>
+                    </a>
+                </td>
+            </tr>--%>
+            <tr>
+                <td>
+                    <input type="checkbox" value="1" name="">
+                </td>
+                <td>${str.index + 1}</td>
+                <td>${list.matter}</td>
+                <td>
+                        <fmt:formatDate value="${list.starttime}" pattern="yyyy-MM-dd"/>
+                </td>
+                <td>
+                    <fmt:formatDate value="${list.endtime}" pattern="yyyy-MM-dd"/>
+                </td>
+                <td>
+                        <fmt:formatDate value="${list.creationtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                </td>
+                <td>
+                    <fmt:formatDate value="${list.revisiontime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                </td>
+                <td>${list.ename}</td>
+                <td>
+                    <c:if test="${list.state == 0}">
+                        进行中
+                    </c:if>
+                    <c:if test="${list.state == 1}">
+                        已完成
+                    </c:if>
+                </td>
+                <td>
+
+                    <c:if test="${sessionScope.user_Session.role != 1}">
+                        <c:if test="${list.state == 0}">
+                            <a title="已完成" href="javascript:;" onclick="personnel_edit('编辑','/task/upd',${list.id},1,'1000','600')"
+                               class="ml-5" style="text-decoration:none">
+                                <i class="layui-icon">&#xe6c6;</i>
+                            </a>
+                        </c:if>
+                    </c:if>
+                        <c:if test="${sessionScope.user_Session.role == 1}">
+                            ${list.pname}
+                        </c:if>
+                    <%--<a href="/selById?id=${list.id}">修改</a>
+                    <a href="#" onclick="del(${list.id})">删除</a>--%>
+                </td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 
-    <div id="page"><ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="/xiyuan/Community/lst?page=2">2</a></li> <li><a href="/xiyuan/Community/lst?page=2">&raquo;</a></li></ul></div>
+    <%--<div id="page"><ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="/xiyuan/Community/lst?page=2">2</a></li> <li><a href="/xiyuan/Community/lst?page=2">&raquo;</a></li></ul></div>--%>
 </div>
 <script src="../../statics/lib/layui/layui.js" charset="utf-8"></script>
 <script src="../../statics/js/x-layui.js" charset="utf-8"></script>
@@ -179,6 +234,30 @@
     /*添加*/
     function admin_add(title,url,w,h){
         x_admin_show(title,url,w,h);
+    }
+
+    //编辑
+    function personnel_edit (title,url,id,state,w,h) {
+        url = url+"?id="+id+"&state="+state;
+        $.ajax({
+            type:"post",
+            url:url,
+            //data:{id:id},
+            dataType:"json",
+            success:function(data){
+                //console.log(data);
+                if(data){
+                    //发异步删除数据
+                    layer.msg("操作成功",{icon:6,time:1000},function(){
+                        window.location.reload();
+                    });return false;
+                } else{
+                    layer.msg("操作失败!",{icon:5,time:1000},function(){
+                        window.location.reload();
+                    });return false;
+                }
+            }
+        });
     }
 
     /*停用*/

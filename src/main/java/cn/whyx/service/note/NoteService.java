@@ -14,7 +14,7 @@ public interface NoteService {
     /**
      * 修改信息
      */
-    public int update(Note note) throws Exception;
+    public boolean update(Note note) throws Exception;
 
     public Note selById(Integer id) throws Exception;
 

@@ -19,8 +19,8 @@ public class NoteServicelmpl implements NoteService{
     }
 
     @Override
-    public int update(Note note) throws Exception {
-        return noteMapper.update(note);
+    public boolean update(Note note) throws Exception {
+        return (noteMapper.update(note)>0)?true:false;
     }
 
     @Override

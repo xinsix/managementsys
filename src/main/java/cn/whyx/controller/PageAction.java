@@ -38,7 +38,7 @@ public class PageAction {
     public String communityadd(){
         return "communitylist/communityadd";
     }
-    /*添加便签*/
+    /*修改便签*/
     @RequestMapping("/communitymodify")
     public String communitymodify(@RequestParam Integer id){
         return "redirect:/note/selById/"+id;
@@ -47,7 +47,7 @@ public class PageAction {
     /*任务*/
     @RequestMapping("/task")
     public String task(){
-        return "task/task";
+        return "redirect:/task/find";
     }
     /*添加任务*/
     @RequestMapping("/taskadd")
