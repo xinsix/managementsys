@@ -50,4 +50,10 @@ public interface PensonMapper {
      */
     public Integer updPenson(Penson penson)throws Exception;
 
+    /**
+     * 添加员工
+     */
+    public Integer addPenson(Penson penson)throws Exception;
+
+
 }

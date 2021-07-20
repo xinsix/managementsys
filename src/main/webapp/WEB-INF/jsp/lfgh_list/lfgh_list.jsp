@@ -64,16 +64,14 @@
                 ID
             </th>
             <th>
-                员工姓名
+                申请转正人
             </th>
             <th>
-                转正工资
+                同意人
             </th>
             <th>
                 状态
             </th>
-
-
             <th>
                 操作
             </th>
@@ -86,14 +84,14 @@
             </td>
 
             <td class="td-manage">
-                <!-- <a title="编辑" href="javascript:;" onclick="repair_edit('编辑','repairadd.html','2','1000','600')"
+                <a title="编辑" href="javascript:;" onclick="repair_edit('编辑','repairadd.html','2','1000','600')"
                     class="ml-5" style="text-decoration:none">
                      <i class="layui-icon">&#xe642;</i>
-                 </a>-->
-                <a title="删除" href="javascript:;" onclick="repair_del(this,'2')"
+                 </a>
+                <%--<a title="删除" href="javascript:;" onclick="repair_del(this,'2')"
                    style="text-decoration:none">
                     <i class="layui-icon">&#xe640;</i>
-                </a>
+                </a>--%>
             </td>
         </tr>
         </tbody>

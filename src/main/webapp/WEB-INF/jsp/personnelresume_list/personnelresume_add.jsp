@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +24,7 @@
 <body>
 
 <div class="x-body">
-    <form class="layui-form layui-form-pane" action="" id="add">
+    <form class="layui-form layui-form-pane" action="" id="upd">
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
 
 
@@ -38,34 +40,19 @@
                                    class="layui-input" value="">
                         </div>
                     </div>
+
                     <div class="layui-form-item">
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>员工性别
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="device_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
-                                   class="layui-input" value="">
+                            <select name="sex">
+                                <option value="2">请选择</option>
+                                <option value="0">女</option>
+                                <option value="1">男</option>
+                            </select>
                         </div>
                     </div>
-
-                    <!--<div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>状态
-                        </label>
-                        <div class="layui-input-block">
-                            <input type="radio" name="status" value="1" title="待受理" >
-                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i>
-                                <div>待受理</div>
-                            </div>
-                            <input type="radio" name="status" value="2" title="已受理" >
-                            <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>
-                                <div>已受理</div>
-                            </div>
-                            <input type="radio" name="status" value="0" title="已维修" checked="checked">
-                            <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>
-                                <div>已维修</div>
-                            </div>
-                        </div>-->
                 </div>
 
                 <div class="layui-form-item layui-form-text">
@@ -73,60 +60,80 @@
                         <span class='x-red'>*</span>员工地址
                     </label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入内容" name="desc" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入内容" name="address" class="layui-textarea"></textarea>
                     </div>
                 </div>
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">
-                        <span class='x-red'>*</span>员工职务
-                    </label>
-                    <div class="layui-input-block">
-                        <textarea placeholder="请输入内容" name="duty" class="layui-textarea"></textarea>
-                    </div>
-                </div>
-                <div class="layui-form-item layui-form-text">
+                <div class="layui-form-item">
                     <label class="layui-form-label">
                         <span class='x-red'>*</span>员工电话
                     </label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入内容" name="phone" class="layui-textarea"></textarea>
+                        <input type="text" name="phone" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                               class="layui-input" value="">
                     </div>
                 </div>
+
+                 <div class="layui-form-item">
+                     <label class="layui-form-label">
+                         <span class='x-red'>*</span>所属部门
+                     </label>
+                     <div class="layui-input-block">
+                         <select name="org" id="org">
+                             <option value="0">---请选择部门---</option>
+                             <c:forEach items="${department}" var="Department" varStatus="status">
+                                 <option value="${Department.id}">${Department.department_name}</option>
+                             </c:forEach>
+                         </select>
+                     </div>
+                 </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        <span class='x-red'>*</span>员工角色
+                    </label>
+                    <div class="layui-input-block">
+                        <select name="role" id="role">
+                            <option value="0">---请选择角色---</option>
+                            <c:forEach items="${list}" var="Role" varStatus="status">
+                                <option value="${Role.id}">${Role.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">
-                        <span class='x-red'>*</span>员工描述
+                        员工描述
                     </label>
                     <div class="layui-input-block">
                         <textarea placeholder="请输入内容" name="description" class="layui-textarea"></textarea>
                     </div>
                 </div>
+
                 <div class="layui-form-item">
                     <label class="layui-form-label">
-                        <span class='x-red'>*</span>所属部门
+                        <span class='x-red'>*</span>员工薪资
                     </label>
                     <div class="layui-input-block">
-                        <select name="community_id" id="community_id">
-
-                            <option value="0">---请选择部门---</option>
-                        </select>
+                        <input type="text" name="wages" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                               class="layui-input" value="">
                     </div>
+
+                    <div class="layui-form-item">
+                        <button class="layui-btn" type="button" lay-filter="upd" lay-submit="">
+                            保存
+                        </button>
+                    </div>
+                    <!--</form>-->
+                    <div style="height:100px;"></div>
                 </div>
 
-                <div class="layui-form-item">
-                    <button class="layui-btn" type="button" lay-filter="add" lay-submit="">
-                        保存
-                    </button>
-                </div>
-                <!--</form>-->
-                <div style="height:100px;"></div>
+
+
             </div>
 
-
-
         </div>
-
-</div>
-</form>
+    </form>
 </div>
 <script src="../../statics/lib/layui/layui.js" charset="utf-8"></script>
 <script src="../../statics/js/x-layui.js" charset="utf-8"></script>
@@ -152,31 +159,38 @@
 
 
         //监听提交
-        form.on('submit(add)', function(data){
+        form.on('submit(upd)', function(data){
 
-            var uasername=$("input[name='uasername']").val();
-            var device_name=$("input[name='device_name']").val();
+            var name=$("input[name='name']").val();
+            var address=$("input[name='address']").val();
+            var phone=$("input[name='phone']").val();
+            var wages=$("input[name='wages']").val();
 
-            var community_id=$('#community_id option:selected') .val();//所属栏目ID
-            if(community_id==""){
-                layer.msg('所属小区不能为空',{icon:5,time:2000});return false;
+            if(phone.length!=11){
+                layer.msg('员工电话不能超过或小于11位',{icon:5,time:2000});return false;
             }
-            if(uasername==""){
-                layer.msg('报修人员不能为空',{icon:5,time:2000});return false;
+            if(phone==""){
+                layer.msg('员工电话不能为空',{icon:5,time:2000});return false;
             }
-            if(device_name==""){
-                layer.msg('设备名称不能为空',{icon:5,time:2000});return false;
+            if(name==""){
+                layer.msg('员工姓名不能为空',{icon:5,time:2000});return false;
+            }
+            if(address==""){
+                layer.msg('员工地址不能为空',{icon:5,time:2000});return false;
+            }
+            if(wages==""){
+                layer.msg('员工薪资不能为空',{icon:5,time:2000});return false;
             }
             var data=data.field;
             $.ajax({
                 type:"post",
-                url:"xxx",
+                url:"/Penson/addPenson",
                 data:data,
                 dataType:"json",
                 success:function(data){
-                    if(data.status==1)
+                    if(data)
                     {
-                        layer.msg(data.info, {icon: 6,time:2000},function () {
+                        layer.msg("添加成功", {icon: 6,time:2000},function () {
                             window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
@@ -185,7 +199,7 @@
 
                     }
                     else{
-                        layer.msg(data.info,{icon:5,time:2000});return false;
+                        layer.msg("添加失败",{icon:5,time:2000});return false;
                     }
                 }
 

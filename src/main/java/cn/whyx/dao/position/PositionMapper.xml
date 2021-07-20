@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.whyx.dao.position.PositionMapper">
+    <select id="selPosition" resultType="Position">
+        SELECT * From `position`
+        <if test="position_name!=null">
+            where position_name like CONCAT('%',#{position_name},'%')
+        </if>
+    </select>
+
+    <select id="selcount" resultType="Integer">
+        SELECT COUNT(1) from `position`
+    </select>
+
+    <select id="selPositionname" resultType="Position">
+        select * FROM `position`
+        where id = #{id}
+    </select>
+
+    <insert id="insPosition_add">
+       INSERT INTO `position` (position_name) VALUES (#{position_name})
+    </insert>
+
+    <delete id="delPosition">
+            DELETE FROM `position` WHERE `id`= #{id}
+        </delete>
+
+    <update id="updPosition">
+       update `position`
+        set position_name=#{position_name}
+        where id=#{id}
+    </update>
+</mapper>

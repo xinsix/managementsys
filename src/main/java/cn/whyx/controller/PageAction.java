@@ -1,6 +1,7 @@
 package cn.whyx.controller;
 
 import cn.whyx.pojo.Penson;
+import cn.whyx.pojo.Station;
 import cn.whyx.util.Condition;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -212,12 +213,12 @@ public class PageAction {
     /*人员履历*/
     @RequestMapping("/personnelresume_list")
     public String personnelresume_list(){
-        return "personnelresume_list/personnelresume_list";
+        return "redirect:/Penson/selpersonnelresume";
     }
     /*添加人员履历*/
     @RequestMapping("/personnelresume_add")
     public String personnelresume_add(){
-        return "personnelresume_list/personnelresume_add";
+        return "redirect:/Penson/selRoles";
     }
 
     /*转正申请*/
@@ -241,5 +242,48 @@ public class PageAction {
     public String quit_add(){
         return "quit_list/quit_add";
     }
+
+    /*部门*/
+    @RequestMapping("/department_list")
+    public String department_list(){
+        return "redirect:/department/selDepartment";
+    }
+    @RequestMapping("/department_add")
+    public String department_add(){
+        return "/department/department_add";
+    }
+    @RequestMapping("/updDepartment")
+    public String updDepartment(@RequestParam Integer id){
+        return "redirect:/department/selDepartmentname/"+id;
+    }
+
+    /*岗位*/
+    @RequestMapping("/stion_list")
+    public String stion_list(){
+        return "redirect:/station/selstation";
+    }
+    @RequestMapping("/station_add")
+    public String stion_add(){
+        return "/station/station_add";
+    }
+    @RequestMapping("/updStation")
+    public String updStation(Model model, @RequestParam Integer id){
+        return "redirect:/station/selStationname/"+id;
+    }
+
+    /*职能*/
+    @RequestMapping("/position_list")
+    public String position_list(){
+        return "redirect:/position/selPosition";
+    }
+    @RequestMapping("/position_add")
+    public String position_add(){
+        return "/position/position_add";
+    }
+    @RequestMapping("/updposition")
+    public String updposition(Model model, @RequestParam Integer id){
+        return "redirect:/position/selPositionname/"+id;
+    }
+
 
 }

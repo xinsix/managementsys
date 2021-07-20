@@ -4,49 +4,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>系统登录</title>
+  <title>文化有限公司系统登录</title>
   <link rel="stylesheet" href="/statics/css/login.css">
   <script type="text/javascript" src="/statics/js/jquery.min.js"></script>
   <script src="/statics/lib/layui/layui.js" charset="utf-8"></script>
+    <link rel="icon" href="../../statics/images/LOGO-white.png">
 </head>
 <body class="login-bg">
-
-    <div class="login">
-        <div class="message">系统登录</div>
-        <div id="darkbannerwrap"></div>   
-        <form method="post" action="/user/toLogin" class="layui-form" >
-            <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
-            <hr class="hr15">
-            <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
-            <hr class="hr15">
-            <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
-            <hr class="hr20" >
-        </form>
+    <div class="main">
+        <div class="login">
+            <h1>文化有限管理系统</h1>
+            <div class="inset">
+                <!--start-main-->
+                <form method="post" action="/user/toLogin" class="layui-form" >
+                    <div>
+                        <h2>系统登录</h2>
+                        <span><label>用户名</label></span>
+                        <span><input type="text" class="username" name="username"></span>
+                    </div>
+                    <div>
+                        <span><label>密码</label></span>
+                        <span><input type="password" class="password" name="password"></span>
+                    </div>
+                    <div class="sign">
+                        <input type="submit" value="登录" class="submit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--//end-main-->
     </div>
-    <!--<script>
-            layui.use(['form'],
-            function() {
-                $ = layui.jquery;
-                var form = layui.form(),
-                layer = layui.layer;
 
-                //监听提交
-                form.on('submit(login)',
-                function(data) {
-                    //alert(1);
-                    /*console.log(data);*/
-                    layer.alert(JSON.stringify(data.field), {
-                      title: '确认登录'
-                    },function  () {
-                        location.href = "index.html";
-                    });
-                    return false;
+    <div class="copy-right">
+        <p>&copy; Copyright 2021 culture Limited</p>
 
-                });
-
-            });
-
-        </script>-->
+    </div>
 
     <!-- 底部结束 -->
     

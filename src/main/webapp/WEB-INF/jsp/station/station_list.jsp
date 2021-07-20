@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        履历管理
+        岗位管理
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -23,7 +23,7 @@
             <span class="layui-breadcrumb">
               <a><cite>首页</cite></a>
               <a><cite>组织管理</cite></a>
-              <a><cite>履历管理</cite></a>
+              <a><cite>岗位管理</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
@@ -32,7 +32,7 @@
         <div class="layui-form-pane" style="margin-top: 15px;">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                    <input type="text" name="name"  placeholder="员工姓名" autocomplete="off" class="layui-input">
+                    <input type="text" name="station_name"  placeholder="岗位名称" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline" style="width:80px">
                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -44,7 +44,7 @@
         <button class="layui-btn layui-btn-danger" onclick="delAll()">
             <i class="layui-icon">&#xe640;</i>批量删除
         </button>
-        <button class="layui-btn" onclick="activity_add('添加','/page/personnelresume_add','1000','600')">
+        <button class="layui-btn" onclick="activity_add('添加','/page/station_add','1000','600')">
             <i class="layui-icon">&#xe608;</i>添加
         </button>
         <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">${count}</span> 条</span></xblock>
@@ -58,84 +58,30 @@
                 ID
             </th>
             <th>
-                姓名
+                岗位
             </th>
             <th>
-                性别
-            </th>
-            <th>
-                地址
-            </th>
-            <th>
-                电话
-            </th>
-            <th>
-                描述
-            </th>
-            <th>
-                职务
-            </th>
-            <th>
-                所属部门
-            </th>
-            <th>
-                薪资
-            </th>
-
-           <%-- <th>
                 操作
-            </th>--%>
+            </th>
         </tr>
         </thead>
-
-        <c:forEach items="${list}" var="Penson" varStatus="status">
+        <c:forEach items="${list}" var="Station" varStatus="status">
             <tr>
                 <td>
                     <input type="checkbox" value="1" name="">
                 </td>
-
                 <td>${status.index+1}</td>
-                <td>${Penson.name}</td>
-                <td>
-                    <c:if test="${Penson.sex == 0}">
-                        女
-                    </c:if>
-                    <c:if test="${Penson.sex == 1}">
-                        男
-                    </c:if>
-
-                </td>
-                <td>${Penson.address}</td>
-                <td>${Penson.phone}</td>
-                <td>
-                    <c:if test="${Penson.description == null or Penson.description.trim() == ''}">
-                        这家伙很懒，没有留下任何描述！
-                    </c:if>
-                    <c:if test="${Penson.description != null}">
-                        ${Penson.description}
-                    </c:if>
-
-                </td>
-                <td>${Penson.role_name}</td>
-                <td>
-                    <c:if test="${Penson.department_name != null}">
-                        ${Penson.department_name}
-                    </c:if>
-                    <c:if test="${Penson.department_name == null}">
-                        我不配拥有职务
-                    </c:if>
-                </td>
-                <td>${Penson.wages}</td>
-                <%--<td class="td-manage">
-                    &lt;%&ndash;<a title="编辑" href="javascript:;" onclick="repair_edit('编辑','/page/repairupd','${Penson.id}','1000','600')"
+                <td> ${Station.station_name}</td>
+                <td class="td-manage">
+                    <a title="编辑" href="javascript:;" onclick="activity_edit('编辑','/page/updStation','${Station.id}','1000','600')"
                        class="ml-5" style="text-decoration:none">
                         <i class="layui-icon">&#xe642;</i>
-                    </a>&ndash;%&gt;
-                       &lt;%&ndash; <a title="删除" href="javascript:;" onclick="Department_del(${Station.id})"
-                           style="text-decoration:none">
-                            <i class="layui-icon">&#xe640;</i>
-                        </a>&ndash;%&gt;
-                </td>--%>
+                    </a>
+                    <a title="删除" href="javascript:;" onclick="Department_del(${Station.id})"
+                       style="text-decoration:none">
+                        <i class="layui-icon">&#xe640;</i>
+                    </a>
+                </td>
             </tr>
         </c:forEach>
     </table>

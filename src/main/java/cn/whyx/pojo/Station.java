@@ -7,6 +7,7 @@ public class Station {
     private Integer id;//岗位id
     private String station_name;//岗位名称
 
+
     public Integer getId() {
         return id;
     }

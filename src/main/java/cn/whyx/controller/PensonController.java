@@ -30,6 +30,18 @@ public class PensonController {
     }
 
     /**
+     * 查询全部履历
+     */
+    @GetMapping("/selpersonnelresume")
+    public String selpersonnelresume(Model model,@RequestParam(required = false)String name)throws Exception{
+        List<Penson> list = service.selInfoManage(name);
+        Integer count = service.selcount();
+        model.addAttribute("list",list);
+        model.addAttribute("count",count);
+        return "personnelresume_list/personnelresume_list";
+    }
+
+    /**
      * 查询角色
      */
     @GetMapping("/selRole")
@@ -40,6 +52,19 @@ public class PensonController {
         model.addAttribute("list",list);
         return "repairlist/repairupd";
     }
+
+    /**
+     * 查询角色2
+     */
+    @GetMapping("/selRoles")
+    public String selRoles(Model model)throws Exception{
+        List<Role> list = service.selRole();
+        List<Department> department = service.seldepartment();
+        model.addAttribute("department",department);
+        model.addAttribute("list",list);
+        return "personnelresume_list/personnelresume_add";
+    }
+
 
     /**
      * 查询修改前的员工信息
@@ -64,4 +89,30 @@ public class PensonController {
         boolean bool = service.updPenson(penson);
         return bool;
     }
+
+    /**
+     * 添加员工
+     */
+    @ResponseBody
+    @PostMapping("/addPenson")
+    public Object addPenson(@RequestParam String name,
+                            @RequestParam String sex,
+                            @RequestParam String address,
+                            @RequestParam String  phone,
+                            @RequestParam String description,
+                            @RequestParam String org,
+                            @RequestParam Integer role,
+                            @RequestParam Integer wages)throws Exception{
+        Penson penson = new Penson();
+        penson.setName(name);
+        penson.setSex(sex);
+        penson.setAddress(address);
+        penson.setPhone(phone);
+        penson.setDescription(description);
+        penson.setOrg(org);
+        penson.setRole(role);
+        penson.setWages(wages);
+        return service.addPenson(penson);
+    }
+
 }

@@ -42,4 +42,9 @@ public interface PensonService {
      * 修改员工
      */
     public boolean updPenson(Penson penson)throws Exception;
+
+    /**
+     * 添加员工
+     */
+    public boolean addPenson(Penson penson)throws Exception;
 }

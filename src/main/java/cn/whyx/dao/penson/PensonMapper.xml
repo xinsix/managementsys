@@ -58,4 +58,9 @@
         wages=#{wages}
         where id=#{id}
     </update>
+
+    <insert id="addPenson">
+        INSERT INTO `penson` (`name`,`sex`,`address`,`phone`,`description`,`org`,`role`,`wages`)
+          VALUES (#{name},#{sex},#{address},#{phone},#{description},#{org},#{role},#{wages})
+    </insert>
 </mapper>
