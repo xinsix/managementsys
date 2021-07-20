@@ -53,4 +53,9 @@ public class PensonServiceImpl implements PensonService {
     public boolean updPenson(Penson penson) throws Exception {
         return (userMapper.updPenson(penson)>0)?true:false;
     }
+
+    @Override
+    public boolean addPenson(Penson penson) throws Exception {
+        return (userMapper.addPenson(penson)>0)?true:false;
+    }
 }

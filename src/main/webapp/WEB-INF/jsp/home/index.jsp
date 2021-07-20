@@ -110,7 +110,10 @@
                 </li>
                 <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon iconfont icon-fuwu" style="top: 3px;"></i><cite>组织管理</cite> </a>
                     <dl class="layui-nav-child">
-                        <dd class=""> <a href="javascript:;" _href="/page/activity_list"> <cite>机构管理</cite> </a> </dd>
+                        <dd class=""> <a href="javascript:;" _href="/page/"> <cite>架构管理</cite> </a> </dd>
+                        <dd class=""> <a href="javascript:;" _href="/page/department_list"> <cite>部门管理</cite> </a> </dd>
+                        <dd class=""> <a href="javascript:;" _href="/page/stion_list"> <cite>岗位管理</cite> </a> </dd>
+                        <dd class=""> <a href="javascript:;" _href="/page/position_list"> <cite>职能管理</cite> </a> </dd>
                         <dd class=""> <a href="javascript:;" _href="/page/repairlist"> <cite>人员管理</cite> </a> </dd><!--
                         <dd class=""> <a href="javascript:;" _href="complainlist.html"> <cite>投诉管理</cite> </a> </dd>
                         <dd class=""> <a href="javascript:;" _href="mailboxlist.html"> <cite>信箱管理</cite> </a> </dd>-->

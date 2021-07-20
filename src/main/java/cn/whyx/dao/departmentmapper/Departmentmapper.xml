@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.whyx.dao.departmentmapper.Departmentmapper">
+    <select id="selDepartment" resultType="Department">
+        SELECT * From department
+        <if test="department_name!=null">
+            where department_name like CONCAT('%',#{department_name},'%')
+        </if>
+    </select>
+
+    <select id="selcount" resultType="Integer">
+        SELECT COUNT(1) from department
+    </select>
+
+    <select id="selDepartmentname" resultType="Department">
+        select * FROM department
+        where id = #{id}
+    </select>
+
+    <insert id="insertDepartment">
+        INSERT INTO department VALUES (null,#{department_name})
+    </insert>
+
+    <update id="updDepartment">
+       update department
+        set department_name=#{department_name}
+        where id=#{id}
+    </update>
+
+    <delete id="delDepartment">
+        DELETE FROM `department` WHERE `id`= #{id}
+    </delete>
+</mapper>
