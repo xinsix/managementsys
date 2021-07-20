@@ -128,7 +128,7 @@
                            class="ml-5" style="text-decoration:none">
                             <i class="layui-icon">&#xe642;</i>
                         </a>
-                        <a title="删除" href="javascript:;" onclick="veh_del(this,'1')"
+                        <a title="删除" href="javascript:;" onclick="veh_del(${list.id})"
                            style="text-decoration:none">
                             <i class="layui-icon">&#xe640;</i>
                         </a>
@@ -212,30 +212,25 @@
     }
 
     /*删除*/
-    function veh_del(obj,id){
+    function veh_del(id){
         layer.confirm('确认要删除吗？',{icon:3,title:'提示信息'},function(index){
             $.ajax({
                 type:"post",
-                url:"xxx",
+                url:"/carmanage/del",
                 data:{id:id},
                 dataType:"json",
                 success:function(data){
                     //console.log(data);
-                    if(data.status==1){
+                    if(data){
                         //发异步删除数据
-                        $(obj).parents("tr").remove();
-                        layer.msg(data.info,{icon:6,time:1000});
-                        setTimeout(function(){
+                        layer.msg("已删除！",{icon:6,time:1000},function () {
                             window.location.reload();
-                        },1000);return false;
+                        });return false;
                     } else{
-                        layer.msg(data.info,{icon:5,time:1000});return false;
+                        layer.msg("删除失败！",{icon:5,time:1000});return false;
                     }
                 }
             });
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!',{icon:1,time:1000});
         });
     }
 </script>
