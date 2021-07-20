@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        角色添加
+        添加请假
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -28,22 +28,14 @@
                 <div class="layui-tab-item layui-show">
                     <input type="hidden" name="id" value="">
 
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>角色名称
-                        </label>
-                        <div class="layui-input-block">
-                            <input type="text" name="device_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
-                                   class="layui-input" value="">
-                        </div>
-                    </div>
+
 
                     <div class="layui-form-item">
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>请假理由
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="device_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
+                            <input type="text" name="matter" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -52,97 +44,31 @@
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>开始时间
                         </label>
-
-                        <div class="layui-input-inline">
-                            <input class="layui-input" name="start_time" placeholder="开始时间" id="start_demorange_s" value="">
-                        </div>
-                        <br/>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">
-                                <span class='x-red'>*</span>结束日期
-                            </label>
-
-                            <div class="layui-input-inline">
-                                <input class="layui-input" name="End_time" placeholder="结束日期" id="End_demorange_s" value="">
-                            </div>
-
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">
-                                    <span class='x-red'>*</span>时长
-                                </label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="device_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
-                                           class="layui-input" value="">
-                                </div>
-                            </div>
-
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">
-                                    <span class='x-red'>*</span>申请人
-                                </label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="device_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
-                                           class="layui-input" value="">
-                                </div>
-                            </div>
-
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">
-                                    <span class='x-red'>*</span>审核人
-                                </label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="device_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
-                                           class="layui-input" value="">
-                                </div>
-                            </div>
-
-
-                    <!--<div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>品牌
-                        </label>
                         <div class="layui-input-block">
-                            <input type="text" name="brand" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
+                            <input type="date" name="start_time" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>购买单价(￥)
-                        </label>
-                        <div class="layui-input-block">
-                            <input type="text" name="money" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
-                                   class="layui-input" value="">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>购买数量
-                        </label>
-                        <div class="layui-input-block">
-                            <input type="text" name="number" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
-                                   class="layui-input" value="">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>预计使用年限(年)
-                        </label>
-                        <div class="layui-input-block">
-                            <input type="text" name="sy_year" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
-                                   class="layui-input" value="">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>购买日期
-                        </label>
 
-                        <div class="layui-input-inline">
-                            <input class="layui-input" name="gm_time" placeholder="开始时间" id="LAY_demorange_s" value="">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <span class='x-red'>*</span>结束日期
+                        </label>
+                        <div class="layui-input-block">
+                            <input type="date" name="end_time" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
+                                   class="layui-input" value="">
                         </div>
+                    </div>
 
-                    </div>-->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <span class='x-red'>*</span>时长
+                        </label>
+                        <div class="layui-input-block">
+                            <input type="text" name="duration" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
+                                   class="layui-input" value="">
+                        </div>
+                    </div>
 
                     <div class="layui-form-item">
                         <button class="layui-btn" type="button" lay-filter="add" lay-submit="">
@@ -204,11 +130,15 @@
 
         //监听提交
         form.on('submit(add)', function(data){
-            var device_name=$("input[name='device_name']").val();
-            var brand=$("input[name='brand']").val();
-            var money=$("input[name='money']").val();
-            var number=$("input[name='number']").val();
-            var sy_year=$("input[name='sy_year']").val();
+            var matter=$("input[name='matter']").val();
+            var start_time=$("input[name='start_time']").val();
+            var end_time=$("input[name='end_time']").val();
+            var duration=$("input[name='duration']").val();
+
+
+
+
+            /*var sy_year=$("input[name='sy_year']").val();
             var start_time=$("input[name='start_time']:checked").val();
             var End_time=$("input[name='End_time']:checked").val();
 
@@ -237,7 +167,7 @@
             }
             if(End_time==""){
                 layer.msg('结束日期不能为空',{icon:5,time:2000});return false;
-            }
+            }*/
 
             var data=data.field;
             $.ajax({

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +51,7 @@
         <button class="layui-btn layui-btn-danger" onclick="delAll()">
             <i class="layui-icon">&#xe640;</i>批量删除
         </button>
-        <button class="layui-btn" onclick="park_add('请假','leave_add','1000','600')">
+        <button class="layui-btn" onclick="park_add('请假','/page/leave_add','1000','600')">
             <i class="layui-icon">&#xe608;</i>添加
         </button>
         <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">4</span> 条</span></xblock>
@@ -61,9 +63,6 @@
             </th>
             <th>
                 ID
-            </th>
-            <th>
-               名称
             </th>
             <th>
                 理由
@@ -92,23 +91,73 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>
-                <input type="checkbox" value="1" name="">
-            </td>
-            <!--<td class="td-status"> <span class="layui-btn layui-btn-normal " onclick="start(this,'5',0)"> 使用中 </span>
-            </td>-->
-            <td class="td-manage">
-                <a title="编辑" href="javascript:;" onclick="park_edit('编辑','leave_add.html','5','','510')"
-                   class="ml-5" style="text-decoration:none">
-                    <i class="layui-icon">&#xe642;</i>
-                </a>
-                <a title="删除" href="javascript:;" onclick="park_del(this,'5')"
-                   style="text-decoration:none">
-                    <i class="layui-icon">&#xe640;</i>
-                </a>
-            </td>
-        </tr>
+            <c:forEach var="list" items="${list}" varStatus="str">
+                <tr>
+                    <td>
+                        <input type="checkbox" value="1" name="">
+                    </td>
+                    <td>
+                            ${str.index + 1}
+                    </td>
+                    <td>
+                            ${list.matter}
+                    </td>
+                    <td>
+                            <fmt:formatDate value="${list.start_time}" pattern="yyyy-MM-dd"/>
+                    </td>
+                    <td>
+                        <fmt:formatDate value="${list.end_time}" pattern="yyyy-MM-dd"/>
+                    </td>
+                    <td>
+                            ${list.duration}
+                    </td>
+                    <td>
+                        <c:if test="${list.state == 0}">
+                            审核中
+                        </c:if>
+                        <c:if test="${list.state == 1}">
+                            审核通过
+                        </c:if>
+                        <c:if test="${list.state == 2}">
+                            审核未通过
+                        </c:if>
+                    </td>
+                    <td>
+                            ${list.apply_pname}
+                    </td>
+                    <td>
+                            ${list.examine_pname}
+                    </td>
+                    <!--<td class="td-status"> <span class="layui-btn layui-btn-normal " onclick="start(this,'5',0)"> 使用中 </span>
+                    </td>-->
+                    <td class="td-manage">
+                        <c:if test="${sessionScope.user_Session.role == 1}">
+                            <c:if test="${list.state == 0}">
+                                <a title="通过" href="javascript:;" onclick="personnel_edit('编辑','/detailedprocess/upd',${list.id},1,'1000','600')"
+                                   class="ml-5" style="text-decoration:none">
+                                    <i class="layui-icon">&#xe6c6;</i>
+                                </a>
+                                <a title="未通过" href="javascript:;" onclick="personnel_edit('编辑','/detailedprocess/upd',${list.id},2,'1000','600')"
+                                   class="ml-5" style="text-decoration:none">
+                                    <i class="layui-icon">&#xe6c5;</i>
+                                </a>
+                            </c:if>
+                        </c:if>
+                        <c:if test="${sessionScope.user_Session.role != 1}">
+                            <c:if test="${list.state == 2}">
+                                <a title="重新申请" href="javascript:;" onclick="personnel_modify('重新申请','/page/personnel_modify',${list.id},'1000','600')"
+                                   class="ml-5" style="text-decoration:none">
+                                    <i class="layui-icon">&#xe642;</i>
+                                </a>
+                            </c:if>
+                        </c:if>
+                        <a title="删除" href="javascript:;" onclick="park_del(this,'5')"
+                           style="text-decoration:none">
+                            <i class="layui-icon">&#xe640;</i>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 
@@ -170,10 +219,33 @@
     function park_add(title,url,w,h){
         x_admin_show(title,url,w,h);
     }
-    //编辑
-    function park_edit (title,url,id,w,h) {
+    /*重新申请*/
+    function personnel_modify(title,url,id,w,h){
         url = url+"?id="+id;
         x_admin_show(title,url,w,h);
+    }
+    //编辑
+    function personnel_edit (title,url,id,state,w,h) {
+        url = url+"?id="+id+"&state="+state+"&examine_pid="+${sessionScope.user_Session.id};
+        $.ajax({
+            type:"post",
+            url:url,
+            //data:{id:id},
+            dataType:"json",
+            success:function(data){
+                //console.log(data);
+                if(data){
+                    //发异步删除数据
+                    layer.msg("操作成功",{icon:6,time:1000},function(){
+                        window.location.reload();
+                    });return false;
+                } else{
+                    layer.msg("操作失败!",{icon:5,time:1000},function(){
+                        window.location.reload();
+                    });return false;
+                }
+            }
+        });
     }
 
     /*删除*/

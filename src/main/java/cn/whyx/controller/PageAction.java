@@ -85,6 +85,7 @@ public class PageAction {
         return "/personnel_list/personnel_add";
         //return "redirect:/meetingroom/find";
     }
+    /*进入修改会议室页面*/
     @RequestMapping("/personnel_modify")
     public String personnel_modify(@RequestParam Integer id,Model model){
         model.addAttribute("id",id);
@@ -142,6 +143,12 @@ public class PageAction {
     @RequestMapping("/leave_add")
     public String leave_add(){
         return "leave_list/leave_add";
+    }
+    /*进入修改请假页面*/
+    @RequestMapping("/leave_modify")
+    public String leave_modify(@RequestParam Integer id,Model model){
+        model.addAttribute("id",id);
+        return "/leave_list/leave_modify";
     }
 
     /*加班*/

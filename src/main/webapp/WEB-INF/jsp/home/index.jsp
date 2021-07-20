@@ -102,9 +102,9 @@
                 <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon iconfont icon-tingchewei" style="top: 3px;"></i><cite>工作流程管理</cite> </a>
                     <dl class="layui-nav-child">
                         <dd class="">
-                        <dd class=""> <a href="javascript:;" _href="/page/leave_list"> <cite>请假</cite> </a> </dd>
-                        <dd class=""> <a href="javascript:;" _href="/page/workovertime_list"> <cite>加班</cite> </a> </dd>
-                        <dd class=""> <a href="javascript:;" _href="/page/abusinesstravel_list"> <cite>出差</cite> </a> </dd>
+                        <dd class=""> <a href="javascript:;" _href="/detailedprocess/find/1"> <cite>请假</cite> </a> </dd>
+                        <dd class=""> <a href="javascript:;" _href="/detailedprocess/find/2"> <cite>加班</cite> </a> </dd>
+                        <dd class=""> <a href="javascript:;" _href="/detailedprocess/find/3"> <cite>出差</cite> </a> </dd>
                         </dd>
                     </dl>
                 </li>

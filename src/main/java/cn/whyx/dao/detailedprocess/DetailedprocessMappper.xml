@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.whyx.dao.detailedprocess.DetailedprocessMappper">
+    <!--根据procedure_id查询流程详细-->
+    <select id="findDetailedprocess" resultType="Detailedprocess">
+        select d.*,
+        (select name from penson p where p.id = d.apply_pid) apply_pname,
+        (select name from penson p where p.id = d.examine_pid) examine_pname
+        from detailedprocess d
+        <where>
+           and procedure_id = #{procedure_id}
+        </where>
+    </select>
+
+    <!--添加流程详细-->
+    <insert id="addDetailedprocess" parameterType="Detailedprocess">
+      insert into   `Detailedprocess`
+              values (null,#{procedure_id},#{matter},#{start_time},
+                      #{end_time},#{duration},#{state},
+                      #{apply_pid},#{examine_pid})
+    </insert>
+
+    <!--修改流程详细-->
+    <update id="updDetailedprocess" parameterType="Detailedprocess">
+      update `Detailedprocess`
+      <set>
+          <if test="procedure_id != null">
+              procedure_id=#{procedure_id},
+          </if>
+          <if test="matter != null">
+              matter=#{matter},
+          </if>
+          <if test="start_time != null">
+              start_time=#{start_time},
+          </if>
+          <if test="end_time != null">
+              end_time=#{end_time},
+          </if>
+          <if test="duration != 0">
+              duration=#{duration},
+          </if>
+          <if test="state == 0 or state == 1 or state == 2">
+              state=#{state},
+          </if>
+          <if test="apply_pid != null">
+              apply_pid=#{apply_pid},
+          </if>
+          <if test="examine_pid != null">
+              examine_pid=#{examine_pid}
+          </if>
+      </set>
+        where id = #{id}
+    </update>
+
+    <!--删除流程详细-->
+    <delete id="delDetailedprocess">
+      delete from detailedprocess where id = #{id}
+    </delete>
+</mapper>
