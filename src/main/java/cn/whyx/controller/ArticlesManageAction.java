@@ -18,9 +18,11 @@ public class ArticlesManageAction {
     private ArticlesManageService service;
 
     @RequestMapping("/find")
-    public String findArticlesManage(Model model, @RequestParam(required = false)String productname){//查看所有资产
+    public String findArticlesManage(Model model, @RequestParam(required = false)String productname) throws Exception {//查看所有资产
         List<ArticlesManage> list = service.findArticlesManage(productname);
+        Integer count = service.selcount();
         model.addAttribute("list",list);
+        model.addAttribute("count",count);
         return "articles_list/articles_list";
     }
 

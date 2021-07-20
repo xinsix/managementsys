@@ -63,4 +63,8 @@
     <select id="selCarManageById" resultType="carmanage">
         select * from carmanage where id = #{id}
     </select>
+
+    <select id="selcount" resultType="Integer">
+        SELECT COUNT(1) from `carmanage`
+    </select>
 </mapper>

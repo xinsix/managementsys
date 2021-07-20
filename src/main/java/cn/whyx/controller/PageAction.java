@@ -236,23 +236,27 @@ public class PageAction {
     /*转正申请*/
     @RequestMapping("/lfgh_list")
     public String lfgh_list(){
-        return "lfgh_list/lfgh_list";
+        return "redirect:/lfgh/selApplyInfo";
     }
     /*添加转正申请*/
     @RequestMapping("/lfgh_add")
-    public String lfgh_add(){
-        return "lfgh_list/lfgh_add";
+    public String lfgh_add(HttpSession session){
+        String name = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getName();
+        session.setAttribute("name",name);
+        return "redirect:/lfgh_list/lfgh_add";
     }
 
     /*离职申请*/
     @RequestMapping("/quit_list")
     public String quit_list(){
-        return "quit_list/quit_list";
+        return "redirect:/quit/selQuit";
     }
     /*添加离职申请*/
     @RequestMapping("/quit_add")
-    public String quit_add(){
-        return "quit_list/quit_add";
+    public String quit_add(HttpSession session){
+        String name = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getName();
+        session.setAttribute("name",name);
+        return "redirect:/quit/addQuit";
     }
 
     /*部门*/

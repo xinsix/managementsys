@@ -44,4 +44,9 @@ public interface CarManageMapper {
      */
     CarManage selCarManageById(@Param("id") Integer id);
 
+    /**
+     * 查询总数
+     */
+    public Integer selcount()throws Exception;
+
 }

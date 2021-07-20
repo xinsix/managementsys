@@ -1,4 +1,6 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,17 +79,19 @@
                         </dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon iconfont icon-lvhuaxiaoqu" style="top: 3px;"></i><cite>公共信息</cite> </a>
-                    <dl class="layui-nav-child">
-                        <dd class="">
-                        <dd class=""> <a href="javascript:;" _href="/page/homelist"> <cite>信息管理</cite> </a> </dd>
-                        </dd>
-                       <!-- <dd class="">
-                        <dd class=""> <a href="javascript:;" _href="buildinglst.html"> <cite>栋数管理</cite> </a> </dd>-->
-                        </dd>
+                <c:if test="${sessionScope.user_Session.role == 1}">
+                    <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon iconfont icon-lvhuaxiaoqu" style="top: 3px;"></i><cite>公共信息</cite> </a>
+                        <dl class="layui-nav-child">
+                            <dd class="">
+                            <dd class=""> <a href="javascript:;" _href="/page/homelist"> <cite>信息管理</cite> </a> </dd>
+                            </dd>
+                            <!-- <dd class="">
+                             <dd class=""> <a href="javascript:;" _href="buildinglst.html"> <cite>栋数管理</cite> </a> </dd>-->
+                            </dd>
 
-                    </dl>
-                </li>
+                        </dl>
+                    </li>
+                </c:if>
                 <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon iconfont icon-yezhuxian" style="top: 3px;"></i><cite>行政</cite> </a>
                     <dl class="layui-nav-child">
                         <dd class="">
@@ -108,9 +112,10 @@
                         </dd>
                     </dl>
                 </li>
+                <c:if test="${sessionScope.user_Session.role == 1}">
                 <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon iconfont icon-fuwu" style="top: 3px;"></i><cite>组织管理</cite> </a>
                     <dl class="layui-nav-child">
-                        <dd class=""> <a href="javascript:;" _href="/page/"> <cite>架构管理</cite> </a> </dd>
+                        <%--<dd class=""> <a href="javascript:;" _href="/page/"> <cite>架构管理</cite> </a> </dd>--%>
                         <dd class=""> <a href="javascript:;" _href="/page/department_list"> <cite>部门管理</cite> </a> </dd>
                         <dd class=""> <a href="javascript:;" _href="/page/stion_list"> <cite>岗位管理</cite> </a> </dd>
                         <dd class=""> <a href="javascript:;" _href="/page/position_list"> <cite>职能管理</cite> </a> </dd>
@@ -119,21 +124,27 @@
                         <dd class=""> <a href="javascript:;" _href="mailboxlist.html"> <cite>信箱管理</cite> </a> </dd>-->
                     </dl>
                 </li>
+                </c:if>
+                <c:if test="${sessionScope.user_Session.role == 1}">
                 <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon iconfont icon-zichan" style="top: 3px;"></i><cite>权限管理</cite> </a>
                     <dl class="layui-nav-child">
                         <dd class=""> <a href="javascript:;" _href="/page/device_list"> <cite>角色管理</cite> </a> </dd>
                         <!--<dd class=""> <a href="javascript:;" _href="user_list.html"> <cite>用户管理</cite> </a> </dd>-->
                     </dl>
                 </li>
+                </c:if>
                 <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon iconfont icon-shoufeizhan" style="top: 3px;"></i><cite>系统管理</cite> </a>
                     <dl class="layui-nav-child">
                         <dd class=""> <a href="javascript:;" _href="/page/pro_list"> <cite>密码修改</cite> </a> </dd>
                     </dl>
                 </li>
+
                 <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon" style="top: 3px;">&#xe613;</i><cite>人事档案</cite> </a>
                     <dl class="layui-nav-child">
+                        <c:if test="${sessionScope.user_Session.role == 1}">
                         <dd class=""> <a href="javascript:;" _href="/page/personnelresume_list"> <cite>人员履历</cite> </a> </dd>
-                        <dd class=""> <a href="javascript:;" _href="/page/lfgh_list"> <cite>转正申请</cite> </a> </dd>
+                        </c:if>
+                            <dd class=""> <a href="javascript:;" _href="/page/lfgh_list"> <cite>转正申请</cite> </a> </dd>
                         <dd class=""> <a href="javascript:;" _href="/page/quit_list"> <cite>离职申请</cite> </a> </dd>
                         <dd class=""> <a href="javascript:;" _href=""> <cite>员工考勤</cite> </a> </dd>
 

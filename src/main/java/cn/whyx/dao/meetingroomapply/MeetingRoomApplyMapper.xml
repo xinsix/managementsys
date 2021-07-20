@@ -52,4 +52,9 @@
     <select id="delMeetingRoomApply">
         delete from meetingroomapply where id = #{id}
     </select>
+
+    <select id="selcount" resultType="Integer">
+        SELECT COUNT(1) from `meetingroomapply`
+    </select>
+
 </mapper>

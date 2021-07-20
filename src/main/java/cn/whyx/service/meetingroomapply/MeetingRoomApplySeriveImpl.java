@@ -32,4 +32,9 @@ public class MeetingRoomApplySeriveImpl implements MeetingRoomApplySerive{
     public boolean delMeetingRoomApply(Integer id) {
         return (mapper.delMeetingRoomApply(id)>0)?true:false;
     }
+
+    @Override
+    public Integer selcount() throws Exception {
+        return mapper.selcount();
+    }
 }

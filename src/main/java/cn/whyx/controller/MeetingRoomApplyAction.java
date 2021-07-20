@@ -35,7 +35,7 @@ public class MeetingRoomApplyAction {
 
     @RequestMapping("/find")
     //@ResponseBody
-    public Object findMeetingRoomApply(Model model, HttpSession session){//管理员查询所有会议室的申请
+    public Object findMeetingRoomApply(Model model, HttpSession session) throws Exception {//管理员查询所有会议室的申请
         Integer pid = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getId();
         List<MeetingRoomApply> list = service.findMeetingRoomApply(pid);
         for (MeetingRoomApply meetingRoomApply:list){
@@ -44,8 +44,9 @@ public class MeetingRoomApplyAction {
                             meetingRoomApply.getBegindate()+" "+meetingRoomApply.getEnddate()+" " +
                             meetingRoomApply.getApplyreason()+" "+meetingRoomApply.getStatus());
         }
+        Integer count = service.selcount();
         model.addAttribute("list",list);
-        System.out.println(list.size());
+        model.addAttribute("count",count);
         return "personnel_list/personnel_list";
         //return list;
     }

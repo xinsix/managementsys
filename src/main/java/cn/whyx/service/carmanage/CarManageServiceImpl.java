@@ -36,4 +36,9 @@ public class CarManageServiceImpl implements CarManageService {
     public CarManage selCarManageById(Integer id) {
         return mapper.selCarManageById(id);
     }
+
+    @Override
+    public Integer selcount() throws Exception {
+        return mapper.selcount();
+    }
 }

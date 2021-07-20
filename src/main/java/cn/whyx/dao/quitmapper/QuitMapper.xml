@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.whyx.dao.quitmapper.QuitMapper">
+    <select id="selQuit" resultType="ApplyInfo">
+        select a.*,
+        (SELECT `name` from penson p where p.id=a.pid) `name`
+        from `applyinfo` a
+        <where >
+            `subject` = 0 OR  `subject` = 2
+            <if test="id!=1">
+                and pid = #{id}
+            </if>
+            <if test="name!=null">
+                and pid in
+                (SELECT `id` from `penson` where `name`like CONCAT('%',#{name},'%'))
+            </if>
+        </where>
+    </select>
+
+    <select id="selcount" resultType="Integer">
+        SELECT COUNT(1) from `applyinfo`
+    </select>
+
+    <insert id="addQuit">
+        insert into `applyinfo`
+        values (null,#{pid},0,0)
+    </insert>
+
+    <update id="updateQuit" parameterType="Applyinfo">
+        UPDATE `applyinfo` SET subject = #{subject} WHERE id=#{id}
+    </update>
+
+    <delete id="delQuit">
+         delete from `applyinfo`
+          where id = #{id}
+    </delete>
+</mapper>

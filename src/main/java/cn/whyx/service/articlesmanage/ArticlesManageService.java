@@ -38,4 +38,9 @@ public interface ArticlesManageService {
      * @return
      */
     boolean delArticlesManage(@Param("id") Integer id);
+
+    /**
+     * 查询总数
+     */
+    public Integer selcount()throws Exception;
 }

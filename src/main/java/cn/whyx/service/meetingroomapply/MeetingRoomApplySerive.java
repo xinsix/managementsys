@@ -30,4 +30,9 @@ public interface MeetingRoomApplySerive {
      * @return
      */
     boolean delMeetingRoomApply(Integer id);
+
+    /**
+     * 查询会议室总数
+     */
+    public Integer selcount()throws Exception;
 }
