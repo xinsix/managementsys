@@ -171,23 +171,21 @@
                 layer.msg("凭证不能为空！",{icon:5,time:2000});return false;
             }
             var data=data.field;
-            console.log(data);
             $.ajax({
                 type:"post",
                 url:"/carmanage/add",
                 data:data,
                 dataType:"json",
-                success:function(data1){
-                    console.log(data1);
-                    if(data1){
-                        layer.msg(data1, {icon: 6,time:2000},function () {
-                            /*window.parent.location.reload();
+                success:function(data){
+                    if(data){
+                        layer.msg("添加成功！", {icon: 6,time:2000},function () {
+                            window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);
-                            parent.layer.close(index);*/
+                            parent.layer.close(index);
                         });
                         return false;
                     }else{
-                        layer.msg(data1,{icon:5,time:2000});return false;
+                        layer.msg("添加失败！",{icon:5,time:2000});return false;
                     }
                 }
 
