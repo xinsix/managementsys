@@ -114,13 +114,15 @@ CREATE TABLE `carmanage` (
   `mileage` varchar(30) DEFAULT NULL,
   `voucher` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 /*Data for the table `carmanage` */
 
 insert  into `carmanage`(`id`,`licenseplate`,`applicant`,`applytime`,`backtime`,`purpose`,`mileage`,`voucher`) values 
 (1,'粤A-66666','3','2021-07-15 11:58:33','2021-07-16 11:58:35','吃饭','100','无'),
-(2,'粤A-55555','2','2021-07-15 11:59:08','2021-07-16 11:59:10','吃饭','10','无');
+(2,'粤A-55555','2','2021-07-15 11:59:08','2021-07-16 11:59:10','吃饭','10','无'),
+(18,'粤A-11111','2','2021-07-21 10:22:00','2021-07-22 10:22:00','123','123123','123123'),
+(21,'粤A-00000','1','2021-07-20 10:59:32','2021-07-20 10:59:49','chifan ','12','321');
 
 /*Table structure for table `department` */
 
@@ -176,13 +178,15 @@ CREATE TABLE `infomanage` (
   `release_pid` varchar(20) DEFAULT NULL,
   `modify_pid` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `infomanage` */
 
 insert  into `infomanage`(`id`,`content`,`releasetime`,`revisiontime`,`release_pid`,`modify_pid`) values 
 (1,'紧急通知','2021-07-15 11:43:58',NULL,'1',NULL),
-(2,'红红火火恍恍惚惚或或','2021-07-15 11:44:26',NULL,'2',NULL);
+(2,'？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？','2021-07-15 11:44:26','2021-07-20 11:39:17','2','1'),
+(3,'哈哈哈哈',NULL,NULL,'1',NULL),
+(5,'213123123123','2021-07-19 21:24:50',NULL,'1',NULL);
 
 /*Table structure for table `meetingroom` */
 
@@ -213,16 +217,21 @@ CREATE TABLE `meetingroomapply` (
   `begindate` datetime DEFAULT NULL,
   `enddate` datetime DEFAULT NULL,
   `applyreason` varchar(50) DEFAULT NULL,
+  `pid` bigint(20) DEFAULT NULL,
   `status` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 /*Data for the table `meetingroomapply` */
 
-insert  into `meetingroomapply`(`id`,`meetroomid`,`begindate`,`enddate`,`applyreason`,`status`) values 
-(1,1,'2021-07-07 10:50:36','2021-07-07 14:50:40','开会','0'),
-(2,2,'2021-07-07 10:51:01','2021-07-07 13:51:05','开会','1'),
-(3,3,'2021-07-07 10:51:22','2021-07-07 11:51:24','紧急会议','2');
+insert  into `meetingroomapply`(`id`,`meetroomid`,`begindate`,`enddate`,`applyreason`,`pid`,`status`) values 
+(1,1,'2021-07-07 10:50:36','2021-07-07 14:50:40','开会',2,'0'),
+(6,1,'2021-07-20 12:24:00','2021-07-20 13:24:00','123',NULL,'0'),
+(7,1,'2021-07-20 12:29:00','2021-07-20 13:29:00','123123123',NULL,'0'),
+(8,1,'2021-07-20 12:29:00','2021-07-20 13:29:00','123123123',NULL,'0'),
+(9,1,'2021-07-20 12:30:00','2021-07-20 13:30:00','3qweq',NULL,'0'),
+(10,1,'2021-07-20 12:31:00','2021-07-20 13:31:00','dasdas',NULL,'0'),
+(11,2,'2021-07-20 12:36:00','2021-07-20 13:36:00','213123123',NULL,'0');
 
 /*Table structure for table `note` */
 
@@ -253,16 +262,16 @@ CREATE TABLE `organmanage` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `departmentid` bigint(20) DEFAULT NULL,
   `postid` bigint(20) DEFAULT NULL,
-  `position` varchar(30) DEFAULT NULL,
+  `position` bigint(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `organmanage` */
 
 insert  into `organmanage`(`id`,`departmentid`,`postid`,`position`) values 
-(1,1,1,'实习员工'),
-(2,1,2,'普通员工 '),
-(3,1,3,'组长');
+(1,1,1,1),
+(2,1,2,2),
+(3,1,3,3);
 
 /*Table structure for table `penson` */
 
@@ -286,10 +295,27 @@ CREATE TABLE `penson` (
 /*Data for the table `penson` */
 
 insert  into `penson`(`id`,`name`,`username`,`password`,`sex`,`address`,`phone`,`description`,`org`,`role`,`wages`) values 
-(1,'保密','admin','admin','0','中国','11111111111',NULL,NULL,1,4000),
+(1,'保密','admin','admin','0','    中国','11111111111','',NULL,1,4000),
 (2,'张三','zhangsan','123456','1','广东','22222222222',NULL,1,1,4000),
 (3,'李四','lisi','123456','0','广西','33333333333',NULL,2,7,4000),
-(4,'王五','wangwu','123456','1','湖南','55555555555',NULL,3,7,4000);
+(4,'王五','wangwu','123456','1',' 湖南','55555555555','                 ',3,7,4000);
+
+/*Table structure for table `position` */
+
+DROP TABLE IF EXISTS `position`;
+
+CREATE TABLE `position` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `position_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `position` */
+
+insert  into `position`(`id`,`position_name`) values 
+(1,'员工'),
+(2,'员工1'),
+(3,'员工2');
 
 /*Table structure for table `procedure` */
 

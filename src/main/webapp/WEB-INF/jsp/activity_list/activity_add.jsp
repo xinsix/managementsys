@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        角色添加
+        机构添加
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -17,7 +17,10 @@
     <style>
         .imgs{display: none;}
     </style>
-
+    <!--百度编辑器-->
+    <script src="../../statics/ueditor/ueditor.config.js"></script>
+    <script src="../../statics/ueditor/ueditor.all.min.js"></script>
+    <script src="../../statics/ueditor/lang/zh-cn/zh-cn.js"></script>
 </head>
 <body>
 
@@ -27,54 +30,62 @@
             <div class="layui-tab-content" >
                 <div class="layui-tab-item layui-show">
                     <input type="hidden" name="id" value="">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <span class='x-red'>*</span>部门
+                        </label>
+                        <div class="layui-input-block">
+                            <select name="community_id" id="community_id">
+
+                                <option value="0">---请选择部门---</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                                <span class='x-red'>*</span>岗位
+                        </label>
+                        <div class="layui-input-block">
+                            <select name="postid_id" id="postid_id">
+
+                                <option value="0">---请选择岗位---</option>
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="layui-form-item">
                         <label class="layui-form-label">
-                            <span class='x-red'>*</span>转正人
+                            <span class='x-red'>*</span>职位
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="device_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
+                            <input type="text" name="title" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
 
                     <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>工资
-                        </label>
-                        <div class="layui-input-block">
-                            <input type="text" name="device_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
-                                   class="layui-input" value="">
-                        </div>
+                        <button class="layui-btn" type="button" lay-filter="add" lay-submit="">
+                            保存
+                        </button>
                     </div>
 
-                    <!--<div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>转正时间
-                        </label>
-
-                        <div class="layui-input-inline">
-                            <input class="layui-input" name="quit_time" placeholder="离职时间" id="quit_demorange_s" value="">
-                        </div>-->
-                        <div class="layui-form-item">
-                            <button class="layui-btn" type="button" lay-filter="add" lay-submit="">
-                                保存
-                            </button>
-                        </div>
-
-                        <div style="height:100px;"></div>
-                    </div>
-
-
-
+                    <div style="height:100px;"></div>
                 </div>
 
+
+
             </div>
+
+        </div>
     </form>
 </div>
 <script src="../../statics/lib/layui/layui.js" charset="utf-8"></script>
 <script src="../../statics/js/x-layui.js" charset="utf-8"></script>
-
+<script type="text/javascript">
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    UE.getEditor('content',{initialFrameWidth:750,initialFrameHeight:400,});
+</script>
 <script>
     layui.use(['laydate','element','layer','form'], function(){
         $ = layui.jquery;//jquery
@@ -93,13 +104,15 @@
                 //end.start = datas //将结束日的初始值设定为开始日
             }
         };
-        document.getElementById('quit_demorange_s').onclick = function(){
+        document.getElementById('LAY_demorange_s').onclick = function(){
             start.elem = this;
             laydate(start);
         };
 
-
-
+        document.getElementById('END_demorange_s').onclick = function(){
+            start.elem = this;
+            laydate(start);
+        };
         //图片上传接口
         /*layui.upload({
           url: './upload.json' //上传接口
@@ -112,41 +125,26 @@
 
         //监听提交
         form.on('submit(add)', function(data){
-            var device_name=$("input[name='device_name']").val();
-            var brand=$("input[name='brand']").val();
-            var money=$("input[name='money']").val();
-            var number=$("input[name='number']").val();
-            var sy_year=$("input[name='sy_year']").val();
-            var quit_time=$("input[name='quit_time']:checked").val();
+            var title=$("input[name='title']").val();
+            var community_id=$('#community_id option:selected') .val();//部门ID
+            var postid_id=$('#postid_id option:selected') .val();//职位ID
 
-            var community_id=$('#community_id option:selected') .val();//所属栏目ID
 
-            if(device_name==""){
-                layer.msg('设备名称不能为空',{icon:5,time:2000});return false;
+            if(title==""){
+                layer.msg('活动标题不能为空',{icon:5,time:2000});return false;
             }
-            if(brand==""){
-                layer.msg('品牌名称不能为空',{icon:5,time:2000});return false;
-            }
-            if(money==""){
-                layer.msg('购买单价不能为空',{icon:5,time:2000});return false;
-            }
+
             if(community_id==""){
-                layer.msg('所属小区不能为空',{icon:5,time:2000});return false;
+                layer.msg('所属部门不能为空',{icon:5,time:2000});return false;
             }
-            if(number==""){
-                layer.msg('购买数量不能为空',{icon:5,time:2000});return false;
-            }
-            if(sy_year==""){
-                layer.msg('预计使用年限不能为空',{icon:5,time:2000});return false;
-            }
-            if(quit_time==""){
-                layer.msg('开始日期不能为空',{icon:5,time:2000});return false;
+            if(postid_id==""){
+                layer.msg('所属职位不能为空',{icon:5,time:2000});return false;
             }
 
             var data=data.field;
             $.ajax({
                 type:"post",
-                url:"xxx",
+                url:"xxxx",
                 data:data,
                 dataType:"json",
                 success:function(data){
@@ -182,7 +180,7 @@
             type:"post",
             processData: false,
             contentType: false,
-            url:"xxx",
+            url:"xxxx",
             data:formData,
             success:function(data){
                 if(data.status == 1){

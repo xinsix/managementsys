@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,15 +31,15 @@
     <form class="layui-form x-center" action="" style="width:800px">
         <div class="layui-form-pane" style="margin-top: 15px;">
             <div class="layui-form-item">
-                <label class="layui-form-label">日期范围</label>
+                <%--<label class="layui-form-label">日期范围</label>
                 <div class="layui-input-inline">
                     <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
                 </div>
                 <div class="layui-input-inline">
                     <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
-                </div>
+                </div>--%>
                 <div class="layui-input-inline">
-                    <input type="text" name="username"  placeholder="标题" autocomplete="off" class="layui-input">
+                    <input type="text" name="licenseplate"  placeholder="车牌号" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline" style="width:80px">
                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -49,7 +51,7 @@
         <button class="layui-btn layui-btn-danger" onclick="delAll()">
             <i class="layui-icon">&#xe640;</i>批量删除
         </button>
-        <button class="layui-btn" onclick="veh_add('车辆添加','vehicle_add.html','1000','600')">
+        <button class="layui-btn" onclick="veh_add('车辆添加','/page/vehicle_list_add','1000','600')">
             <i class="layui-icon">&#xe608;</i>添加
         </button>
         <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">1</span> 条</span>
@@ -69,7 +71,9 @@
             <th>
                 车辆申请人
             </th>
-
+            <th>
+                申请时间
+            </th>
             <th>
                 归还时间
             </th>
@@ -88,25 +92,56 @@
         </tr>
         </thead>
         <tbody id="x-img">
-        <tr>
-            <td>
-                <input type="checkbox" value="1" name="">
-            </td>
-            <td class="td-manage">
-                <a title="编辑" href="javascript:;" onclick="veh_edit('编辑','vehicle_add.html','1','1000','600')"
-                   class="ml-5" style="text-decoration:none">
-                    <i class="layui-icon">&#xe642;</i>
-                </a>
-                <a title="删除" href="javascript:;" onclick="veh_del(this,'1')"
-                   style="text-decoration:none">
-                    <i class="layui-icon">&#xe640;</i>
-                </a>
-            </td>
-        </tr>
+            <c:forEach var="list" items="${list}" varStatus="str">
+                <tr>
+                    <td>
+                        <input type="checkbox" value="1" name="">
+                    </td>
+                    <td>
+                            ${str.index + 1}
+                    </td>
+                    <td>
+                            ${list.licenseplate}
+                    </td>
+                    <td>
+                            ${list.pname}
+                    </td>
+                    <td>
+                            <%--${list.applytime}--%>
+                        <fmt:formatDate value="${list.applytime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                    </td>
+                    <td>
+                            <%--${list.backtime}--%>
+                            <fmt:formatDate value="${list.backtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                    </td>
+                    <td>
+                            ${list.purpose}
+                    </td>
+                    <td>
+                            ${list.mileage}
+                    </td>
+                    <td>
+                            ${list.voucher}
+                    </td>
+                    <td class="td-manage">
+                        <c:if test="${list.backtime.toString() == null}">
+                            <a title="点击归还" href="javascript:;" onclick="veh_edit('车辆归还','/page/vehicle_modify',${list.id},'1000','600')"
+                               class="ml-5" style="text-decoration:none">
+                                <i class="layui-icon">&#xe642;</i>
+                            </a>
+                        </c:if>
+
+                        <a title="删除" href="javascript:;" onclick="veh_del(${list.id})"
+                           style="text-decoration:none">
+                            <i class="layui-icon">&#xe640;</i>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 
-    <div id="page"></div>
+    <%--<div id="page"></div>--%>
 </div>
 <script src="../../statics/lib/layui/layui.js" charset="utf-8"></script>
 <script src="../../statics/js/x-layui.js" charset="utf-8"></script>
@@ -175,35 +210,30 @@
     }
     //编辑
     function veh_edit (title,url,id,w,h) {
-        url = url+"?id="+id;
+        url = url+"/"+id;
         x_admin_show(title,url,w,h);
     }
 
     /*删除*/
-    function veh_del(obj,id){
+    function veh_del(id){
         layer.confirm('确认要删除吗？',{icon:3,title:'提示信息'},function(index){
             $.ajax({
                 type:"post",
-                url:"xxx",
+                url:"/carmanage/del",
                 data:{id:id},
                 dataType:"json",
                 success:function(data){
                     //console.log(data);
-                    if(data.status==1){
+                    if(data){
                         //发异步删除数据
-                        $(obj).parents("tr").remove();
-                        layer.msg(data.info,{icon:6,time:1000});
-                        setTimeout(function(){
+                        layer.msg("已删除！",{icon:6,time:1000},function () {
                             window.location.reload();
-                        },1000);return false;
+                        });return false;
                     } else{
-                        layer.msg(data.info,{icon:5,time:1000});return false;
+                        layer.msg("删除失败！",{icon:5,time:1000});return false;
                     }
                 }
             });
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!',{icon:1,time:1000});
         });
     }
 </script>

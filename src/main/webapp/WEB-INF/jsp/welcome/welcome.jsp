@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %><!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
     <head>
         <meta charset="utf-8">
@@ -97,7 +98,13 @@
                     <div class="panel-body">
                         <ul class="list-group clear-list m-t">
                             <c:forEach items="${list}" var="infoManage" varStatus="status">
-                                <li class="list-group-item fist-item"> <span class="float-right"> <fmt:formatDate value="${infoManage.releasetime}" pattern="yyyy-MM-dd" /> </span> <span class="label label-success">${status.index+1}</span> ${infoManage.content} </li>
+                                <li class="list-group-item fist-item"> <span class="float-right"> <fmt:formatDate value="${infoManage.releasetime}" pattern="yyyy-MM-dd" /> </span> <span class="label label-success">${status.index+1}</span>
+                                    <c:if test="${fn:length(infoManage.content) > 10 }">
+                                    ${fn:substring(infoManage.content,0,10)}...
+                                </c:if>
+                                    <c:if test="${fn:length(infoManage.content)<= 10 }">
+                                        ${infoManage.content}
+                                    </c:if> </li>
                             </c:forEach>
 
                            <!-- <li class="list-group-item fist-item"> <span class="float-right"> 09:00 </span> <span class="label label-success">1</span> 小区活动1 </li>

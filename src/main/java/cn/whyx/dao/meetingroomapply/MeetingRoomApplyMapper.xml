@@ -13,7 +13,8 @@
     <!--管理员查询所有会议室的申请-->
     <select id="findMeetingRoomApply" resultType="MeetingRoomApply">
         select a.*,
-            (select sn from meetingroom m where a.id = m.id) sn
+            (select sn from meetingroom m where a.meetroomid = m.id) sn,
+            (select name from penson p where a.pid = p.id) pname
         from `MeetingRoomApply` a
         <if test="pid != 1">
             where pid = #{pid}
@@ -22,10 +23,33 @@
     </select>
 
     <!--管理员修改申请的状态-->
-    <update id="updateStatus">
+    <update id="updateStatus" parameterType="MeetingRoomApply">
         update `MeetingRoomApply`
-        set status = #{status}
+          <set>
+              <if test="meetroomid!=null">
+                  meetroomid = #{meetroomid},
+              </if>
+              <if test="begindate!=null">
+                  begindate = #{begindate},
+              </if>
+              <if test="enddate!=null">
+                  enddate = #{enddate},
+              </if>
+              <if test="applyreason!=null">
+                  applyreason = #{applyreason},
+              </if>
+              <if test="pid!=null">
+                  pid = #{pid},
+              </if>
+              <if test="status!=null">
+                  status = #{status}
+              </if>
+          </set>
         where id = #{id}
     </update>
 
+    <!--删除申请-->
+    <select id="delMeetingRoomApply">
+        delete from meetingroomapply where id = #{id}
+    </select>
 </mapper>

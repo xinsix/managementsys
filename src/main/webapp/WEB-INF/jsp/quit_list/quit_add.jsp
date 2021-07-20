@@ -33,7 +33,7 @@
                             <span class='x-red'>*</span>离职人
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="device_name" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="device_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                             <span class='x-red'>*</span>离职理由
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="device_name" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="device_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>

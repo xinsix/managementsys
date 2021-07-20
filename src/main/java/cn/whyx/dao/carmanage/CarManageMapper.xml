@@ -5,11 +5,18 @@
 <mapper namespace="cn.whyx.dao.carmanage.CarManageMapper">
     <!--查看所有车辆-->
     <select id="findCarManage" resultType="CarManage">
-        select * from carmanage
-        <if test="licenseplate!=null">
-            where licenseplate like CONCAT('%',#{licenseplate},'%')
-        </if>
-        order by id desc
+        select c.*,
+        (select name from penson p where p.id = c.applicant) pname
+        from carmanage c
+            <where>
+                <if test="licenseplate!=null">
+                   and licenseplate like CONCAT('%',#{licenseplate},'%')
+                </if>
+                <if test="applicant != 1 ">
+                    and applicant = #{applicant}
+                </if>
+            </where>
+        order by c.id desc
     </select>
 
     <!--添加车辆-->
@@ -22,9 +29,29 @@
     <!--修改车辆-->
     <update id="updCarManage" parameterType="CarManage">
         update carmanage
-        set licenseplate=#{licenseplate},applicant=#{applicant},applytime=#{applytime}
-            ,backtime=#{backtime},purpose=#{purpose},mileage=#{mileage}
-            ,voucher=#{voucher}
+        <set>
+            <if test="licenseplate!=null">
+                licenseplate=#{licenseplate},
+            </if>
+            <if test="applicant!=null">
+                applicant=#{applicant},
+            </if>
+            <if test="applytime!=null">
+                applytime=#{applytime},
+            </if>
+            <if test="backtime!=null">
+                backtime=#{backtime},
+            </if>
+            <if test="purpose!=null">
+                purpose=#{purpose},
+            </if>
+            <if test="mileage!=null">
+                mileage=#{mileage},
+            </if>
+            <if test="voucher!=null">
+                voucher=#{voucher},
+            </if>
+        </set>
         where id=#{id}
     </update>
 
@@ -32,4 +59,8 @@
     <delete id="delCarManage">
         delete from carmanage where id=#{id}
     </delete>
+
+    <select id="selCarManageById" resultType="carmanage">
+        select * from carmanage where id = #{id}
+    </select>
 </mapper>

@@ -29,8 +29,8 @@
 
             <div class="layui-tab-content" >
                 <div class="layui-tab-item layui-show">
-                    <input type="hidden" name="id" value="">
-                    <div class="layui-form-item">
+                    <input type="hidden" name="assetmanager" value="1">
+                    <%--<div class="layui-form-item">
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>所属小区
                         </label>
@@ -54,13 +54,13 @@
 
                             </select>
                         </div>
-                    </div>
+                    </div>--%>
                     <div class="layui-form-item">
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>资产名称
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="pet_name" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="assetname" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                             <span class='x-red'>*</span>资产数量
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="pet_color" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="quantity" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -77,8 +77,10 @@
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>资产位置
                         </label>
-                        <input type="text" name="pet_color" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
-                               class="layui-input" value="">
+                        <div class="layui-input-block">
+                            <input type="text" name="position" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
+                                   class="layui-input" value="">
+                        </div>
                        <!-- <div class="layui-input-inline">
                             <input class="layui-input" name="adoption_time" placeholder="入住时间" id="LAY_demorange_s" value="">
                         </div>-->
@@ -125,10 +127,6 @@
             }
         };
 
-        document.getElementById('LAY_demorange_s').onclick = function(){
-            start.elem = this;
-            laydate(start);
-        };
 
         //图片上传接口
         /*layui.upload({
@@ -142,40 +140,31 @@
 
         //监听提交
         form.on('submit(add)', function(data){
-            var pet_name=$("input[name='pet_name']").val();
-            var pet_color=$("input[name='pet_color']").val();
-            var image=$("input[name='image']").val();
-            var adoption_time=$("input[name='adoption_time']").val();
-            var community_id=$('#community_id option:selected') .val();//所属栏目ID
-            var personnel_id=$('#personnel_id option:selected') .val();//所属栏目ID
+            var assetname=$("input[name='assetname']").val();
+            var quantity=$("input[name='quantity']").val();
+            var position=$("input[name='position']").val();
 
-            if(community_id==""){
-                layer.msg('所属小区不能为空',{icon:5,time:2000});return false;
+            if(assetname==""){
+                layer.msg('资产名称不能为空',{icon:5,time:2000});return false;
             }
-            if(personnel_id==""){
-                layer.msg('所属成员不能为空',{icon:5,time:2000});return false;
+            if(quantity==""){
+                layer.msg('资产数量不能为空',{icon:5,time:2000});return false;
             }
-            if(pet_name==""){
-                layer.msg("宠物名称不能为空！",{icon:5,time:2000});return false;
+            if (parseFloat(quantity).toString() == "NaN"){
+                layer.msg('资产数量必须是数字',{icon:5,time:2000});return false;
             }
-            if(pet_color==""){
-                layer.msg("宠物颜色不能为空！",{icon:5,time:2000});return false;
-            }
-            if(image==""){
-                layer.msg("宠物照片不能为空！",{icon:5,time:2000});return false;
-            }
-            if(adoption_time==""){
-                layer.msg("收养时间不能为空！",{icon:5,time:2000});return false;
+            if(position==""){
+                layer.msg("资产位置不能为空！",{icon:5,time:2000});return false;
             }
             var data=data.field;
             $.ajax({
                 type:"post",
-                url:"xxx",
+                url:"/assetsmanage/add",
                 data:data,
                 dataType:"json",
                 success:function(data){
-                    if(data.status==1){
-                        layer.msg(data.info, {icon: 6,time:2000},function () {
+                    if(data){
+                        layer.msg("添加成功！", {icon: 6,time:2000},function () {
                             window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
@@ -183,7 +172,7 @@
                         return false;
 
                     }else{
-                        layer.msg(data.info,{icon:5,time:2000});return false;
+                        layer.msg("添加失败！",{icon:5,time:2000});return false;
                     }
                 }
 
@@ -196,7 +185,7 @@
             communidy();
         });
         $(function () {
-            communidy();
+            //communidy();
         });
         //communidy();
         function communidy() {

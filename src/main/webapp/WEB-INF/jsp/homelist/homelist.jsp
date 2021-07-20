@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,7 +86,14 @@
                     <input type="checkbox" value="3" name="" id="che">
                 </td>
                 <td>${status.index+1}</td>
-                <td>${infoManage.content}</td>
+                <td>
+                    <c:if test="${fn:length(infoManage.content) > 10 }">
+                        ${fn:substring(infoManage.content,0,10)}...
+                    </c:if>
+                    <c:if test="${fn:length(infoManage.content)<= 10 }">
+                        ${infoManage.content}
+                    </c:if>
+                </td>
                 <td><fmt:formatDate value="${infoManage.releasetime}" pattern="yyyy-MM-dd" /></td>
                 <td><fmt:formatDate value="${infoManage.revisiontime}" pattern="yyyy-MM-dd" /></td>
                 <td>${infoManage.release_name}</td>

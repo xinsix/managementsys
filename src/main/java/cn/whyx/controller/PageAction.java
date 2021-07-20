@@ -5,6 +5,7 @@ import cn.whyx.pojo.Station;
 import cn.whyx.util.Condition;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -79,38 +80,52 @@ public class PageAction {
         return "/personnel_list/personnel_add";
         //return "redirect:/meetingroom/find";
     }
+    @RequestMapping("/personnel_modify")
+    public String personnel_modify(@RequestParam Integer id,Model model){
+        model.addAttribute("id",id);
+        return "/personnel_list/personnel_modify";
+    }
 
     /*车辆管理*/
     @RequestMapping("/vehicle_list")
     public String vehicle_list(){
-        return "vehicle_list/vehicle_list";
+        return "redirect:/carmanage/find";
     }
     /*添加车辆*/
-    @RequestMapping("/vehicle_listadd")
+    @RequestMapping("/vehicle_list_add")
     public String vehicle_listadd(){
-        return "vehicle_list/vehicle_listadd";
+        return "vehicle_list/vehicle_add";
+    }
+    /*归还车辆*/
+    @RequestMapping("/vehicle_modify/{id}")
+    public String vehicle_modify(@PathVariable Integer id){
+        return "redirect:/carmanage/selCarManageById/"+id;
     }
 
     /*资产管理*/
     @RequestMapping("/pet_list")
     public String pet_list(){
-        return "pet_list/pet_list";
+        return "redirect:/assetsmanage/find";
     }
     /*添加资产*/
-    @RequestMapping("/pet_listadd")
-    public String pet_listadd(){
-        return "pet_list/pet_listadd";
+    @RequestMapping("/pet_add")
+    public String pet_add(){
+        return "pet_list/pet_add";
+    }
+    @RequestMapping("/pet_modify/{id}")
+    public String pet_modify(@PathVariable Integer id){
+        return "redirect:/assetsmanage/selAssetsManageById/"+id;
     }
 
-    /*用品管理*/
-    @RequestMapping("/articles_list")
-    public String articles_list(){
-        return "articles_list/articles_list";
+    /*机构管理*/
+    @RequestMapping("/activity_list")
+    public String activity_list(){
+        return "activity_list/activity_list";
     }
-    /*添加用品*/
+    /*添加机构*/
     @RequestMapping("/activity_add")
     public String activity_add(){
-        return "articles_list/activity_add";
+        return "activity_list/activity_add";
     }
 
     /*请假*/
@@ -146,12 +161,12 @@ public class PageAction {
         return "abusinesstravel_list/abusinesstravel_add";
     }
 
-    /*机构管理*/
-    @RequestMapping("/activity_list")
-    public String activity_list(){
-        return "articles_list/activity_list";
+    /*用品管理*/
+    @RequestMapping("/articles_list")
+    public String articles_list(){
+        return "redirect:/articlesmanage/find";
     }
-    /*添加机构管理*/
+    /*添加用品管理*/
     @RequestMapping("/articles_add")
     public String articles_add(){
         return "articles_list/articles_add";

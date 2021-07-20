@@ -36,8 +36,12 @@
                             <span class='x-red'>*</span>员工姓名
                         </label>
                         <div class="layui-input-block">
+<<<<<<< HEAD
 
                             <input type="text" name="name" autocomplete="off" placeholder="空制在80个汉字，160个字符以内"
+=======
+                            <input type="text" name="staff_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
+>>>>>>> master
                                    class="layui-input" value="">
                         </div>
                     </div>
@@ -47,11 +51,16 @@
                             <span class='x-red'>*</span>员工性别
                         </label>
                         <div class="layui-input-block">
+<<<<<<< HEAD
                             <select name="sex">
                                 <option value="2">请选择</option>
                                 <option value="0">女</option>
                                 <option value="1">男</option>
                             </select>
+=======
+                            <input type="text" name="device_name" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
+                                   class="layui-input" value="">
+>>>>>>> master
                         </div>
                     </div>
                 </div>

@@ -29,5 +29,11 @@ public interface MeetingRoomApplyMapper {
      * 管理员修改申请的状态
      * @return
      */
-    Integer updateStatus(@Param("id")Integer id,@Param("status")Integer status);
+    Integer updateStatus(MeetingRoomApply meetingRoomApply);
+
+    /**
+     * 删除会议室申请
+     * @return
+     */
+    Integer delMeetingRoomApply(@Param("id")Integer id);
 }

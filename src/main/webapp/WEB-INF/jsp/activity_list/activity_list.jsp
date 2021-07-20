@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        用品管理
+       机构管理
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,8 +20,8 @@
 <div class="x-nav">
             <span class="layui-breadcrumb">
               <a><cite>首页</cite></a>
-              <a><cite>行政</cite></a>
-              <a><cite>用品管理</cite></a>
+              <a><cite>组织管理</cite></a>
+              <a><cite>机构管理</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
@@ -29,13 +29,6 @@
     <form class="layui-form x-center" action="" style="width:800px">
         <div class="layui-form-pane" style="margin-top: 15px;">
             <div class="layui-form-item">
-                <label class="layui-form-label">日期范围</label>
-                <div class="layui-input-inline">
-                    <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
-                </div>
-                <div class="layui-input-inline">
-                    <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
-                </div>
                 <div class="layui-input-inline">
                     <input type="text" name="username"  placeholder="标题" autocomplete="off" class="layui-input">
                 </div>
@@ -49,7 +42,7 @@
         <button class="layui-btn layui-btn-danger" onclick="delAll()">
             <i class="layui-icon">&#xe640;</i>批量删除
         </button>
-        <button class="layui-btn" onclick="question_add('添加','articles_add','1000','600')">
+        <button class="layui-btn" onclick="activity_add('活动添加','activity_add','1000','600')">
             <i class="layui-icon">&#xe608;</i>添加
         </button>
         <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">1</span> 条</span></xblock>
@@ -63,40 +56,34 @@
                 ID
             </th>
             <th>
-                用品名称
+                部门
             </th>
             <th>
-                用品申请人
+                岗位
             </th>
             <th>
-                用品数量
+                职位
             </th>
-            <th>
-                申请时间
-            </th>
-            <th>
-                归还时间
-            </th>
-            <th>
-                用途
-            </th>
+
             <th>
                 操作
             </th>
         </tr>
         </thead>
-        <tbody id="x-img">
+        <tbody>
         <tr>
             <td>
                 <input type="checkbox" value="1" name="">
             </td>
 
+
+
             <td class="td-manage">
-                <a title="编辑" href="javascript:;" onclick="qpet_edit('编辑','articles_add.html','2','1000','600')"
+                <a title="编辑" href="javascript:;" onclick="activity_edit('编辑','activity_add.html','1','1000','600')"
                    class="ml-5" style="text-decoration:none">
                     <i class="layui-icon">&#xe642;</i>
                 </a>
-                <a title="删除" href="javascript:;" onclick="pet_del(this,'2')"
+                <a title="删除" href="javascript:;" onclick="activity_del(this,'1')"
                    style="text-decoration:none">
                     <i class="layui-icon">&#xe640;</i>
                 </a>
@@ -105,7 +92,7 @@
         </tbody>
     </table>
 
-    <div id="page"><ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="/xiyuan/Owners/pet_list?page=2">2</a></li> <li><a href="/xiyuan/Owners/pet_list?page=2">&raquo;</a></li></ul></div>
+    <div id="page"></div>
 </div>
 <script src="../../statics/lib/layui/layui.js" charset="utf-8"></script>
 <script src="../../statics/js/x-layui.js" charset="utf-8"></script>
@@ -118,13 +105,6 @@
         layer = layui.layer;//弹出层
         okLoading.close($);
         //以上模块根据需要引入
-        layer.ready(function(){ //为了layer.ext.js加载完毕再执行
-            layer.photos({
-                photos: '#x-img'
-                //,shift: 5 //0-6的选择，指定弹出图片动画类型，默认随机
-            });
-        });
-
 
 
         var start = {
@@ -168,17 +148,17 @@
         layer.msg('可以跳到前台具体问题页面',{icon:1,time:1000});
     }
     /*添加*/
-    function question_add(title,url,w,h){
+    function activity_add(title,url,w,h){
         x_admin_show(title,url,w,h);
     }
     //编辑
-    function qpet_edit (title,url,id,w,h) {
+    function activity_edit (title,url,id,w,h) {
         url = url+"?id="+id;
         x_admin_show(title,url,w,h);
     }
 
     /*删除*/
-    function pet_del(obj,id){
+    function activity_del(obj,id){
         layer.confirm('确认要删除吗？',{icon:3,title:'提示信息'},function(index){
             $.ajax({
                 type:"post",

@@ -13,8 +13,8 @@ public class CarManageServiceImpl implements CarManageService {
     private CarManageMapper mapper;
 
     @Override
-    public List<CarManage> findCarManage(String licenseplate) {
-        return mapper.findCarManage(licenseplate);
+    public List<CarManage> findCarManage(String licenseplate,Integer applicant) {
+        return mapper.findCarManage(licenseplate, applicant);
     }
 
     @Override
@@ -30,5 +30,10 @@ public class CarManageServiceImpl implements CarManageService {
     @Override
     public boolean delCarManage(Integer id) {
         return (mapper.delCarManage(id)>0)?true:false;
+    }
+
+    @Override
+    public CarManage selCarManageById(Integer id) {
+        return mapper.selCarManageById(id);
     }
 }

@@ -36,4 +36,10 @@ public interface AssetsManageService {
      * @return
      */
     boolean delAssetsManage(@Param("id") Integer id);
+
+    /**
+     * 根据id查看资产
+     * @return
+     */
+    AssetsManage selAssetsManageById(@Param("id") Integer id);
 }

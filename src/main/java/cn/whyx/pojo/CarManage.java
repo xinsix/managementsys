@@ -1,5 +1,6 @@
 package cn.whyx.pojo;
 
+
 import java.util.Date;
 
 /**
@@ -15,6 +16,15 @@ public class CarManage {
     private String mileage;//行驶公里数
     private String voucher;//凭证
 
+    private String pname;//车辆申请人名称
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
 
     public Integer getId() {
         return id;

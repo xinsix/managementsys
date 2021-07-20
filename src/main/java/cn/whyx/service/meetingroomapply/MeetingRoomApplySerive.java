@@ -23,5 +23,11 @@ public interface MeetingRoomApplySerive {
      * 管理员修改申请的状态
      * @return
      */
-    boolean updateStatus(Integer id,Integer status);
+    boolean updateStatus(MeetingRoomApply meetingRoomApply);
+
+    /**
+     * 删除会议室申请
+     * @return
+     */
+    boolean delMeetingRoomApply(Integer id);
 }
