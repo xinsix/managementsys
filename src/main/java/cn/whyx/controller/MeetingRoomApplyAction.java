@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/meetingroomApply")
 public class MeetingRoomApplyAction {
     @Resource
-    private MeetingRoomApplySerive serive;
+    private MeetingRoomApplySerive service;
 
     @RequestMapping("/add")
     @ResponseBody
@@ -29,7 +29,7 @@ public class MeetingRoomApplyAction {
         Integer id = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getId();
         meetingRoomApply.setPid(id);
         meetingRoomApply.setStatus("0");
-        boolean bool = serive.addMeetingRoomApply(meetingRoomApply);
+        boolean bool = service.addMeetingRoomApply(meetingRoomApply);
         return bool;
     }
 
@@ -37,7 +37,7 @@ public class MeetingRoomApplyAction {
     //@ResponseBody
     public Object findMeetingRoomApply(Model model, HttpSession session){//管理员查询所有会议室的申请
         Integer pid = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getId();
-        List<MeetingRoomApply> list = serive.findMeetingRoomApply(pid);
+        List<MeetingRoomApply> list = service.findMeetingRoomApply(pid);
         for (MeetingRoomApply meetingRoomApply:list){
             System.out.println(
                     meetingRoomApply.getId()+" "+meetingRoomApply.getMeetroomid()+" " +
@@ -53,7 +53,7 @@ public class MeetingRoomApplyAction {
     @PostMapping("/upd")
     @ResponseBody
     public Object updateStatus(MeetingRoomApply meetingRoomApply){//管理员修改申请的状态
-        boolean bool = serive.updateStatus(meetingRoomApply);
+        boolean bool = service.updateStatus(meetingRoomApply);
         return bool;
     }
 
@@ -61,8 +61,7 @@ public class MeetingRoomApplyAction {
     @ResponseBody
     public Object delMeetingRoomApply(@RequestParam Integer id){//申请会议室
         System.out.println(id);
-        boolean bool = serive.delMeetingRoomApply(id);
-        return bool;
+        return service.delMeetingRoomApply(id);
     }
 
 }

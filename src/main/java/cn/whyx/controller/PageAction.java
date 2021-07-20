@@ -104,23 +104,27 @@ public class PageAction {
     /*资产管理*/
     @RequestMapping("/pet_list")
     public String pet_list(){
-        return "pet_list/pet_list";
+        return "redirect:/assetsmanage/find";
     }
     /*添加资产*/
-    @RequestMapping("/pet_listadd")
-    public String pet_listadd(){
-        return "pet_list/pet_listadd";
+    @RequestMapping("/pet_add")
+    public String pet_add(){
+        return "pet_list/pet_add";
+    }
+    @RequestMapping("/pet_modify/{id}")
+    public String pet_modify(@PathVariable Integer id){
+        return "redirect:/assetsmanage/selAssetsManageById/"+id;
     }
 
-    /*用品管理*/
-    @RequestMapping("/articles_list")
-    public String articles_list(){
-        return "articles_list/articles_list";
+    /*机构管理*/
+    @RequestMapping("/activity_list")
+    public String activity_list(){
+        return "activity_list/activity_list";
     }
-    /*添加用品*/
+    /*添加机构*/
     @RequestMapping("/activity_add")
     public String activity_add(){
-        return "articles_list/activity_add";
+        return "activity_list/activity_add";
     }
 
     /*请假*/
@@ -156,12 +160,12 @@ public class PageAction {
         return "abusinesstravel_list/abusinesstravel_add";
     }
 
-    /*机构管理*/
-    @RequestMapping("/activity_list")
-    public String activity_list(){
-        return "articles_list/activity_list";
+    /*用品管理*/
+    @RequestMapping("/articles_list")
+    public String articles_list(){
+        return "redirect:/articlesmanage/find";
     }
-    /*添加机构管理*/
+    /*添加用品管理*/
     @RequestMapping("/articles_add")
     public String articles_add(){
         return "articles_list/articles_add";

@@ -10,6 +10,16 @@ public class AssetsManage {
     private String position;//资产位置
     private Integer assetmanager;//资产管理人
 
+    private String pname;//资产管理人名称
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
     public Integer getId() {
         return id;
     }

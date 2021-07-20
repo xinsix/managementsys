@@ -32,4 +32,9 @@ public class AssetsManageServiceImpl implements AssetsManageService {
     public boolean delAssetsManage(Integer id) {
         return (mapper.delAssetsManage(id)>0)?true:false;
     }
+
+    @Override
+    public AssetsManage selAssetsManageById(Integer id) {
+        return mapper.selAssetsManageById(id);
+    }
 }

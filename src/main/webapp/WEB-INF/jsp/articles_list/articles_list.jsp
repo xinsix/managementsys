@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,15 +31,15 @@
     <form class="layui-form x-center" action="" style="width:800px">
         <div class="layui-form-pane" style="margin-top: 15px;">
             <div class="layui-form-item">
-                <label class="layui-form-label">日期范围</label>
+                <%--<label class="layui-form-label">日期范围</label>
                 <div class="layui-input-inline">
                     <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
                 </div>
                 <div class="layui-input-inline">
                     <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
-                </div>
+                </div>--%>
                 <div class="layui-input-inline">
-                    <input type="text" name="username"  placeholder="标题" autocomplete="off" class="layui-input">
+                    <input type="text" name="productname"  placeholder="标题" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline" style="width:80px">
                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -86,26 +88,48 @@
         </tr>
         </thead>
         <tbody id="x-img">
-        <tr>
-            <td>
-                <input type="checkbox" value="1" name="">
-            </td>
-
-            <td class="td-manage">
-                <a title="编辑" href="javascript:;" onclick="qpet_edit('编辑','articles_add.html','2','1000','600')"
-                   class="ml-5" style="text-decoration:none">
-                    <i class="layui-icon">&#xe642;</i>
-                </a>
-                <a title="删除" href="javascript:;" onclick="pet_del(this,'2')"
-                   style="text-decoration:none">
-                    <i class="layui-icon">&#xe640;</i>
-                </a>
-            </td>
-        </tr>
+            <c:forEach var="list" items="${list}" varStatus="str">
+                <tr>
+                    <td>
+                        <input type="checkbox" value="1" name="">
+                    </td>
+                    <td>
+                        ${str.index + 1}
+                    </td>
+                    <td>
+                            ${list.productname}
+                    </td>
+                    <td>
+                            ${list.pname}
+                    </td>
+                    <td>
+                            ${list.quantity}
+                    </td>
+                    <td>
+                            <fmt:formatDate value="${list.applicationtime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                    </td>
+                    <td>
+                            <fmt:formatDate value="${list.backtime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                    </td>
+                    <td>
+                            ${list.purpose}
+                    </td>
+                    <td class="td-manage">
+                        <a title="编辑" href="javascript:;" onclick="qpet_edit('编辑','articles_add.html','2','1000','600')"
+                           class="ml-5" style="text-decoration:none">
+                            <i class="layui-icon">&#xe642;</i>
+                        </a>
+                        <a title="删除" href="javascript:;" onclick="pet_del(this,'2')"
+                           style="text-decoration:none">
+                            <i class="layui-icon">&#xe640;</i>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 
-    <div id="page"><ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="/xiyuan/Owners/pet_list?page=2">2</a></li> <li><a href="/xiyuan/Owners/pet_list?page=2">&raquo;</a></li></ul></div>
+    <%--<div id="page"><ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="/xiyuan/Owners/pet_list?page=2">2</a></li> <li><a href="/xiyuan/Owners/pet_list?page=2">&raquo;</a></li></ul></div>--%>
 </div>
 <script src="../../statics/lib/layui/layui.js" charset="utf-8"></script>
 <script src="../../statics/js/x-layui.js" charset="utf-8"></script>
@@ -146,14 +170,14 @@
             }
         };
 
-        document.getElementById('LAY_demorange_s').onclick = function(){
+        /*document.getElementById('LAY_demorange_s').onclick = function(){
             start.elem = this;
             laydate(start);
         }
         document.getElementById('LAY_demorange_e').onclick = function(){
             end.elem = this
             laydate(end);
-        }
+        }*/
     });
 
     //批量删除提交

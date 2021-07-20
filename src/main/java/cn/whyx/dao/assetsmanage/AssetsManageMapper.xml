@@ -6,11 +6,13 @@
 
     <!--查看所有资产-->
     <select id="findAssetsManage" resultType="AssetsManage">
-        select * from assetsmanage
-        <if test="assetname!=null">
-            where assetname like CONCAT('%',#{assetname},'%')
-        </if>
-        order by id desc
+        select a.*,
+          (select name from penson p where p.id = a.assetmanager) pname
+            from assetsmanage a
+            <if test="assetname!=null">
+                where assetname like CONCAT('%',#{assetname},'%')
+            </if>
+            order by id desc
     </select>
 
     <!--添加资产-->
@@ -30,4 +32,9 @@
     <delete id="delAssetsManage">
         delete from assetsmanage where id=#{id}
     </delete>
+
+    <!--根据id查看资产-->
+    <select id="selAssetsManageById" resultType="AssetsManage">
+        select * from assetsmanage where id = #{id}
+    </select>
 </mapper>

@@ -297,7 +297,7 @@
                 data:{id:id},
                 dataType:"json",
                 success:function(data){
-                    //console.log(data);
+                    console.log(data);
                     if(data){
                         //发异步删除数据
                         layer.msg("已删除!",{icon:6,time:1000},function(){

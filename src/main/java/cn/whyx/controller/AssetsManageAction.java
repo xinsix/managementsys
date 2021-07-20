@@ -4,6 +4,7 @@ import cn.whyx.pojo.AssetsManage;
 import cn.whyx.service.assetsmanage.AssetsManageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,7 +22,7 @@ public class AssetsManageAction {
     public String findAssetsManage(Model model, @RequestParam(required = false)String assetname){//查看所有资产
         List<AssetsManage> list = service.findAssetsManage(assetname);
         model.addAttribute("list",list);
-        return "";
+        return "pet_list/pet_list";
     }
 
     @ResponseBody
@@ -43,5 +44,12 @@ public class AssetsManageAction {
     public Object delAssetsManage(@RequestParam Integer id){//删除资产
         boolean bool = service.delAssetsManage(id);
         return bool;
+    }
+
+    @RequestMapping("selAssetsManageById/{id}")
+    public String selAssetsManageById(Model model, @PathVariable Integer id){//根据id查看资产
+        AssetsManage list = service.selAssetsManageById(id);
+        model.addAttribute("list",list);
+        return "/pet_list/pet_modify";
     }
 }

@@ -15,6 +15,16 @@ public class ArticlesManage {
     private String purpose;//用途
     private Integer record_uid;//记录人
 
+    private String pname;//用品申请人名称
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
     public Integer getId() {
         return id;
     }

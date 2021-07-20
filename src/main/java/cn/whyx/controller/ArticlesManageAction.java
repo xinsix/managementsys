@@ -17,11 +17,11 @@ public class ArticlesManageAction {
     @Resource
     private ArticlesManageService service;
 
-    @RequestMapping("find")
+    @RequestMapping("/find")
     public String findArticlesManage(Model model, @RequestParam(required = false)String productname){//查看所有资产
         List<ArticlesManage> list = service.findArticlesManage(productname);
         model.addAttribute("list",list);
-        return "";
+        return "articles_list/articles_list";
     }
 
     @ResponseBody

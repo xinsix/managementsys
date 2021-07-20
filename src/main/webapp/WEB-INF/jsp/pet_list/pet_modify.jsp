@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        资产添加
+        资产修改
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -29,6 +29,7 @@
 
             <div class="layui-tab-content" >
                 <div class="layui-tab-item layui-show">
+                    <input type="hidden" name="id" value="${list.id}">
                     <input type="hidden" name="assetmanager" value="1">
                     <%--<div class="layui-form-item">
                         <label class="layui-form-label">
@@ -61,7 +62,7 @@
                         </label>
                         <div class="layui-input-block">
                             <input type="text" name="assetname" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
-                                   class="layui-input" value="">
+                                   class="layui-input" value="${list.assetname}">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -70,7 +71,7 @@
                         </label>
                         <div class="layui-input-block">
                             <input type="text" name="quantity" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
-                                   class="layui-input" value="">
+                                   class="layui-input" value="${list.quantity}">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -79,11 +80,11 @@
                         </label>
                         <div class="layui-input-block">
                             <input type="text" name="position" autocomplete="off" placeholder="控制在80个汉字，160个字符以内"
-                                   class="layui-input" value="">
+                                   class="layui-input" value="${list.position}">
                         </div>
-                       <!-- <div class="layui-input-inline">
-                            <input class="layui-input" name="adoption_time" placeholder="入住时间" id="LAY_demorange_s" value="">
-                        </div>-->
+                        <!-- <div class="layui-input-inline">
+                             <input class="layui-input" name="adoption_time" placeholder="入住时间" id="LAY_demorange_s" value="">
+                         </div>-->
 
                     </div>
 
