@@ -85,13 +85,13 @@
         </tr>
         </thead>
         <tbody id="x-img">
-            <c:forEach var="list" items="${list}">
+            <c:forEach var="list" items="${list}" varStatus="str">
                 <tr>
                     <td>
                         <input type="checkbox" value="${list.id}" name="">
                     </td>
                     <td>
-                            ${list.id}
+                            ${str.index + 1}
                     </td>
                     <td>
                             ${list.sn}
