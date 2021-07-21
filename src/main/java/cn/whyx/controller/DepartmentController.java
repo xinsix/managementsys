@@ -21,7 +21,7 @@ public class DepartmentController {
     @GetMapping("/selDepartment")
     public String selDepartment(Model model, @RequestParam(required = false)String department_name)throws Exception{
         List<Department> list = service.selDepartment(department_name);
-        Integer count = service.selcount();
+        Integer count = service.selcount(department_name);
         model.addAttribute("list",list);
         model.addAttribute("count",count);
         return "/department/department_list";

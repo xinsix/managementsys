@@ -21,7 +21,7 @@ public interface PensonService {
     /**
      * 查询总数
      */
-    public Integer selcount()throws Exception;
+    public Integer selcount(String name)throws Exception;
 
     /**
      * 查询角色

@@ -23,7 +23,7 @@ public class CarManageAction {
     public String findCarManage(HttpSession session,Model model, @RequestParam(required = false)String licenseplate) throws Exception {//查看所有资产
         Integer applicant = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getId();
         List<CarManage> list = service.findCarManage(licenseplate,applicant);
-        Integer count = service.selcount();
+        Integer count = service.selcount(licenseplate);
         model.addAttribute("list",list);
         model.addAttribute("count",count);
         return "/vehicle_list/vehicle_list";

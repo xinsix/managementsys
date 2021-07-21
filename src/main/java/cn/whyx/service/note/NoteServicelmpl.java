@@ -41,4 +41,9 @@ public class NoteServicelmpl implements NoteService{
         }
         return result;
     }
+
+    @Override
+    public Integer selcount(String notecontent) throws Exception {
+        return noteMapper.selcount(notecontent);
+    }
 }

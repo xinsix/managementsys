@@ -20,7 +20,7 @@ public interface StationService {
     /**
      * 查询部门总数
      */
-    public Integer selcount()throws Exception;
+    public Integer selcount(@Param("station_name") String station_name)throws Exception;
 
     /**
      * 添加岗位

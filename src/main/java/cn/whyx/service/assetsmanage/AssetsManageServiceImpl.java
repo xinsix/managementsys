@@ -2,6 +2,7 @@ package cn.whyx.service.assetsmanage;
 
 import cn.whyx.dao.assetsmanage.AssetsManageMapper;
 import cn.whyx.pojo.AssetsManage;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -39,7 +40,7 @@ public class AssetsManageServiceImpl implements AssetsManageService {
     }
 
     @Override
-    public Integer selcount() throws Exception {
-        return mapper.selcount();
+    public Integer selcount(@Param("assetname") String assetname) throws Exception {
+        return mapper.selcount(assetname);
     }
 }

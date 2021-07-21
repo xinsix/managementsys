@@ -27,6 +27,9 @@
 
     <select id="selcount" resultType="Integer">
         SELECT COUNT(1) from penson
+        <if test="name!=null">
+            where name like concat('%',#{name},'%')
+        </if>
     </select>
 
     <select id="selRole" resultType="Role">

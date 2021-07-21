@@ -8,7 +8,7 @@
         (SELECT `name` from penson p where p.id=a.pid) `name`
         from `applyinfo` a
         <where >
-            `subject` = 0 OR  `subject` = 2
+            `subject` = 0
             <if test="id!=1">
                 and pid = #{id}
             </if>
@@ -21,6 +21,16 @@
 
     <select id="selcount" resultType="Integer">
         SELECT COUNT(1) from `applyinfo`
+        <where >
+            `subject` = 0
+            <!--<if test="id!=1">
+                and pid = #{id}
+            </if>-->
+            <if test="name!=null">
+                and pid in
+                (SELECT `id` from `penson` where `name`like CONCAT('%',#{name},'%'))
+            </if>
+        </where>
     </select>
 
     <insert id="addQuit">
@@ -29,7 +39,7 @@
     </insert>
 
     <update id="updateQuit" parameterType="Applyinfo">
-        UPDATE `applyinfo` SET subject = #{subject} WHERE id=#{id}
+        UPDATE `applyinfo` SET state = #{state} WHERE id=#{id}
     </update>
 
     <delete id="delQuit">

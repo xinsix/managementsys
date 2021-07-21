@@ -21,7 +21,7 @@ public class PositionController {
     @GetMapping("/selPosition")
     public String selPosition(Model model, @RequestParam(required = false)String position_name)throws Exception{
         List<Position> list = service.selPosition(position_name);
-        Integer count = service.selcount();
+        Integer count = service.selcount(position_name);
         model.addAttribute("list",list);
         model.addAttribute("count",count);
         return "/position/position_list";

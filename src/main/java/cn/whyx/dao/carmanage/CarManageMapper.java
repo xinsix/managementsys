@@ -47,6 +47,6 @@ public interface CarManageMapper {
     /**
      * 查询总数
      */
-    public Integer selcount()throws Exception;
+    public Integer selcount(@Param("licenseplate") String licenseplate)throws Exception;
 
 }

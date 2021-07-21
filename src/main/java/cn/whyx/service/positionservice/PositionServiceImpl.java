@@ -2,6 +2,7 @@ package cn.whyx.service.positionservice;
 
 import cn.whyx.dao.position.PositionMapper;
 import cn.whyx.pojo.Position;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,8 +25,8 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public Integer selcount() throws Exception {
-        return mapper.selcount();
+    public Integer selcount(@Param("position_name") String position_name) throws Exception {
+        return mapper.selcount(position_name);
     }
 
     @Override

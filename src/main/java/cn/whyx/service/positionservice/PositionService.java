@@ -20,7 +20,7 @@ public interface PositionService {
     /**
      * 查询职能总数
      */
-    public Integer selcount()throws Exception;
+    public Integer selcount(@Param("position_name") String position_name)throws Exception;
 
     /**
      * 添加职能

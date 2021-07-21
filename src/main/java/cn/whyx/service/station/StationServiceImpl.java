@@ -2,6 +2,7 @@ package cn.whyx.service.station;
 
 import cn.whyx.dao.stationmapper.StationMapper;
 import cn.whyx.pojo.Station;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,8 +25,8 @@ public class StationServiceImpl implements StationService{
     }
 
     @Override
-    public Integer selcount() throws Exception {
-        return stationMapper.selcount();
+    public Integer selcount(@Param("station_name") String station_name) throws Exception {
+        return stationMapper.selcount(station_name);
     }
 
     @Override

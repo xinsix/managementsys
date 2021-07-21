@@ -19,7 +19,8 @@ public class InfoManageServiceImpl implements  InfoManageService{
     }
 
     @Override
-    public Integer selcount(String  content) throws Exception {
+    public Integer selcount(String content) throws Exception {
+
         return infoManageMapper.selcount(content);
     }
 

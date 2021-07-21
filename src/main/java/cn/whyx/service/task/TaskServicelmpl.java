@@ -3,6 +3,7 @@ package cn.whyx.service.task;
 
 import cn.whyx.pojo.Task;
 import cn.whyx.dao.task.TaskMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,8 +18,8 @@ public class TaskServicelmpl implements TaskService{
 
 
     @Override
-    public List<Task> getAllList(Task task) throws Exception {
-        return taskMapper.getAllList(task);
+    public List<Task> getAllList(@Param("matter") String matter) throws Exception {
+        return taskMapper.getAllList(matter);
     }
 
     @Override
@@ -43,5 +44,10 @@ public class TaskServicelmpl implements TaskService{
             result=true;
         }
         return result;
+    }
+
+    @Override
+    public Integer selcount(String matter) throws Exception {
+        return taskMapper.selcount(matter);
     }
 }

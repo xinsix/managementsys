@@ -30,9 +30,11 @@ public class TaskAction {
         Task task = new Task();
         task.setMatter(matter);
         Integer pid = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getId();
+        Integer count = taskService.selcount(matter);
         task.setEmployeeid(pid);
-        List<Task> list = taskService.getAllList(task);
+        List<Task> list = taskService.getAllList(matter);
         model.addAttribute("list", list);
+        model.addAttribute("count",count);
         return "/task/task";
     }
     @RequestMapping("/selById")

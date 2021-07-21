@@ -16,7 +16,7 @@ public interface LfghMapper {
     /**
      * 查询总数
      */
-    public Integer selcount()throws Exception;
+    public Integer selcount(@Param("name") String  name)throws Exception;
 
     /**
      * 管理员修改申请的状态

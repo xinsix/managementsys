@@ -14,7 +14,7 @@ public interface TaskMapper {
     /**
      * 查询所有信息
      */
-    public List<Task> getAllList(Task task) throws Exception;
+    public List<Task> getAllList(@Param("matter") String matter) throws Exception;
 
     /**
      * 修改信息
@@ -32,4 +32,9 @@ public interface TaskMapper {
      * 添加信息
      */
     public boolean add(Task task)throws Exception;
+
+    /**
+     * 查询总数
+     */
+    public Integer selcount(@Param("matter") String matter)throws Exception;
 }

@@ -12,6 +12,9 @@
 
     <select id="selcount" resultType="Integer">
         SELECT COUNT(1) from `position`
+        <if test="position_name!=null">
+            where position_name like CONCAT('%',#{position_name},'%')
+        </if>
     </select>
 
     <select id="selPositionname" resultType="Position">

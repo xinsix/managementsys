@@ -2,6 +2,7 @@ package cn.whyx.service.quitservice;
 
 import cn.whyx.dao.quitmapper.QuitMapper;
 import cn.whyx.pojo.ApplyInfo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,8 +20,8 @@ public class QuitServiceImpl implements QuitService {
     }
 
     @Override
-    public Integer selcount() throws Exception {
-        return mapper.selcount();
+    public Integer selcount(@Param("name") String  name) throws Exception {
+        return mapper.selcount(name);
     }
 
     @Override

@@ -21,6 +21,16 @@
 
     <select id="selcount" resultType="Integer">
         SELECT COUNT(1) from `applyinfo`
+        <where>
+            `subject` = 1
+            <!--<if test="id!=1">
+                and pid = #{id}
+            </if>-->
+            <if test="name!=null">
+                and pid in
+                (SELECT `id` from `penson` where `name`like CONCAT('%',#{name},'%'))
+            </if>
+        </where>
     </select>
 
     <update id="updateApplyInfo" parameterType="Applyinfo">

@@ -22,7 +22,7 @@ public class StationController {
     @GetMapping("/selstation")
     public String selInfoManage(Model model, @RequestParam(required = false)String station_name)throws Exception{
         List<Station> list = stationService.selStation(station_name);
-        Integer count = stationService.selcount();
+        Integer count = stationService.selcount(station_name);
         model.addAttribute("list",list);
         model.addAttribute("count",count);
         return "station/station_list";

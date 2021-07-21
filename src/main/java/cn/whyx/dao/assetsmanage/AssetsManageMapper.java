@@ -48,6 +48,6 @@ public interface AssetsManageMapper {
     /**
      * 查询总数
      */
-    public Integer selcount()throws Exception;
+    public Integer selcount(@Param("assetname") String assetname)throws Exception;
 
 }

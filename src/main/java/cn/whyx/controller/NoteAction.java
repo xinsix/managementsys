@@ -23,7 +23,9 @@ public class NoteAction {
     @RequestMapping(value = "/find")
     public String getAllList(Model model,@RequestParam(required = false) String notecontent) throws Exception {
         List<Note> list = noteService.getAllList(notecontent);
+        Integer count = noteService.selcount(notecontent);
         model.addAttribute("list", list);
+        model.addAttribute("count",count);
         return "communitylist/communitylist";
     }
 

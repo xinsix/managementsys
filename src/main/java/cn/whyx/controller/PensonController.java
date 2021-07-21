@@ -23,7 +23,7 @@ public class PensonController {
     @GetMapping("/selInfoManage")
     public String selInfoManage(Model model,@RequestParam(required = false)String name)throws Exception{
         List<Penson> list = service.selInfoManage(name);
-        Integer count = service.selcount();
+        Integer count = service.selcount(name);
         model.addAttribute("list",list);
         model.addAttribute("count",count);
         return "repairlist/repairlist";
@@ -35,7 +35,7 @@ public class PensonController {
     @GetMapping("/selpersonnelresume")
     public String selpersonnelresume(Model model,@RequestParam(required = false)String name)throws Exception{
         List<Penson> list = service.selInfoManage(name);
-        Integer count = service.selcount();
+        Integer count = service.selcount(name);
         model.addAttribute("list",list);
         model.addAttribute("count",count);
         return "personnelresume_list/personnelresume_list";

@@ -18,7 +18,7 @@ public interface InfoManageService {
     /**
      * 查询总数
      */
-    public Integer selcount(String  content)throws Exception;
+    public Integer selcount(String content)throws Exception;
 
     /**
      * 查询修改前的公告内容
