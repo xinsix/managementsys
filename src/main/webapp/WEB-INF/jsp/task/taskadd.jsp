@@ -60,9 +60,19 @@
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>开始时间
                         </label>
-                         <div class="layui-input-inline">
-                             <input class="layui-input" name="adoption_time" placeholder="开始时间" id="LAY_demorange_s" value="">
+                         <div class="layui-input-block">
+                             <input type="date" name="community_name" autocomplete="off" placeholder="任务内容"
+                                    class="layui-input" required="" lay-verify="required" value="">
                          </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <span class='x-red'>*</span>结束时间
+                        </label>
+                        <div class="layui-input-block">
+                            <input type="date" name="community_name" autocomplete="off" placeholder="任务内容"
+                                   class="layui-input" required="" lay-verify="required" value="">
+                        </div>
                     </div>
 
                     <!--<div class="layui-form-item">
@@ -118,6 +128,34 @@
         layer = layui.layer;//弹出层
         form = layui.form();
         okLoading.close($);
+
+        //communidy();
+        function communidy() {
+            var communidy = $("#community_id").val();
+
+            $.ajax({
+                url:"/xiyuan/home/building.html",
+                type:"post",
+                dataType:"json",
+                data:{communidy:communidy},
+                success:function (data) {
+
+                    var dlen =data.length;
+                    var str='';
+                    for (var i=0;i<dlen;i++){
+                        var dt=data[i];
+                        str +='<option value="' + dt.id + '">';
+                        str +=dt.buildings_name;
+                        str +='</option>';
+                    }
+
+                    $("#building_id").html(str);
+                    form.render('select', 'aihao');
+                    //form.render('#building_id');
+
+                }
+            })
+        }
 
         //监听提交
         form.on('submit(add)', function(data){
