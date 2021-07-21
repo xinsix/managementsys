@@ -37,4 +37,8 @@ public interface DetailedprocessMappper {
      */
     Integer delDetailedprocess(@Param("id") Integer id);
 
+    /**
+     * 查询总数
+     */
+    public Integer selcount(Detailedprocess detailedprocess)throws Exception;
 }
