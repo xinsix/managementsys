@@ -26,8 +26,8 @@
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
             <div class="layui-tab-content" >
                 <div class="layui-tab-item layui-show">
-                    <input type="hidden" name="id" value="">
-
+                    <input type="hidden" name="procedure_id" value="1">
+                    <input type="hidden" name="apply_pid" value="${sessionScope.user_Session.id}">
 
 
                     <div class="layui-form-item">
@@ -107,14 +107,14 @@
                 //end.start = datas //将结束日的初始值设定为开始日
             }
         };
-        document.getElementById('start_demorange_s').onclick = function(){
+        /*document.getElementById('start_demorange_s').onclick = function(){
             start.elem = this;
             laydate(start);
         };
         document.getElementById('End_demorange_s').onclick = function(){
             start.elem = this;
             laydate(start);
-        };
+        };*/
 
 
 
@@ -127,73 +127,36 @@
           }
         });*/
 
-
         //监听提交
         form.on('submit(add)', function(data){
+            //console.log(data);
             var matter=$("input[name='matter']").val();
-            var start_time=$("input[name='start_time']").val();
-            var end_time=$("input[name='end_time']").val();
-            var duration=$("input[name='duration']").val();
-
-
-
-
-            /*var sy_year=$("input[name='sy_year']").val();
-            var start_time=$("input[name='start_time']:checked").val();
-            var End_time=$("input[name='End_time']:checked").val();
-
-            var community_id=$('#community_id option:selected') .val();//所属栏目ID
-
-            if(device_name==""){
-                layer.msg('设备名称不能为空',{icon:5,time:2000});return false;
-            }
-            if(brand==""){
-                layer.msg('品牌名称不能为空',{icon:5,time:2000});return false;
-            }
-            if(money==""){
-                layer.msg('购买单价不能为空',{icon:5,time:2000});return false;
-            }
-            if(community_id==""){
-                layer.msg('所属小区不能为空',{icon:5,time:2000});return false;
-            }
-            if(number==""){
-                layer.msg('购买数量不能为空',{icon:5,time:2000});return false;
-            }
-            if(sy_year==""){
-                layer.msg('预计使用年限不能为空',{icon:5,time:2000});return false;
-            }
-            if(start_time==""){
-                layer.msg('开始日期不能为空',{icon:5,time:2000});return false;
-            }
-            if(End_time==""){
-                layer.msg('结束日期不能为空',{icon:5,time:2000});return false;
-            }*/
-
             var data=data.field;
+             if(matter==""){
+                 layer.msg('请假理由不能为空',{icon:5,time:2000});return false;
+             }
             $.ajax({
                 type:"post",
-                url:"xxx",
+                url:"/detailedprocess/add",
                 data:data,
                 dataType:"json",
                 success:function(data){
-                    if(data.status==1){
-                        layer.msg(data.info, {icon: 6,time:2000},function () {
+                    if(data){
+                        layer.msg("添加成功！", {icon: 6,time:2000},function () {
                             window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
                         });
                         return false;
-
                     }
                     else{
-                        layer.msg(data.info,{icon:5,time:2000});return false;
+                        layer.msg("添加成功！",{icon:5,time:2000});return false;
                     }
                 }
 
             });
 
         });
-
     })
 </script>
 <!--栏目缩略图上传-->

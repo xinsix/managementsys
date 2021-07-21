@@ -1,5 +1,7 @@
 package cn.whyx.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -9,7 +11,9 @@ public class Detailedprocess {
     private Integer id;//流程详细id
     private Integer procedure_id;//流程id
     private String matter;//理由
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date start_time;//开始时间
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date end_time;//结束时间
     private double duration;//时长
     private int state;//审核状态（审核中0、审核通过1、审核未通过2）

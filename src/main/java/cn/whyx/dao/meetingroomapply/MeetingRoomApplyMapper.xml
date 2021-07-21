@@ -53,8 +53,4 @@
         delete from meetingroomapply where id = #{id}
     </delete>
 
-    <select id="selcount" resultType="Integer">
-        SELECT COUNT(1) from `meetingroomapply`
-    </select>
-
 </mapper>

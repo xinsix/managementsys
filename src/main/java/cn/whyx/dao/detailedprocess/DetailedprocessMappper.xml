@@ -58,4 +58,12 @@
     <delete id="delDetailedprocess">
       delete from detailedprocess where id = #{id}
     </delete>
+
+    <select id="selcount" resultType="Integer">
+        SELECT COUNT(1) from detailedprocess
+        where procedure_id = 1
+        <if test="apply_pid!=null">
+            and apply_pid = #{apply_pid}
+        </if>
+    </select>
 </mapper>
