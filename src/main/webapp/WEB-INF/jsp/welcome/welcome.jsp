@@ -126,6 +126,17 @@
                     <div class="panel-heading">最新任务</div>
                     <div class="panel-body">
                         <ul class="list-group clear-list m-t">
+                            <c:forEach items="${listtask}" var="Task" varStatus="status">
+                                <li class="list-group-item fist-item"> <span class="float-right">
+                                    <fmt:formatDate value="${Task.starttime}" pattern="yyyy-MM-dd" /> </span> <span class="label label-success">${status.index+1}</span>
+                                    <c:if test="${fn:length(Task.matter) > 10 }">
+                                        ${fn:substring(Task.matter,0,10)}...
+                                    </c:if>
+                                    <c:if test="${fn:length(Task.matter)<= 10 }">
+                                        ${Task.matter}
+                                    </c:if> </li>
+                            </c:forEach>
+
                             <!--<li class="list-group-item"> <span class="float-right"> 09:00 &nbsp;<b style="color: #2fb9d4">已受理</b></span> <span class="label label-danger">1</span> D区垃圾桶更换 </li>
                             <li class="list-group-item"> <span class="float-right"> 10:16 &nbsp;<b style="color: #2fb9d4">已受理</b></span> <span class="label label-info">2</span> C区路灯维修 </li>
                             <li class="list-group-item"> <span class="float-right"> 08:22 &nbsp;<b style="color: #2fb9d4">已受理</b></span> <span class="label label-warning">3</span> A区13楼摄像头维修 </li>

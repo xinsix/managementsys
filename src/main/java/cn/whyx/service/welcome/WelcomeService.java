@@ -1,6 +1,7 @@
 package cn.whyx.service.welcome;
 
 import cn.whyx.pojo.InfoManage;
+import cn.whyx.pojo.Task;
 
 import java.util.List;
 
@@ -29,4 +30,9 @@ public interface WelcomeService {
      * 查询总员功能
      */
     public Integer selrepairl()throws Exception;
+
+    /**
+     * 查询全部任务
+     */
+    public List<Task> seltask()throws Exception;
 }
