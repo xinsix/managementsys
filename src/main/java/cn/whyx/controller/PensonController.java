@@ -29,6 +29,13 @@ public class PensonController {
         return "repairlist/repairlist";
     }
 
+    @PostMapping("/find")
+    @ResponseBody
+    public Object find()throws Exception{
+        List<Penson> list = service.selInfoManage(null);
+        return list;
+    }
+
     /**
      * 查询全部履历
      */

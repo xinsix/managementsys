@@ -45,14 +45,23 @@
             <div class="layui-tab-content" >
                 <div class="layui-tab-item layui-show">
                     <!--<form class="layui-form layui-form-pane" action="" id="add">-->
-                    <input type="hidden" name="id" value="">
-
+                    <input type="hidden" name="executeid" value="${sessionScope.user_Session.id}">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <span class='x-red'>*</span>员工姓名
+                        </label>
+                        <div class="layui-input-block">
+                            <select name="employeeid" id="employeeid" lay-filter="aihao">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>任务内容
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="community_name" autocomplete="off" placeholder="任务内容"
+                            <input type="text" name="matter" autocomplete="off" placeholder="任务内容"
                                    class="layui-input" required="" lay-verify="required" value="">
                         </div>
                     </div>
@@ -61,8 +70,8 @@
                             <span class='x-red'>*</span>开始时间
                         </label>
                          <div class="layui-input-block">
-                             <input type="date" name="community_name" autocomplete="off" placeholder="任务内容"
-                                    class="layui-input" required="" lay-verify="required" value="">
+                             <input type="date" name="starttime" autocomplete="off" placeholder="任务内容"
+                                    class="layui-input" required="" lay-verify="" value="">
                          </div>
                     </div>
                     <div class="layui-form-item">
@@ -70,7 +79,7 @@
                             <span class='x-red'>*</span>结束时间
                         </label>
                         <div class="layui-input-block">
-                            <input type="date" name="community_name" autocomplete="off" placeholder="任务内容"
+                            <input type="date" name="endtime" autocomplete="off" placeholder="任务内容"
                                    class="layui-input" required="" lay-verify="required" value="">
                         </div>
                     </div>
@@ -129,27 +138,27 @@
         form = layui.form();
         okLoading.close($);
 
-        //communidy();
+        communidy();
         function communidy() {
-            var communidy = $("#community_id").val();
+            //var employeeid = $("#employeeid").val();
 
             $.ajax({
-                url:"/xiyuan/home/building.html",
+                url:"/Penson/find",
                 type:"post",
                 dataType:"json",
-                data:{communidy:communidy},
+                //data:{employeeid:employeeid},
                 success:function (data) {
 
                     var dlen =data.length;
                     var str='';
-                    for (var i=0;i<dlen;i++){
+                    for (var i=1;i<dlen;i++){
                         var dt=data[i];
                         str +='<option value="' + dt.id + '">';
-                        str +=dt.buildings_name;
+                        str +=dt.name;
                         str +='</option>';
                     }
 
-                    $("#building_id").html(str);
+                    $("#employeeid").html(str);
                     form.render('select', 'aihao');
                     //form.render('#building_id');
 
@@ -159,34 +168,33 @@
 
         //监听提交
         form.on('submit(add)', function(data){
-            var community_name=$("input[name='community_name']").val();
-            var developers=$("input[name='developers']").val();
-            var property=$("input[name='property']").val();
-            var adoption_time=$("input[name='adoption_time']").val();
-            if(community_name==""){
-                layer.msg('小区名称不能为空',{icon:5,time:2000});return false;
+            var matter=$("input[name='matter']").val();
+            var starttime=$("input[name='starttime']").val();
+            var endtime=$("input[name='endtime']").val();
+            if(matter==""){
+                layer.msg('内容不能为空',{icon:5,time:2000});return false;
             }
-            if(developers==""){
-                layer.msg('小区开发商不能为空',{icon:5,time:2000});return false;
+            if(starttime==""){
+                layer.msg('开始时间不能为空',{icon:5,time:2000});return false;
             }
-            if(property==""){
-                layer.msg('物业公司不能为空',{icon:5,time:2000});return false;
+            if(endtime==""){
+                layer.msg('结束时间不能为空',{icon:5,time:2000});return false;
             }
-            if(adoption_time==""){
-                layer.msg("开始时间不能为空！",{icon:5,time:2000});return false;
+            if(starttime>=endtime){
+                layer.msg("开始时间不能大于或等于结束时间！",{icon:5,time:2000});return false;
             }
             var data=data.field;
             $.ajax({
                 type:"post",
-                url:"/xiyuan/community/add.html",
+                url:"/task/add",
                 data:data,
                 dataType:"json",
                 success:function(data)
                 {
                     //alert(1);
-                    if(data.status==1)
+                    if(data)
                     {
-                        layer.msg(data.info, {icon: 6,time:2000},function () {
+                        layer.msg('添加成功！', {icon: 6,time:2000},function () {
                             window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
@@ -195,7 +203,7 @@
 
                     }
                     else{
-                        layer.msg(data.info,{icon:5,time:2000});return false;
+                        layer.msg('添加失败！',{icon:5,time:2000});return false;
                     }
                 }
 

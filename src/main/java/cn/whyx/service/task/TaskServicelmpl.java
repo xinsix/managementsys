@@ -18,8 +18,8 @@ public class TaskServicelmpl implements TaskService{
 
 
     @Override
-    public List<Task> getAllList(@Param("matter") String matter) throws Exception {
-        return taskMapper.getAllList(matter);
+    public List<Task> getAllList(@Param("matter") String matter,Integer employeeid) throws Exception {
+        return taskMapper.getAllList(matter,employeeid);
     }
 
     @Override

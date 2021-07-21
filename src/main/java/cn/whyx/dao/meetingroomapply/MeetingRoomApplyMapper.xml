@@ -49,9 +49,9 @@
     </update>
 
     <!--删除申请-->
-    <select id="delMeetingRoomApply">
+    <delete id="delMeetingRoomApply">
         delete from meetingroomapply where id = #{id}
-    </select>
+    </delete>
 
     <select id="selcount" resultType="Integer">
         SELECT COUNT(1) from `meetingroomapply`

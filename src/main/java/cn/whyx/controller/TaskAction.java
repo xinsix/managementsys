@@ -32,7 +32,7 @@ public class TaskAction {
         Integer pid = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getId();
         Integer count = taskService.selcount(matter);
         task.setEmployeeid(pid);
-        List<Task> list = taskService.getAllList(matter);
+        List<Task> list = taskService.getAllList(matter,pid);
         model.addAttribute("list", list);
         model.addAttribute("count",count);
         return "/task/task";
@@ -69,13 +69,10 @@ public class TaskAction {
      * 添加信息
      */
     @PostMapping("/add")
-    public String add(Task task) throws  Exception{
-        System.out.println("Hello World");
-        System.out.println(task.getId());
-        if (taskService.add(task)){
-        }else {
-        }
-        return "redirect:/index";
+    @ResponseBody
+    public Object add(Task task) throws  Exception{
+        task.setCreationtime(new Date());
+        return taskService.add(task);
     }
     @RequestMapping("/toAdd")
     public String toAdd(){return "add";}

@@ -146,7 +146,7 @@
                         </c:if>
                             <dd class=""> <a href="javascript:;" _href="/page/lfgh_list"> <cite>转正申请</cite> </a> </dd>
                         <dd class=""> <a href="javascript:;" _href="/page/quit_list"> <cite>离职申请</cite> </a> </dd>
-                        <dd class=""> <a href="javascript:;" _href=""> <cite>员工考勤</cite> </a> </dd>
+                        <%--<dd class=""> <a href="javascript:;" _href=""> <cite>员工考勤</cite> </a> </dd>--%>
 
                     </dl>
                 </li>

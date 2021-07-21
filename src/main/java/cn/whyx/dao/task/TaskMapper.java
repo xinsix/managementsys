@@ -14,7 +14,7 @@ public interface TaskMapper {
     /**
      * 查询所有信息
      */
-    public List<Task> getAllList(@Param("matter") String matter) throws Exception;
+    public List<Task> getAllList(@Param("matter") String matter,@Param("employeeid") Integer employeeid) throws Exception;
 
     /**
      * 修改信息

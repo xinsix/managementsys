@@ -10,9 +10,9 @@
         (select name from penson p where p.id = t.employeeid) pname
         FROM `task` t
         <where>
-           <!-- <if test="employeeid!=1">
+            <if test="employeeid!=1">
                 and t.employeeid = #{employeeid}
-            </if>-->
+            </if>
             <if test="matter!=null">
                 and t.matter like concat('%',#{matter},'%')
             </if>
@@ -28,6 +28,9 @@
             </if>
             <if test="starttime!=null">
                 starttime=#{starttime},
+            </if>
+            <if test="endtime!=null">
+                endtime=#{endtime},
             </if>
             <if test="creationtime!=null">
                 creationtime=#{creationtime},
@@ -56,8 +59,8 @@
     </delete>
     <!--添加信息-->
     <insert id="add">
-        insert into task(matter,starttime,creationtime,revisiontime,state,employeeid,executeid)
-        VALUES(#{matter},#{starttime},#{creationtime},#{revisiontime},#{state},#{employeeid},#{executeid})
+        insert into task(matter,starttime,endtime,creationtime,revisiontime,state,employeeid,executeid)
+        VALUES(#{matter},#{starttime},#{endtime},#{creationtime},#{revisiontime},#{state},#{employeeid},#{executeid})
     </insert>
 
     <select id="selcount" resultType="Integer">
