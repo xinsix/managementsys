@@ -23,7 +23,7 @@ public interface InfoManageMapper {
     /**
      * 查询总数
      */
-    public Integer selcount()throws Exception;
+    public Integer selcount(@Param("content") String  content)throws Exception;
 
     /**
      * 查询修改前的公告内容
