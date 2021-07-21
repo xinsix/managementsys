@@ -12,6 +12,9 @@
 
     <select id="selcount" resultType="Integer">
         SELECT COUNT(1) from station
+        <if test="station_name!=null">
+            where station_name like CONCAT('%',#{station_name},'%')
+        </if>
     </select>
 
     <select id="selStationname" resultType="Station">

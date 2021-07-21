@@ -40,5 +40,8 @@
 
     <select id="selcount" resultType="Integer">
         SELECT COUNT(1) from `assetsmanage`
+        <if test="assetname!=null">
+            where assetname like CONCAT('%',#{assetname},'%')
+        </if>
     </select>
 </mapper>

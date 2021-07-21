@@ -2,6 +2,7 @@ package cn.whyx.service.carmanage;
 
 import cn.whyx.dao.carmanage.CarManageMapper;
 import cn.whyx.pojo.CarManage;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -38,7 +39,7 @@ public class CarManageServiceImpl implements CarManageService {
     }
 
     @Override
-    public Integer selcount() throws Exception {
-        return mapper.selcount();
+    public Integer selcount(@Param("licenseplate") String licenseplate) throws Exception {
+        return mapper.selcount(licenseplate);
     }
 }

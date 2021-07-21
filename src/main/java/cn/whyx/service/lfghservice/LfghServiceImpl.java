@@ -2,6 +2,7 @@ package cn.whyx.service.lfghservice;
 
 import cn.whyx.dao.lfghmapper.LfghMapper;
 import cn.whyx.pojo.ApplyInfo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,8 +20,8 @@ public class LfghServiceImpl implements LfghService {
     }
 
     @Override
-    public Integer selcount() throws Exception {
-        return mapper.selcount();
+    public Integer selcount(@Param("name") String  name) throws Exception {
+        return mapper.selcount(name);
     }
 
     @Override

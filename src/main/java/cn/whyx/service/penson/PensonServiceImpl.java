@@ -30,8 +30,8 @@ public class PensonServiceImpl implements PensonService {
     }
 
     @Override
-    public Integer selcount() throws Exception {
-        return userMapper.selcount();
+    public Integer selcount(String content) throws Exception {
+        return userMapper.selcount(content);
     }
 
     @Override

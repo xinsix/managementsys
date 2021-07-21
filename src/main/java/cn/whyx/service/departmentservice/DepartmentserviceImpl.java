@@ -2,6 +2,7 @@ package cn.whyx.service.departmentservice;
 
 import cn.whyx.dao.departmentmapper.Departmentmapper;
 import cn.whyx.pojo.Department;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,8 +22,8 @@ public class DepartmentserviceImpl implements Departmentservice {
     }
 
     @Override
-    public Integer selcount() throws Exception {
-        return departmentmapper.selcount();
+    public Integer selcount(@Param("department_name") String department_name) throws Exception {
+        return departmentmapper.selcount(department_name);
     }
 
     @Override

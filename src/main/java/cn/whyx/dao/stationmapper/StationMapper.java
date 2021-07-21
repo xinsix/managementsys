@@ -24,7 +24,7 @@ public interface StationMapper {
     /**
      * 查询岗位总数
      */
-    public Integer selcount()throws Exception;
+    public Integer selcount(@Param("station_name") String station_name)throws Exception;
 
     /**
      * 添加岗位

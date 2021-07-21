@@ -28,7 +28,7 @@ public interface PensonMapper {
     /**
      * 查询总数
      */
-    public Integer selcount()throws Exception;
+    public Integer selcount(@Param("name") String name)throws Exception;
 
     /**
      * 查询角色

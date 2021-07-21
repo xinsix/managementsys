@@ -28,7 +28,7 @@ public class InfoManageController {
     @GetMapping("/selInfomanage")
     public String selInfoManage(Model model,@RequestParam(required = false)String content)throws Exception{
         List<InfoManage> list = service.selInfoManage(content);
-        Integer count = service.selcount();
+        Integer count = service.selcount(content);
         model.addAttribute("list",list);
         model.addAttribute("count",count);
         return "homelist/homelist";

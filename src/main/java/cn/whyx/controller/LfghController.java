@@ -25,7 +25,7 @@ public class LfghController {
     public String selApplyInfo(Model model, @RequestParam(required = false)String name,Integer id,HttpSession session)throws Exception{
         Integer pid = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getId();
         List<ApplyInfo> list = service.selApplyInfo(name,pid);
-        Integer count = service.selcount();
+        Integer count = service.selcount(name);
         model.addAttribute("list",list);
         model.addAttribute("count",count);
         return "lfgh_list/lfgh_list";

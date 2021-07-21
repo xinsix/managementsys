@@ -25,7 +25,7 @@ public class QuitController {
     public String selApplyInfo(Model model, @RequestParam(required = false)String name, Integer id, HttpSession session)throws Exception{
         Integer pid = ((Penson)(session.getAttribute(Condition.USER_SESSION))).getId();
         List<ApplyInfo> list = service.selQuit(name,pid);
-        Integer count = service.selcount();
+        Integer count = service.selcount(name);
         model.addAttribute("list",list);
         model.addAttribute("count",count);
         return "quit_list/quit_list";

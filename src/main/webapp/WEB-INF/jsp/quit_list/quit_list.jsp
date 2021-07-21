@@ -86,13 +86,13 @@
                 <td>${status.index+1}</td>
                 <td>${ApplyInfo.name}</td>
                 <td>
-                    <c:if test="${ApplyInfo.subject  == 0}">
+                    <c:if test="${ApplyInfo.state  == 0}">
                         离职中
                     </c:if>
-                    <c:if test="${ApplyInfo.subject  == 1}">
+                    <c:if test="${ApplyInfo.state  == 1}">
                         离职成功
                     </c:if>
-                    <c:if test="${ApplyInfo.subject  == 2}">
+                    <c:if test="${ApplyInfo.state  == 2}">
                         离职失败
                     </c:if>
                 </td>
@@ -111,7 +111,7 @@
                         </c:if>
                     </c:if>
                     <c:if test="${sessionScope.user_Session.role == 1}">
-                        <c:if test="${ApplyInfo.subject == 0}">
+                        <c:if test="${ApplyInfo.state == 0}">
                             <a title="成功" href="javascript:;" onclick="personnel_edit1('编辑','/quit/updateQuit',${ApplyInfo.id},1,'1000','600')"
                                class="ml-5" style="text-decoration:none">
                                 <i class="layui-icon">&#xe6c6;</i>
@@ -235,8 +235,8 @@
      }*/
 
     //编辑
-    function personnel_edit1(title, url, id, subject, w, h) {
-        url = url + "?id=" + id + "&subject=" + subject;
+    function personnel_edit1(title, url, id, state, w, h) {
+        url = url + "?id=" + id + "&state=" + state;
         $.ajax({
             type: "post",
             url: url,

@@ -21,6 +21,9 @@
 
     <select id="selcount" resultType="Integer">
         SELECT COUNT(1) from infomanage
+        <if test="content!=null">
+            where content like CONCAT('%',#{content},'%')
+        </if>
     </select>
 
     <insert id="insertInfoManage">

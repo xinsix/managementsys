@@ -30,4 +30,12 @@
         insert into note(notecontent,executiontime,creationtime,employeeid)
         VALUES(#{notecontent},#{executiontime},#{creationtime},#{employeeid})
     </insert>
+
+    <select id="selcount" resultType="Integer">
+        SELECT COUNT(1) from note
+        <if test="notecontent!=null">
+            where notecontent like concat('%',#{notecontent},'%')
+        </if>
+    </select>
+
 </mapper>

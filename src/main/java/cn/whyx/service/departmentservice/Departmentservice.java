@@ -16,7 +16,7 @@ public interface Departmentservice {
     /**
      * 查询部门总数
      */
-    public Integer selcount()throws Exception;
+    public Integer selcount(@Param("department_name") String department_name)throws Exception;
 
     /**
      * 查询修改前的部门名称

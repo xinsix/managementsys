@@ -65,6 +65,11 @@
     </select>
 
     <select id="selcount" resultType="Integer">
-        SELECT COUNT(1) from `carmanage`
+            SELECT COUNT(1) from `carmanage`
+            <where>
+                <if test="licenseplate != null">
+                    and licenseplate like CONCAT('%',#{licenseplate},'%')
+                </if>
+            </where>
     </select>
 </mapper>

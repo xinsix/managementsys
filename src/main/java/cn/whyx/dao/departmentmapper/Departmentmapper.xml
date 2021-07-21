@@ -12,6 +12,9 @@
 
     <select id="selcount" resultType="Integer">
         SELECT COUNT(1) from department
+        <if test="department_name!=null">
+            where department_name like CONCAT('%',#{department_name},'%')
+        </if>
     </select>
 
     <select id="selDepartmentname" resultType="Department">

@@ -21,7 +21,7 @@ public class AssetsManageAction {
     @RequestMapping("find")
     public String findAssetsManage(Model model, @RequestParam(required = false)String assetname) throws Exception {//查看所有资产
         List<AssetsManage> list = service.findAssetsManage(assetname);
-        Integer count = service.selcount();
+        Integer count = service.selcount(assetname);
         model.addAttribute("list",list);
         model.addAttribute("count",count);
         return "pet_list/pet_list";

@@ -29,4 +29,9 @@ public interface NoteMapper {
      * 添加信息
      */
     public boolean add(Note note)throws Exception;
+
+    /**
+     * 查询总数
+     */
+    public Integer selcount(@Param("notecontent") String notecontent)throws Exception;
 }
