@@ -23,7 +23,9 @@
         SELECT COUNT(1) from `penson`
     </select>
 
-
+    <select id="seltask" resultType="Task">
+        SELECT * FROM `task`
+    </select>
 
 
 </mapper>

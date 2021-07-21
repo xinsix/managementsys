@@ -1,6 +1,7 @@
 package cn.whyx.dao.welcome;
 
 import cn.whyx.pojo.InfoManage;
+import cn.whyx.pojo.Task;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -31,4 +32,10 @@ public interface WelcomeMapper {
      * 查询总员功能
      */
     public Integer selrepairl()throws Exception;
+
+
+    /**
+     * 查询全部任务
+     */
+    public List<Task> seltask()throws Exception;
 }

@@ -2,6 +2,7 @@ package cn.whyx.service.welcome;
 
 import cn.whyx.dao.welcome.WelcomeMapper;
 import cn.whyx.pojo.InfoManage;
+import cn.whyx.pojo.Task;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -34,5 +35,10 @@ public class WelcomeServiceImpl implements WelcomeService{
     @Override
     public Integer selrepairl() throws Exception {
         return welcomeMapper.selrepairl();
+    }
+
+    @Override
+    public List<Task> seltask() throws Exception {
+        return welcomeMapper.seltask();
     }
 }
