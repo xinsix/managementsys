@@ -51,7 +51,7 @@
         <button class="layui-btn layui-btn-danger" onclick="delAll()">
             <i class="layui-icon">&#xe640;</i>批量删除
         </button>
-        <button class="layui-btn" onclick="question_add('添加','articles_add','1000','600')">
+        <button class="layui-btn" onclick="question_add('添加','/page/articles_add','1000','600')">
             <i class="layui-icon">&#xe608;</i>添加
         </button>
         <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">${count}</span> 条</span></xblock>

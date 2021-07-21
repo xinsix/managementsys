@@ -23,7 +23,7 @@ public class ArticlesManageAction {
         Integer count = service.selcount();
         model.addAttribute("list",list);
         model.addAttribute("count",count);
-        return "articles_list/articles_list";
+        return "articles/articles_list";
     }
 
     @ResponseBody

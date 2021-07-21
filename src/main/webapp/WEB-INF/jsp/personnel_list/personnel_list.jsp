@@ -38,13 +38,13 @@
                     <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
                 </div>--%>
                 <div class="layui-input-inline">
-                    <select class="layui-select" name="meetroomid" id="sn" lay-filter="aihao">
+                    <%--<select class="layui-select" name="meetroomid" id="sn" lay-filter="aihao">
                         <option value="0">---请选择小区---</option>
-                        <%--<option value="0">---请选择小区---</option>
+                        &lt;%&ndash;<option value="0">---请选择小区---</option>
                         <option value="1" >东湖小区</option>
-                        <option value="2" >金华万府</option>--%>
-                    </select>
-                    <%--<input type="text" name="meetroomid"  placeholder="会议室" autocomplete="off" class="layui-input">--%>
+                        <option value="2" >金华万府</option>&ndash;%&gt;
+                    </select>--%>
+                    <input type="text" name="meetroomid"  placeholder="会议室" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline" style="width:80px">
                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>

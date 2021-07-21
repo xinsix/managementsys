@@ -181,7 +181,7 @@ public class PageAction {
     /*添加用品管理*/
     @RequestMapping("/articles_add")
     public String articles_add(){
-        return "articles_list/articles_add";
+        return "articles/articles_add";
     }
 
     /*人员管理*/
