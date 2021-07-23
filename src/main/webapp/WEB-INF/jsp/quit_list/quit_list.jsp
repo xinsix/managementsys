@@ -55,7 +55,7 @@
                 <i class="layui-icon">&#xe608;</i>添加
             </button>
         </from>
-        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">${count}</span> 条</span>
+        <%--<span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">${count}</span> 条</span>--%>
     </xblock>
     <table class="layui-table">
         <thead>

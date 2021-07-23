@@ -126,18 +126,18 @@
                 </li>
                 </c:if>
                 <c:if test="${sessionScope.user_Session.role == 1}">
-                <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon iconfont icon-zichan" style="top: 3px;"></i><cite>权限管理</cite> </a>
+                <%--<li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon iconfont icon-zichan" style="top: 3px;"></i><cite>权限管理</cite> </a>
                     <dl class="layui-nav-child">
                         <dd class=""> <a href="javascript:;" _href="/page/device_list"> <cite>角色管理</cite> </a> </dd>
                         <!--<dd class=""> <a href="javascript:;" _href="user_list.html"> <cite>用户管理</cite> </a> </dd>-->
                     </dl>
-                </li>
+                </li>--%>
                 </c:if>
-                <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon iconfont icon-shoufeizhan" style="top: 3px;"></i><cite>系统管理</cite> </a>
+                <%--<li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon iconfont icon-shoufeizhan" style="top: 3px;"></i><cite>系统管理</cite> </a>
                     <dl class="layui-nav-child">
                         <dd class=""> <a href="javascript:;" _href="/page/pro_list"> <cite>密码修改</cite> </a> </dd>
                     </dl>
-                </li>
+                </li>--%>
 
                 <li class="layui-nav-item"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon" style="top: 3px;">&#xe613;</i><cite>人事档案</cite> </a>
                     <dl class="layui-nav-child">

@@ -20,7 +20,7 @@
                     <div>
                         <h2>系统登录</h2>
                         <span><label>用户名</label></span>
-                        <span><input type="text" class="username" name="username"></span>
+                        <span><input type="text" autocomplete="off" class="username" name="username"></span>
                     </div>
                     <div>
                         <span><label>密码</label></span>
