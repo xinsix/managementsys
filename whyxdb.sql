@@ -26,13 +26,14 @@ CREATE TABLE `applyinfo` (
   `state` int(11) DEFAULT NULL,
   `subject` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `applyinfo` */
 
 insert  into `applyinfo`(`id`,`pid`,`state`,`subject`) values 
 (1,3,0,1),
-(2,2,0,0);
+(2,2,0,0),
+(12,2,1,1);
 
 /*Table structure for table `articlesmanage` */
 
@@ -67,7 +68,7 @@ CREATE TABLE `assetsmanage` (
   `position` varchar(30) DEFAULT NULL,
   `assetmanager` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `assetsmanage` */
 
@@ -75,7 +76,8 @@ insert  into `assetsmanage`(`id`,`assetname`,`quantity`,`position`,`assetmanager
 (1,'桌子','10','401',1),
 (2,'桌子','10','402',1),
 (3,'桌子','10','403',1),
-(4,'椅子','10','401',1);
+(4,'椅子','10','401',1),
+(5,'椅子','10','303',1);
 
 /*Table structure for table `attendance` */
 
@@ -114,7 +116,7 @@ CREATE TABLE `carmanage` (
   `mileage` varchar(30) DEFAULT NULL,
   `voucher` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 /*Data for the table `carmanage` */
 
@@ -122,7 +124,8 @@ insert  into `carmanage`(`id`,`licenseplate`,`applicant`,`applytime`,`backtime`,
 (1,'粤A-66666','3','2021-07-15 11:58:33','2021-07-16 11:58:35','吃饭','100','无'),
 (2,'粤A-55555','2','2021-07-15 11:59:08','2021-07-16 11:59:10','吃饭','10','无'),
 (18,'粤A-11111','2','2021-07-21 10:22:00','2021-07-22 10:22:00','123','123123','123123'),
-(21,'粤A-00000','1','2021-07-20 10:59:32','2021-07-20 10:59:49','chifan ','12','321');
+(21,'粤A-00000','1','2021-07-20 10:59:32','2021-07-20 10:59:49','chifan ','12','321'),
+(22,'粤A-22222','2','2021-07-20 14:13:21','2021-07-20 20:42:34','123','200000','我就不给你凭证');
 
 /*Table structure for table `department` */
 
@@ -132,7 +135,7 @@ CREATE TABLE `department` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `department_name` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `department` */
 
@@ -141,7 +144,8 @@ insert  into `department`(`id`,`department_name`) values
 (2,'管理部'),
 (3,'市场部'),
 (4,'行政部'),
-(5,'开发部');
+(5,'开发部'),
+(6,'综合部');
 
 /*Table structure for table `detailedprocess` */
 
@@ -158,13 +162,16 @@ CREATE TABLE `detailedprocess` (
   `apply_pid` bigint(20) DEFAULT NULL,
   `examine_pid` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `detailedprocess` */
 
 insert  into `detailedprocess`(`id`,`procedure_id`,`matter`,`start_time`,`end_time`,`duration`,`state`,`apply_pid`,`examine_pid`) values 
-(1,1,'无','2021-07-15 12:02:12','2021-07-16 12:02:15',24.0,0,3,NULL),
-(2,1,'无','2021-07-15 12:03:48','2021-07-16 12:03:50',24.0,1,2,NULL);
+(1,1,'无','2021-07-15 12:02:12','2021-07-16 12:02:15',24.0,2,2,1),
+(2,2,'无','2021-07-15 12:03:48','2021-07-16 12:03:50',24.0,2,3,1),
+(3,3,'wu','2021-07-21 04:59:17','2021-07-22 04:59:20',24.0,2,4,1),
+(4,1,'无','2021-07-21 00:00:00','2021-07-22 00:00:00',24.0,2,1,1),
+(5,1,'旅游','2021-07-21 00:00:00','2021-07-26 00:00:00',5.0,1,2,1);
 
 /*Table structure for table `infomanage` */
 
@@ -178,15 +185,16 @@ CREATE TABLE `infomanage` (
   `release_pid` varchar(20) DEFAULT NULL,
   `modify_pid` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Data for the table `infomanage` */
 
 insert  into `infomanage`(`id`,`content`,`releasetime`,`revisiontime`,`release_pid`,`modify_pid`) values 
-(1,'紧急通知','2021-07-15 11:43:58',NULL,'1',NULL),
-(2,'？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？','2021-07-15 11:44:26','2021-07-20 11:39:17','2','1'),
-(3,'哈哈哈哈',NULL,NULL,'1',NULL),
-(5,'213123123123','2021-07-19 21:24:50',NULL,'1',NULL);
+(2,'今天八点开会','2021-07-15 11:44:26','2021-07-21 08:44:50','2','1'),
+(5,'明天早上去团建','2021-07-19 21:24:50','2021-07-21 08:45:11','1','1'),
+(6,'今晚九点开会','2021-07-20 20:44:57','2021-07-20 20:46:11','1','2'),
+(7,'明天放假啦！！！！！','2021-07-20 21:15:24','2021-07-21 08:45:37','1','1'),
+(8,'你错了，今天要上课','2021-07-21 10:13:10','2021-07-21 15:31:51','1','1');
 
 /*Table structure for table `meetingroom` */
 
@@ -220,18 +228,13 @@ CREATE TABLE `meetingroomapply` (
   `pid` bigint(20) DEFAULT NULL,
   `status` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 /*Data for the table `meetingroomapply` */
 
 insert  into `meetingroomapply`(`id`,`meetroomid`,`begindate`,`enddate`,`applyreason`,`pid`,`status`) values 
-(1,1,'2021-07-07 10:50:36','2021-07-07 14:50:40','开会',2,'0'),
-(6,1,'2021-07-20 12:24:00','2021-07-20 13:24:00','123',NULL,'0'),
-(7,1,'2021-07-20 12:29:00','2021-07-20 13:29:00','123123123',NULL,'0'),
-(8,1,'2021-07-20 12:29:00','2021-07-20 13:29:00','123123123',NULL,'0'),
-(9,1,'2021-07-20 12:30:00','2021-07-20 13:30:00','3qweq',NULL,'0'),
-(10,1,'2021-07-20 12:31:00','2021-07-20 13:31:00','dasdas',NULL,'0'),
-(11,2,'2021-07-20 12:36:00','2021-07-20 13:36:00','213123123',NULL,'0');
+(19,1,'2021-03-01 13:36:00','2021-03-01 04:05:00','111',1,'0'),
+(20,2,'2021-07-21 15:39:00','2021-07-22 15:39:00','开会一天',2,'1');
 
 /*Table structure for table `note` */
 
@@ -245,14 +248,17 @@ CREATE TABLE `note` (
   `revisiontime` datetime DEFAULT NULL,
   `employeeid` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Data for the table `note` */
 
 insert  into `note`(`id`,`notecontent`,`executiontime`,`creationtime`,`revisiontime`,`employeeid`) values 
-(1,'哈哈哈','2021-07-15 11:37:25','2021-07-15 11:37:30',NULL,1),
-(2,'哈哈哈哈','2021-07-15 11:37:41','2021-07-15 11:37:43',NULL,2),
-(3,'哈哈哈哈哈','2021-07-15 11:37:50','2021-07-15 11:37:53',NULL,3);
+(1,'今天一切安好','2021-07-21 00:00:00','2021-07-15 11:37:30','2021-07-21 14:48:21',1),
+(2,'昨天我在公司吃螺蛳粉了','2021-07-10 00:00:00','2021-07-15 11:37:43','2021-07-21 14:47:57',2),
+(3,'今天偷吃了同事的小饼干','2021-07-18 00:00:00','2021-07-15 11:37:53','2021-07-21 14:47:31',3),
+(6,'今天打了老板','2021-07-21 00:00:00','2021-07-21 02:07:17','2021-07-21 14:47:06',NULL),
+(7,'明天放假拉','2021-07-22 00:00:00','2021-07-21 15:28:52',NULL,NULL),
+(8,'哈哈哈','2021-07-22 00:00:00','2021-07-21 15:29:34',NULL,NULL);
 
 /*Table structure for table `organmanage` */
 
@@ -270,7 +276,7 @@ CREATE TABLE `organmanage` (
 
 insert  into `organmanage`(`id`,`departmentid`,`postid`,`position`) values 
 (1,1,1,1),
-(2,1,2,2),
+(2,2,2,2),
 (3,1,3,3);
 
 /*Table structure for table `penson` */
@@ -290,15 +296,17 @@ CREATE TABLE `penson` (
   `role` bigint(20) DEFAULT NULL,
   `wages` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `penson` */
 
 insert  into `penson`(`id`,`name`,`username`,`password`,`sex`,`address`,`phone`,`description`,`org`,`role`,`wages`) values 
-(1,'保密','admin','admin','0','    中国','11111111111','',NULL,1,4000),
-(2,'张三','zhangsan','123456','1','广东','22222222222',NULL,1,1,4000),
+(1,'超级管理员','admin','admin','0','    中国','11111111111','',NULL,1,4000),
+(2,'张三','zhangsan','123456','1','广东','22222222222',NULL,1,2,4000),
 (3,'李四','lisi','123456','0','广西','33333333333',NULL,2,7,4000),
-(4,'王五','wangwu','123456','1',' 湖南','55555555555','                 ',3,7,4000);
+(4,'王五','wangwu','123456','1','  湖南','55555555555','                  ',3,7,1000),
+(5,'王五',NULL,NULL,'1','123123123','11111111111','',5,7,1000),
+(6,'钟美玲',NULL,NULL,'0',' 佛山华南IT学院','15992097877',' 特别美丽的一位老师',3,5,10);
 
 /*Table structure for table `position` */
 
@@ -308,14 +316,16 @@ CREATE TABLE `position` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `position_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `position` */
 
 insert  into `position`(`id`,`position_name`) values 
 (1,'员工'),
 (2,'员工1'),
-(3,'员工2');
+(3,'员工2'),
+(4,'员工3'),
+(5,'员工4');
 
 /*Table structure for table `procedure` */
 
@@ -363,7 +373,7 @@ CREATE TABLE `station` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `station_name` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `station` */
 
@@ -371,7 +381,8 @@ insert  into `station`(`id`,`station_name`) values
 (1,'总会计师'),
 (2,'出纳'),
 (3,'稽核'),
-(4,'核算');
+(4,'核算'),
+(6,'前端开发工程师');
 
 /*Table structure for table `task` */
 
@@ -388,13 +399,13 @@ CREATE TABLE `task` (
   `employeeid` bigint(20) DEFAULT NULL,
   `executeid` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 /*Data for the table `task` */
 
 insert  into `task`(`id`,`matter`,`starttime`,`endtime`,`creationtime`,`revisiontime`,`state`,`employeeid`,`executeid`) values 
-(1,'哈哈哈哈','2021-07-15 11:38:27','2021-08-07 11:41:33','2021-07-15 11:38:30',NULL,0,3,1),
-(2,'哈哈哈哈哈哈','2021-07-15 11:41:47','2021-07-16 11:41:49','2021-07-15 11:41:51',NULL,0,2,1);
+(9,'今天需要做一个项目PPT','2021-07-21 00:00:00','2021-07-22 00:00:00','2021-07-21 14:35:16',NULL,0,3,1),
+(10,'明天放假','2021-07-21 00:00:00','2021-07-22 00:00:00','2021-07-21 15:30:33','2021-07-21 15:31:03',1,3,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
