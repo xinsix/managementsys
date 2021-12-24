@@ -2,18 +2,15 @@
 spring:
  application:
   name: managementsys
- datasource:
-  driver-class-name: com.mysql.cj.jdbc.Driver
-  url: jdbc:mysql://127.0.0.1:3306/whyxdb?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
-  username: root
-  password: root
  mvc:
   view:
    prefix: /WEB-INF/jsp/
    suffix: .jsp
   static-path-pattern: /statics/**
  resources:
-   static-locations: file:E:/Desktop/项目/ManagementSys/src/main/resources/statics/
+   static-locations: classpath:/statics/
+ profiles:
+   active: dev
 mybatis:
  #Mapper映射文件的位置
  mapper-locations: classpath:dao/**/*.xml
@@ -21,6 +18,4 @@ mybatis:
  type-aliases-package: cn.whyx.pojo
 # 应用服务 WEB 访问端口
 server:
- port: 8888
-
-
+ port: 8090
