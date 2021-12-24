@@ -4,11 +4,13 @@ import cn.whyx.pojo.Penson;
 import cn.whyx.response.Result;
 import cn.whyx.service.penson.PensonService;
 import cn.whyx.util.Condition;
+import cn.whyx.util.IpConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -20,7 +22,8 @@ public class UserAction {
     private PensonService userService;
 
     @RequestMapping("/login.html")
-    public String login(){
+    public String login(HttpServletRequest request){
+        System.out.println("login:"+IpConfig.getIpAddr(request));
         return "login";
     }
 

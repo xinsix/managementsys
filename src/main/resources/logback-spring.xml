@@ -27,11 +27,11 @@
         </encoder>
         <file/>
         <!--指定文件的输出位置-->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>
-                C:/logs2017/%d.log
+                /logs/%d.log
             </fileNamePattern>
-        </rollingPolicy>
+        </rollingPolicy>-->
     </appender>
 
     <root level="info">

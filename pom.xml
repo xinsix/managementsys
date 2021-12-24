@@ -16,7 +16,8 @@
     </properties>
 
     <dependencies>
-        <!--加载mybatis-->
+
+        <!-- mybatis-spring-boot-starter 整合-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -32,23 +33,21 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.5</version>
+            <version>1.2.66</version>
         </dependency>
 
-
-        <!--整合JSP页面-->
+        <!--jsp整合-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!--Jstl标签库-->
+        <!--jstl标签库-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
-
-        <!--Tomcat支持-->
+        <!--tomcat支持-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -104,13 +103,20 @@
                 </includes>
                 <filtering>false</filtering>
             </resource>
-            <!--<resource>
+            <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>statics/**</include>
+                    <include>**/*</include>
                 </includes>
-                <filtering>false</filtering>
-            </resource>-->
+            </resource>
+            <resource>
+                <!--打包成jar静态资源必须指明路径，打包成war可以不用-->
+                <directory>src/main/webapp</directory>
+                <targetPath>META-INF/resources</targetPath>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
         </resources>
 
         <plugins>
@@ -127,7 +133,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.7.RELEASE</version>
+                <version>1.4.2.RELEASE</version>
                 <configuration>
                     <mainClass>cn.whyx.ManagementsysApplication</mainClass>
                 </configuration>

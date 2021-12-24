@@ -14,29 +14,5 @@ public class ManagementsysApplication {
     public static void main(String[] args) {
         SpringApplication.run(ManagementsysApplication.class, args);
     }
-    @Bean
-    public InternalResourceViewResolver setupViewResolver(){
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/jsp/");
-        resolver.setSuffix(".jsp");
-        return resolver;
-    }
-    @Bean
-    public WebMvcConfigurer webMvcConfigurer(){
-        String dir = System.getProperty("user.dir");
-        //System.out.println("项目当前路径："+dir);
-        //构建路径
-        File file=new File(dir+File.separatorChar+"src/main/resources/statics/");
-        if(!file.exists()){
-            file.mkdir();
-        }
-        String resourceLocation=file.getAbsolutePath()+File.separatorChar;
-        return new WebMvcConfigurer() {
-            @Override
-            public void addResourceHandlers(ResourceHandlerRegistry registry) {
-                registry.addResourceHandler("/statics/**").addResourceLocations("file:"+resourceLocation);
-            }
-        };
-    }
 
 }
